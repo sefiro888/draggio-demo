@@ -360,10 +360,45 @@
     .dif-pillars { grid-template-columns: 1fr; }
     .hero-btns { flex-direction: column; }
     .btn-primary, .btn-wa { width: 100%; justify-content: center; }
-    #inicio { min-height: 92vh; align-items: flex-start; padding-top: 130px; }
-    .hero-content { max-width: none; }
+    #inicio {
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      padding-top: 120px;
+      padding-bottom: 44px;
+    }
+    .hero-content {
+      order: 1;
+      position: relative;
+      z-index: 3;
+      max-width: none;
+      width: 100%;
+    }
+    .hero-eyebrow,
+    .hero-h1,
+    .hero-sub,
+    .hero-btns,
+    .hero-trust {
+      position: relative;
+      z-index: 3;
+    }
     .hero-hair-figure {
-      right: -44%; top: 39%; width: 108vw; opacity: 0.16;
+      order: 2;
+      position: relative;
+      right: auto;
+      top: auto;
+      transform: none;
+      width: min(76vw, 300px);
+      margin: 22px auto 0;
+      opacity: 0.88;
+      z-index: 1;
+    }
+    .hero-hair-figure svg {
+      width: 100%;
+      height: auto;
+      max-height: 270px;
     }
   }
 
