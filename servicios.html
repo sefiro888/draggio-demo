@@ -58,6 +58,17 @@
 
   /* SERVICE CATEGORIES */
   .services-page { padding: 80px 5%; }
+  .price-note {
+    max-width: 980px; margin: 0 auto 2rem; padding: 1.1rem 1.3rem;
+    background: rgba(200,169,110,0.1); border: 1px solid var(--border);
+    color: var(--mid); font-size: 0.9rem; line-height: 1.6; font-weight: 300;
+  }
+  .cat-nav { display: flex; flex-wrap: wrap; gap: 0.7rem; margin: 0 auto 4rem; max-width: 980px; }
+  .cat-nav a {
+    text-decoration: none; color: var(--rose-dark); border: 1px solid var(--border);
+    background: var(--warm-white); padding: 0.65rem 1rem; border-radius: 999px;
+    font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+  }
   .service-category { margin-bottom: 5rem; }
   .cat-header { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: start; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
   .cat-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; color: rgba(200,169,110,0.25); font-weight: 300; line-height: 1; }
@@ -65,15 +76,24 @@
   .cat-desc { font-size: 0.9rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
 
   .service-items-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .service-item { background: var(--warm-white); padding: 2rem 1.8rem; transition: background 0.3s; position: relative; overflow: hidden; }
+  .service-item { background: var(--warm-white); padding: 2rem 1.8rem; transition: background 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
   .service-item::after { content: ''; position: absolute; bottom: 0; left: 1.8rem; width: 0; height: 1px; background: var(--gold); transition: width 0.4s; }
   .service-item:hover { background: #faf4ed; }
   .service-item:hover::after { width: calc(100% - 3.6rem); }
   .service-item-icon { font-size: 1.4rem; margin-bottom: 0.8rem; }
   .service-item-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.5rem; }
   .service-item-desc { font-size: 0.84rem; color: var(--mid); line-height: 1.6; font-weight: 300; }
-  .service-item-price { margin-top: 1rem; font-size: 0.8rem; color: var(--light-mid); }
-  .service-item-price strong { color: var(--rose-dark); font-size: 0.9rem; }
+  .service-item-meta { margin-top: auto; padding-top: 1.2rem; display: grid; gap: 0.35rem; }
+  .service-item-price { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--rose-dark); font-weight: 400; }
+  .service-item-duration { font-size: 0.78rem; color: var(--light-mid); }
+  .service-actions { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; }
+  .service-actions a {
+    text-decoration: none; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.65rem 0.8rem; border-radius: 2px; border: 1px solid var(--border);
+    color: var(--charcoal); background: #fff; transition: background 0.2s, color 0.2s;
+  }
+  .service-actions a:first-child { background: var(--charcoal); color: var(--cream); border-color: var(--charcoal); }
+  .service-actions a:hover { background: var(--rose-dark); color: #fff; border-color: var(--rose-dark); }
 
   /* CTA BAND */
   .cta-band { background: var(--charcoal); padding: 70px 5%; text-align: center; }
@@ -117,6 +137,7 @@
   @media (max-width: 600px) {
     nav { padding: 0 4%; }
     .service-items-grid { grid-template-columns: 1fr; }
+    .cat-nav a, .service-actions a { width: 100%; text-align: center; }
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; text-align: center; }
     .cta-btns { flex-direction: column; align-items: center; }
@@ -152,156 +173,205 @@
 <div class="page-hero">
   <div class="page-hero-content">
     <div class="page-eyebrow">Nuestros servicios</div>
-    <h1>Todo lo que tu cabello<br><em>necesita</em></h1>
-    <p>Servicios de peluquería adaptados al estado, largo y objetivo de cada cabello. Te orientamos antes de elegir técnica, tratamiento o color.</p>
+    <h1>Servicios de peluquería en<br><em>D'Raggio Estilistas</em></h1>
+    <p>Color, balayage, cortes y tratamientos capilares cerca de Sagrada Família, con asesoramiento personalizado según tu cabello.</p>
   </div>
 </div>
 
 <div class="services-page">
+  <div class="price-note">
+    Precios orientativos. El importe final puede variar según largo, densidad, técnica necesaria y diagnóstico previo del cabello.
+  </div>
 
-  <!-- COLOR -->
-  <div class="service-category">
+  <div class="cat-nav" aria-label="Categorías de servicios">
+    <a href="#color-balayage">Color y balayage</a>
+    <a href="#cortes">Cortes y peinados</a>
+    <a href="#tratamientos">Tratamientos</a>
+    <a href="#alisados">Alisados</a>
+    <a href="#otros">Otros</a>
+  </div>
+
+  <!-- MECHAS Y BALAYAGE -->
+  <div class="service-category" id="color-balayage">
     <div class="cat-header">
       <div class="cat-num">01</div>
       <div>
-        <div class="section-label">Coloración</div>
-        <div class="cat-title">Color & Técnicas</div>
-        <p class="cat-desc">La coloración es una de nuestras especialidades. Usamos técnicas de pintura libre y fórmulas personalizadas para buscar un resultado favorecedor según tu base, mantenimiento y objetivo.</p>
+        <div class="section-label">Color y balayage</div>
+        <div class="cat-title">Mechas, balayage y color</div>
+        <p class="cat-desc">Técnicas de coloración e iluminación adaptadas a la base, objetivo y estado del cabello.</p>
       </div>
     </div>
     <div class="service-items-grid">
       <div class="service-item">
-        <div class="service-item-icon">🌿</div>
-        <div class="service-item-name">Balayage Californiano</div>
-        <p class="service-item-desc">Técnica de pintura libre para crear reflejos degradados y luminosos según la base y el objetivo de cada cabello.</p>
-        <div class="service-item-price">Precio según diagnóstico</div>
+        <div class="service-item-icon">✦</div>
+        <div class="service-item-name">Balayage full blonde</div>
+        <p class="service-item-desc">Iluminación global para un rubio luminoso, siempre con diagnóstico previo del cabello.</p>
+        <div class="service-item-meta"><div class="service-item-price">Desde 150 €</div><div class="service-item-duration">Duración aproximada: 4h 35min</div></div>
+        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20balayage." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
       </div>
       <div class="service-item">
-        <div class="service-item-icon">✨</div>
-        <div class="service-item-name">Mechas Babylights</div>
-        <p class="service-item-desc">Mechas finas para aportar luz de forma suave y personalizada, siempre valorando el estado previo del cabello.</p>
-        <div class="service-item-price">Precio según diagnóstico</div>
+        <div class="service-item-icon">✦</div>
+        <div class="service-item-name">Balayage Ombré</div>
+        <p class="service-item-desc">Degradado de color con transición suave entre raíz, medios y puntas.</p>
+        <div class="service-item-meta"><div class="service-item-price">Desde 150 €</div><div class="service-item-duration">Duración aproximada: 4h 45min</div></div>
+        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20balayage." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
       </div>
       <div class="service-item">
-        <div class="service-item-icon">🌙</div>
-        <div class="service-item-name">Balayage Oscuro</div>
-        <p class="service-item-desc">Balayage adaptado a bases oscuras para aportar dimensión sin perder naturalidad ni contraste controlado.</p>
-        <div class="service-item-price">Precio según diagnóstico</div>
+        <div class="service-item-icon">✦</div>
+        <div class="service-item-name">Balayage morena iluminada</div>
+        <p class="service-item-desc">Balayage para bases morenas con luz, dimensión y contraste controlado.</p>
+        <div class="service-item-meta"><div class="service-item-price">Desde 140 €</div><div class="service-item-duration">Duración aproximada: 4h 45min</div></div>
+        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20balayage." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
       </div>
       <div class="service-item">
-        <div class="service-item-icon">🎨</div>
-        <div class="service-item-name">Tinte Global</div>
-        <p class="service-item-desc">Coloración uniforme con fórmula adaptada al tono buscado, el estado del cabello y el mantenimiento deseado.</p>
-        <div class="service-item-price">Servicio personalizado según largo, técnica y estado del cabello</div>
+        <div class="service-item-icon">✦</div>
+        <div class="service-item-name">Mechas balayage contorno media melena</div>
+        <p class="service-item-desc">Iluminación localizada alrededor del rostro y contorno para aportar luz estratégica.</p>
+        <div class="service-item-meta"><div class="service-item-price">Desde 90 €</div><div class="service-item-duration">Duración aproximada: 3h 45min</div></div>
+        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20balayage." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
       </div>
       <div class="service-item">
-        <div class="service-item-icon">💫</div>
-        <div class="service-item-name">Cobertura de Canas</div>
-        <p class="service-item-desc">Coloración para cobertura de canas con asesoramiento sobre tono, mantenimiento y acabado natural.</p>
-        <div class="service-item-price">Servicio personalizado según largo, técnica y estado del cabello</div>
+        <div class="service-item-icon">Color</div>
+        <div class="service-item-name">Tinte raíz pack completo</div>
+        <p class="service-item-desc">Servicio de coloración en raíz con acabado completo según diagnóstico.</p>
+        <div class="service-item-meta"><div class="service-item-price">Desde 55 €</div><div class="service-item-duration">Duración aproximada: 1h 30min</div></div>
+        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
       </div>
       <div class="service-item">
-        <div class="service-item-icon">🦋</div>
-        <div class="service-item-name">Coloración Personalizada</div>
-        <p class="service-item-desc">Coloraciones creativas sujetas a diagnóstico previo para valorar decoloración, mantenimiento y viabilidad.</p>
-        <div class="service-item-price">Consultar disponibilidad</div>
+        <div class="service-item-icon">Color</div>
+        <div class="service-item-name">Color raíz, hidratación, corte y secado</div>
+        <p class="service-item-desc">Pack completo de color en raíz con cuidado, corte y secado.</p>
+        <div class="service-item-meta"><div class="service-item-price">Desde 83 €</div><div class="service-item-duration">Duración aproximada: 2h 15min</div></div>
+        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
       </div>
+      <div class="service-item">
+        <div class="service-item-icon">Color</div>
+        <div class="service-item-name">Tinte pelo largo</div>
+        <p class="service-item-desc">Coloración para cabello largo, ajustada a largo, densidad y objetivo.</p>
+        <div class="service-item-meta"><div class="service-item-price">Desde 65 €</div><div class="service-item-duration">Duración aproximada: 1h 45min</div></div>
+        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
+      </div>
+      <div class="service-item">
+        <div class="service-item-icon">Color</div>
+        <div class="service-item-name">Baño de color pelo corto</div>
+        <p class="service-item-desc">Matiz o baño de color para aportar brillo y refrescar el tono.</p>
+        <div class="service-item-meta"><div class="service-item-price">Desde 37 €</div><div class="service-item-duration">Duración aproximada: 1h 45min</div></div>
+        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
+      </div>
+      <div class="service-item">
+        <div class="service-item-icon">Color</div>
+        <div class="service-item-name">Baño de color media melena</div>
+        <p class="service-item-desc">Baño de color para media melena con acabado luminoso y personalizado.</p>
+        <div class="service-item-meta"><div class="service-item-price">Desde 45 €</div><div class="service-item-duration">Duración aproximada: 1h 45min</div></div>
+        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
+      </div>
+      <div class="service-item">
+        <div class="service-item-icon">Color</div>
+        <div class="service-item-name">Baño de color pelo largo</div>
+        <p class="service-item-desc">Baño de color para cabello largo, con valoración previa de cantidad y estado.</p>
+        <div class="service-item-meta"><div class="service-item-price">Desde 55 €</div><div class="service-item-duration">Duración aproximada: 2h</div></div>
+        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
+      </div>
+      <div class="service-item">
+        <div class="service-item-icon">Deco</div>
+        <div class="service-item-name">Decoloración global cabello corto</div>
+        <p class="service-item-desc">Decoloración global en cabello corto, siempre con diagnóstico de resistencia previo.</p>
+        <div class="service-item-meta"><div class="service-item-price">Desde 95 €</div><div class="service-item-duration">Duración aproximada: 3h 45min</div></div>
+        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CORTES -->
+  <div class="service-category" id="cortes">
+    <div class="cat-header">
+      <div class="cat-num">02</div>
+      <div>
+        <div class="section-label">Cortes y peinados</div>
+        <div class="cat-title">Corte, lavado y acabado</div>
+        <p class="cat-desc">Cortes y peinados adaptados al largo, textura y estilo de mantenimiento deseado.</p>
+      </div>
+    </div>
+    <div class="service-items-grid">
+      <div class="service-item">
+        <div class="service-item-icon">Corte</div>
+        <div class="service-item-name">Cortar y quitar humedad</div>
+        <p class="service-item-desc">Corte personalizado con retirada de humedad para un acabado natural.</p>
+        <div class="service-item-meta"><div class="service-item-price">Desde 32 €</div><div class="service-item-duration">Duración aproximada: 1h</div></div>
+        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
+      </div>
+      <div class="service-item">
+        <div class="service-item-icon">Corte</div>
+        <div class="service-item-name">Corte pack completo</div>
+        <p class="service-item-desc">Servicio completo de corte con acabado adaptado al cabello.</p>
+        <div class="service-item-meta"><div class="service-item-price">Desde 40 €</div><div class="service-item-duration">Duración aproximada: 1h 15min</div></div>
+        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
+      </div>
+      <div class="service-item">
+        <div class="service-item-icon">Corte</div>
+        <div class="service-item-name">Corte cabello extra largo</div>
+        <p class="service-item-desc">Corte para cabellos extra largos, con tiempo específico para trabajar largo y forma.</p>
+        <div class="service-item-meta"><div class="service-item-price">Desde 49,99 €</div><div class="service-item-duration">Duración aproximada: 1h 30min</div></div>
+        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
+      </div>
+      <div class="service-item"><div class="service-item-icon">Corte</div><div class="service-item-name">Corte terapéutico</div><p class="service-item-desc">Corte orientado a sanear y mejorar la forma del cabello según diagnóstico.</p><div class="service-item-meta"><div class="service-item-price">Desde 60 €</div><div class="service-item-duration">Duración aproximada: 1h 30min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <div class="service-item"><div class="service-item-icon">Corte</div><div class="service-item-name">Corte y peinado pelo corto</div><p class="service-item-desc">Corte y acabado para pelo corto, adaptado al estilo deseado.</p><div class="service-item-meta"><div class="service-item-price">Desde 36,99 €</div><div class="service-item-duration">Duración aproximada: 1h 30min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <div class="service-item"><div class="service-item-icon">Corte</div><div class="service-item-name">Corte y peinado media melena</div><p class="service-item-desc">Corte y peinado para media melena con acabado personalizado.</p><div class="service-item-meta"><div class="service-item-price">Desde 46 €</div><div class="service-item-duration">Duración aproximada: 1h 45min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <div class="service-item"><div class="service-item-icon">Corte</div><div class="service-item-name">Corte y peinado pelo largo</div><p class="service-item-desc">Corte y peinado para cabello largo, con tiempo para trabajar largo y textura.</p><div class="service-item-meta"><div class="service-item-price">Desde 56 €</div><div class="service-item-duration">Duración aproximada: 1h 45min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <div class="service-item"><div class="service-item-icon">Peinado</div><div class="service-item-name">Lavar y peinar pelo corto</div><p class="service-item-desc">Lavado y peinado para pelo corto con acabado cuidado.</p><div class="service-item-meta"><div class="service-item-price">Desde 20 €</div><div class="service-item-duration">Duración aproximada: 45min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <div class="service-item"><div class="service-item-icon">Peinado</div><div class="service-item-name">Lavar y peinar media melena</div><p class="service-item-desc">Lavado y peinado para media melena con acabado adaptado al cabello.</p><div class="service-item-meta"><div class="service-item-price">Desde 25 €</div><div class="service-item-duration">Duración aproximada: 45min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <div class="service-item"><div class="service-item-icon">Peinado</div><div class="service-item-name">Lavar y peinar pelo largo</div><p class="service-item-desc">Lavado y peinado para cabello largo con acabado pulido o natural.</p><div class="service-item-meta"><div class="service-item-price">Desde 30 €</div><div class="service-item-duration">Duración aproximada: 1h</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
     </div>
   </div>
 
   <!-- TRATAMIENTOS -->
-  <div class="service-category">
-    <div class="cat-header">
-      <div class="cat-num">02</div>
-      <div>
-        <div class="section-label">Tratamientos</div>
-        <div class="cat-title">Alisados & Keratina</div>
-        <p class="cat-desc">Tratamientos de keratina y alisado para controlar encrespamiento y facilitar el peinado, siempre según diagnóstico del cabello.</p>
-      </div>
-    </div>
-    <div class="service-items-grid">
-      <div class="service-item">
-        <div class="service-item-icon">💧</div>
-        <div class="service-item-name">Keratina / Alisado</div>
-        <p class="service-item-desc">Tratamiento para mejorar el control del encrespamiento y aportar un acabado más pulido según el estado de la fibra.</p>
-        <div class="service-item-price">Precio según diagnóstico</div>
-      </div>
-      <div class="service-item">
-        <div class="service-item-icon">🌊</div>
-        <div class="service-item-name">Alisado</div>
-        <p class="service-item-desc">Servicio de alisado sujeto a valoración previa para confirmar si es adecuado para el cabello y el objetivo deseado.</p>
-        <div class="service-item-price">Precio según diagnóstico</div>
-      </div>
-      <div class="service-item">
-        <div class="service-item-icon">🌸</div>
-        <div class="service-item-name">Tratamiento Alisador</div>
-        <p class="service-item-desc">Tratamiento de alisado y cuidado capilar que se recomienda tras valorar historial, textura y necesidad del cabello.</p>
-        <div class="service-item-price">Precio según diagnóstico</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- HIDRATACIÓN -->
-  <div class="service-category">
+  <div class="service-category" id="tratamientos">
     <div class="cat-header">
       <div class="cat-num">03</div>
       <div>
-        <div class="section-label">Cuidado capilar</div>
-        <div class="cat-title">Hidratación & Nutrición</div>
-        <p class="cat-desc">El cuidado capilar es la base de un buen color y un buen acabado. Los tratamientos se recomiendan según diagnóstico y necesidad real del cabello.</p>
+        <div class="section-label">Tratamientos</div>
+        <div class="cat-title">Cuidado capilar</div>
+        <p class="cat-desc">Tratamientos de cuidado y reparación según necesidad real de la fibra capilar.</p>
       </div>
     </div>
     <div class="service-items-grid">
-      <div class="service-item">
-        <div class="service-item-icon">🔬</div>
-        <div class="service-item-name">Reconstrucción Capilar</div>
-        <p class="service-item-desc">Tratamiento de reconstrucción recomendado tras valorar coloraciones previas, calor y estado de la fibra.</p>
-        <div class="service-item-price">Precio según diagnóstico</div>
-      </div>
-      <div class="service-item">
-        <div class="service-item-icon">🌺</div>
-        <div class="service-item-name">Hidratación Profunda</div>
-        <p class="service-item-desc">Hidratación adaptada al tipo de cabello y a sus necesidades de suavidad, brillo y manejo.</p>
-        <div class="service-item-price">Precio según diagnóstico</div>
-      </div>
-      <div class="service-item">
-        <div class="service-item-icon">✨</div>
-        <div class="service-item-name">Nutrición Intensiva</div>
-        <p class="service-item-desc">Tratamiento de nutrición para cabellos que necesitan mejorar tacto, elasticidad y aspecto general.</p>
-        <div class="service-item-price">Precio según diagnóstico</div>
-      </div>
+      <div class="service-item"><div class="service-item-icon">Cuidado</div><div class="service-item-name">Tratamiento de proteína</div><p class="service-item-desc">Tratamiento para aportar fuerza y mejorar el aspecto del cabello.</p><div class="service-item-meta"><div class="service-item-price">Desde 65 €</div><div class="service-item-duration">Duración aproximada: 1h 35min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <div class="service-item"><div class="service-item-icon">Cuidado</div><div class="service-item-name">Reconstrucción capilar</div><p class="service-item-desc">Reconstrucción para cabellos que necesitan recuperar tacto y resistencia.</p><div class="service-item-meta"><div class="service-item-price">Desde 30 €</div><div class="service-item-duration">Duración aproximada: 1h</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <div class="service-item"><div class="service-item-icon">Cuidado</div><div class="service-item-name">Mascarilla</div><p class="service-item-desc">Servicio de mascarilla para aportar suavidad y cuidado complementario.</p><div class="service-item-meta"><div class="service-item-price">Desde 15 €</div><div class="service-item-duration">Duración aproximada: 30min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <div class="service-item"><div class="service-item-icon">Cuidado</div><div class="service-item-name">Vitaminas</div><p class="service-item-desc">Complemento de cuidado capilar según diagnóstico y necesidad.</p><div class="service-item-meta"><div class="service-item-price">Desde 4 €</div><div class="service-item-duration">Duración aproximada: 15min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
     </div>
   </div>
 
-  <!-- CORTE -->
-  <div class="service-category">
+  <!-- ALISADOS -->
+  <div class="service-category" id="alisados">
     <div class="cat-header">
       <div class="cat-num">04</div>
       <div>
-        <div class="section-label">Corte & Estilo</div>
-        <div class="cat-title">Corte & Peinado</div>
-        <p class="cat-desc">Un buen corte es la base de todo. Trabajamos con técnicas de corte modernas que se adaptan a la forma de tu rostro, tu tipo de cabello y tu estilo de vida.</p>
+        <div class="section-label">Alisados</div>
+        <div class="cat-title">Alisados y queratinas</div>
+        <p class="cat-desc">Servicios para controlar encrespamiento y mejorar el acabado, sujetos a diagnóstico previo.</p>
       </div>
     </div>
     <div class="service-items-grid">
-      <div class="service-item">
-        <div class="service-item-icon">✂️</div>
-        <div class="service-item-name">Corte de Mujer</div>
-        <p class="service-item-desc">Corte personalizado con técnica y criterio estético según rostro, textura y mantenimiento deseado.</p>
-        <div class="service-item-price">Servicio personalizado según largo, técnica y estado del cabello</div>
+      <div class="service-item"><div class="service-item-icon">Liso</div><div class="service-item-name">Bioplastia / alisado botánico</div><p class="service-item-desc">Tratamiento alisador botánico para controlar encrespamiento y mejorar manejabilidad.</p><div class="service-item-meta"><div class="service-item-price">Desde 130 €</div><div class="service-item-duration">Duración aproximada: 2h 15min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <div class="service-item"><div class="service-item-icon">Liso</div><div class="service-item-name">Alisado orgánico</div><p class="service-item-desc">Alisado orgánico recomendado tras valoración del cabello y objetivo.</p><div class="service-item-meta"><div class="service-item-price">Desde 121 €</div><div class="service-item-duration">Duración aproximada: 2h 30min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <div class="service-item"><div class="service-item-icon">Liso</div><div class="service-item-name">Bioplastia terapia antifrizz</div><p class="service-item-desc">Terapia antifrizz sujeta a valoración del cabello y disponibilidad.</p><div class="service-item-meta"><div class="service-item-price">Consultar</div><div class="service-item-duration">Duración aproximada: 2h 30min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+    </div>
+  </div>
+
+  <!-- OTROS -->
+  <div class="service-category" id="otros">
+    <div class="cat-header">
+      <div class="cat-num">05</div>
+      <div>
+        <div class="section-label">Otros servicios</div>
+        <div class="cat-title">Servicios complementarios</div>
+        <p class="cat-desc">Servicios adicionales sujetos a disponibilidad y valoración previa.</p>
       </div>
-      <div class="service-item">
-        <div class="service-item-icon">💍</div>
-        <div class="service-item-name">Peinado Novia & Eventos</div>
-        <p class="service-item-desc">Peinados para novias y eventos sujetos a disponibilidad, tipo de servicio y planificación previa.</p>
-        <div class="service-item-price">Consultar disponibilidad</div>
-      </div>
-      <div class="service-item">
-        <div class="service-item-icon">💨</div>
-        <div class="service-item-name">Brushing & Secado</div>
-        <p class="service-item-desc">Secado y acabado adaptado al tipo de cabello y al resultado que buscas para el día a día o una ocasión especial.</p>
-        <div class="service-item-price">Servicio personalizado según largo, técnica y estado del cabello</div>
-      </div>
+    </div>
+    <div class="service-items-grid">
+      <div class="service-item"><div class="service-item-icon">Extra</div><div class="service-item-name">Permanente pelo corto</div><p class="service-item-desc">Servicio de permanente para pelo corto, previa valoración del cabello.</p><div class="service-item-meta"><div class="service-item-price">Desde 69,95 €</div><div class="service-item-duration">Duración aproximada: 2h 55min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <div class="service-item"><div class="service-item-icon">Extra</div><div class="service-item-name">Terapia biodinámica craneosacral</div><p class="service-item-desc">Servicio complementario sujeto a consulta y disponibilidad.</p><div class="service-item-meta"><div class="service-item-price">Consultar</div><div class="service-item-duration">Duración aproximada: 45min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
     </div>
   </div>
 
@@ -309,11 +379,11 @@
 
 <!-- CTA -->
 <div class="cta-band">
-  <h2>¿Lista para elegir tu <em>servicio</em>?</h2>
-  <p>Reserva cita o escríbenos para consultar disponibilidad y resolver dudas antes de venir.</p>
+  <h2>¿No sabes qué <em>servicio</em> elegir?</h2>
+  <p>Escríbenos por WhatsApp y te orientamos antes de reservar.</p>
   <div class="cta-btns">
-    <a href="reserva.html" class="btn-primary">✦ Reservar cita online</a>
-    <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20D%27Raggio%20Estilistas." target="_blank" class="btn-outline">💬 Preguntar por WhatsApp</a>
+    <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank" class="btn-outline">💬 Consultar por WhatsApp</a>
+    <a href="reserva.html" class="btn-primary">✦ Reservar cita</a>
   </div>
 </div>
 
