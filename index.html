@@ -87,10 +87,10 @@
     position: absolute; right: 4.5%; top: 54%; width: min(42vw, 540px);
     transform: translateY(-50%); z-index: 1; pointer-events: none;
     opacity: 0; animation: hairFigureIn 1.2s ease 0.2s forwards;
-    filter: saturate(0.72) contrast(0.82) blur(0.15px);
+    filter: saturate(0.84) contrast(0.9) blur(0.1px);
   }
   .hero-hair-figure svg { display: block; width: 100%; height: auto; overflow: visible; }
-  .hair-silhouette { filter: drop-shadow(0 24px 30px rgba(82,54,43,0.08)); }
+  .hair-silhouette { filter: drop-shadow(0 24px 30px rgba(82,54,43,0.11)); }
   .hair-mass {
     transform-origin: 315px 162px;
     animation: hairBreath 7s ease-in-out infinite;
@@ -103,8 +103,8 @@
   .hair-layer.layer-3 { animation-delay: -2.1s; }
   .hair-highlight {
     stroke-dasharray: 95 560; stroke-dashoffset: 620;
-    opacity: 0.42;
-    animation: highlightSweep 5.8s ease-in-out 1.4s infinite;
+    opacity: 0.5;
+    animation: highlightSweep 5.4s ease-in-out 1.4s infinite;
   }
   .hair-highlight.delay-1 { animation-delay: 2s; }
   .hair-highlight.delay-2 { animation-delay: 2.6s; }
@@ -117,7 +117,7 @@
   .hair-strand-line.delay-3 { animation-delay: 0.6s; }
   @keyframes hairFigureIn {
     from { opacity: 0; transform: translateY(-48%) translateX(28px) scale(0.98); }
-    to { opacity: 0.34; transform: translateY(-50%) translateX(0) scale(1); }
+    to { opacity: 0.44; transform: translateY(-50%) translateX(0) scale(1); }
   }
   @keyframes hairBreath {
     0%, 100% { transform: rotate(0deg) translateY(0); }
@@ -129,7 +129,7 @@
   }
   @keyframes highlightSweep {
     0% { stroke-dashoffset: 620; opacity: 0; }
-    18%, 58% { opacity: 0.38; }
+    18%, 58% { opacity: 0.52; }
     100% { stroke-dashoffset: -120; opacity: 0; }
   }
   @keyframes strandDraw { to { stroke-dashoffset: 0; } }
@@ -381,7 +381,7 @@
       position: absolute;
       inset: -18px -10px;
       z-index: -1;
-      background: linear-gradient(90deg, rgba(253,248,242,0.94) 0%, rgba(253,248,242,0.84) 58%, rgba(253,248,242,0.18) 100%);
+      background: linear-gradient(90deg, rgba(253,248,242,0.92) 0%, rgba(253,248,242,0.78) 58%, rgba(253,248,242,0.12) 100%);
       border-radius: 2px;
     }
     .hero-eyebrow,
@@ -414,7 +414,7 @@
       animation: none !important;
       transition: none !important;
     }
-    .hero-hair-figure { opacity: 0.28; }
+    .hero-hair-figure { opacity: 0.38; }
     .hair-strand-line { stroke-dashoffset: 0; }
   }
 </style>
