@@ -401,10 +401,19 @@
       margin: 0;
       opacity: 0;
       z-index: 1;
+      filter: saturate(0.92) contrast(0.96) blur(0.06px);
+      animation-name: hairFigureInMobile;
     }
     .hero-hair-figure svg {
       width: 100%;
       height: auto;
+    }
+    .hair-highlight {
+      opacity: 0.58;
+    }
+    @keyframes hairFigureInMobile {
+      from { opacity: 0; transform: translateY(-48%) translateX(28px) scale(0.98); }
+      to { opacity: 0.5; transform: translateY(-50%) translateX(0) scale(1); }
     }
   }
 
