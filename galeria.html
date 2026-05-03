@@ -49,19 +49,31 @@
   .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
   .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 300; line-height: 1.2; color: var(--charcoal); margin-bottom: 1rem; }
   .section-title em { font-style: italic; color: var(--rose-dark); }
+  .section-title::after {
+    content: ''; display: block; width: 54px; height: 1px; margin-top: 0.8rem;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    animation: titleLineIn 1.2s ease both;
+  }
+  @keyframes titleLineIn { from { transform: scaleX(0); opacity: 0; } to { transform: scaleX(1); opacity: 1; } }
   .section-sub { max-width: 520px; font-size: 0.95rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
 
   /* GALLERY */
   .gallery-section { padding: 80px 5%; }
   .gallery-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
-  .btn-ig { display: inline-flex; align-items: center; gap: 0.6rem; background: transparent; color: var(--charcoal); padding: 0.8rem 1.5rem; border-radius: 2px; border: 1px solid rgba(42,36,32,0.2); font-size: 0.82rem; text-decoration: none; transition: all 0.25s; }
-  .btn-ig:hover { border-color: var(--rose); color: var(--rose-dark); }
+  .btn-ig { display: inline-flex; align-items: center; gap: 0.6rem; background: transparent; color: var(--charcoal); padding: 0.8rem 1.5rem; border-radius: 2px; border: 1px solid rgba(42,36,32,0.2); font-size: 0.82rem; text-decoration: none; transition: all 0.25s; position: relative; overflow: hidden; isolation: isolate; }
+  .btn-ig::before, .btn-primary::before, .btn-outline::before { content: ''; position: absolute; inset: -40% auto -40% -70%; width: 42%; transform: rotate(18deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent); transition: left 0.55s ease; z-index: 0; pointer-events: none; }
+  .btn-ig:hover { border-color: rgba(200,169,110,0.55); color: var(--rose-dark); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(42,36,32,0.07); }
+  .btn-ig:hover::before, .btn-primary:hover::before, .btn-outline:hover::before { left: 130%; }
 
   /* Masonry-style grid */
   .gallery-masonry { columns: 4; column-gap: 8px; }
-  .gallery-masonry .g-item { break-inside: avoid; margin-bottom: 8px; position: relative; overflow: hidden; border-radius: 2px; cursor: pointer; }
-  .g-placeholder { width: 100%; display: block; transition: transform 0.5s ease; }
-  .g-item:hover .g-placeholder { transform: scale(1.05); }
+  .gallery-masonry .g-item { break-inside: avoid; margin-bottom: 8px; position: relative; overflow: hidden; border-radius: 2px; cursor: pointer; border: 1px solid rgba(200,169,110,0.14); background: var(--warm-white); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+  .g-placeholder { width: 100%; display: block; transition: transform 0.5s ease, filter 0.5s ease; }
+  .g-item::before { content: ''; position: absolute; inset: 12px; border: 1px solid rgba(255,255,255,0.28); z-index: 1; pointer-events: none; }
+  .g-item::after { content: ''; position: absolute; left: 16%; right: 16%; bottom: 22%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent); z-index: 1; opacity: 0.55; pointer-events: none; }
+  .g-item:hover { transform: translateY(-4px); border-color: rgba(200,169,110,0.45); box-shadow: 0 18px 42px rgba(42,36,32,0.09); }
+  .g-item:hover .g-placeholder { transform: scale(1.045); filter: saturate(1.03); }
+  .gallery-note { margin-top: 1.2rem; font-size: 0.82rem; color: var(--light-mid); text-align: center; font-weight: 300; }
 
   .g-item svg { display: block; width: 100%; }
 
@@ -85,8 +97,8 @@
   .rating-count { font-size: 0.8rem; color: var(--light-mid); }
 
   .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .review-card { background: var(--warm-white); padding: 2rem; border-radius: 2px; position: relative; transition: transform 0.3s, box-shadow 0.3s; }
-  .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .review-card { background: var(--warm-white); padding: 2rem; border-radius: 2px; border: 1px solid transparent; position: relative; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
+  .review-card:hover { transform: translateY(-4px); box-shadow: 0 18px 42px rgba(42,36,32,0.09); border-color: rgba(200,169,110,0.42); }
   .review-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 1rem; }
   .review-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--charcoal); line-height: 1.6; margin-bottom: 1.5rem; font-weight: 300; }
   .review-author { display: flex; align-items: center; gap: 0.8rem; }
@@ -103,10 +115,10 @@
   .cta-band h2 em { font-style: italic; color: var(--gold-light); }
   .cta-band p { font-size: 0.9rem; color: rgba(250,246,241,0.6); margin-bottom: 2rem; font-weight: 300; }
   .cta-btns { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--rose-dark); color: #fff; padding: 1rem 2rem; border-radius: 2px; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.25s; }
-  .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
-  .btn-outline { display: inline-flex; align-items: center; gap: 0.6rem; background: transparent; color: var(--cream); padding: 1rem 1.8rem; border-radius: 2px; border: 1px solid rgba(250,246,241,0.2); font-size: 0.85rem; text-decoration: none; transition: all 0.25s; }
-  .btn-outline:hover { border-color: rgba(250,246,241,0.5); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--rose-dark); color: #fff; padding: 1rem 2rem; border-radius: 2px; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.25s; position: relative; overflow: hidden; isolation: isolate; }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 14px 34px rgba(168,115,90,0.18); }
+  .btn-outline { display: inline-flex; align-items: center; gap: 0.6rem; background: transparent; color: var(--cream); padding: 1rem 1.8rem; border-radius: 2px; border: 1px solid rgba(250,246,241,0.2); font-size: 0.85rem; text-decoration: none; transition: all 0.25s; position: relative; overflow: hidden; isolation: isolate; }
+  .btn-outline:hover { border-color: rgba(232,201,144,0.55); background: rgba(255,255,255,0.06); transform: translateY(-2px); }
 
   /* FOOTER */
   footer { background: var(--charcoal); color: rgba(250,246,241,0.7); padding: 60px 5% 30px; }
@@ -145,6 +157,14 @@
     .footer-bottom { flex-direction: column; text-align: center; }
     .cta-btns { flex-direction: column; align-items: center; }
     .btn-primary, .btn-outline { width: 100%; max-width: 300px; justify-content: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 </style>
 </head>
@@ -186,7 +206,7 @@
       <div class="section-label">Galería</div>
       <h2 class="section-title">Antes & <em>después</em></h2>
     </div>
-    <a href="LINK_INSTAGRAM_REAL" target="_blank" rel="noopener" class="btn-ig">📸 Síguenos en Instagram</a>
+    <a href="https://www.instagram.com/dianaraggioestilistas/" target="_blank" rel="noopener" class="btn-ig">📸 Síguenos en Instagram</a>
   </div>
 
   <div class="gallery-filters">
@@ -280,9 +300,10 @@
       <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Hidratación profunda</span></div>
     </div>
   </div>
+  <p class="gallery-note">Galería preparada para incorporar trabajos reales del salón.</p>
 
   <div style="text-align:center; margin-top: 2.5rem;">
-    <a href="LINK_INSTAGRAM_REAL" target="_blank" rel="noopener" class="btn-ig">Ver más trabajos en Instagram →</a>
+    <a href="https://www.instagram.com/dianaraggioestilistas/" target="_blank" rel="noopener" class="btn-ig">Ver más trabajos en Instagram →</a>
   </div>
 </div>
 
@@ -297,7 +318,7 @@
     <div class="rating-summary">
       <div class="rating-big">5,0</div>
       <div>
-        <span class="rating-stars">★★★★★</span>
+    <span class="rating-stars">★★★★★</span>
         <div class="rating-count">valoraciones en Google</div>
       </div>
     </div>
@@ -306,7 +327,7 @@
   <div class="reviews-grid">
     <div class="review-card">
       <span class="review-badge">Google</span>
-      <div class="review-stars">★★★★★</div>
+        <div class="review-stars">★★★★★</div>
       <p class="review-text">“Un trato de 10. Encantada con el corte, el tratamiento hidratante y todos los consejos para que mi pelo se vea espectacular.”</p>
       <div class="review-author">
         <div class="review-avatar av-1">L</div>
@@ -316,7 +337,7 @@
     </div>
     <div class="review-card">
       <span class="review-badge">Google</span>
-      <div class="review-stars">★★★★★</div>
+        <div class="review-stars">★★★★★</div>
       <p class="review-text">“Muy buena profesional y súper amable. Respetó el horario acordado y desde ahora será mi peluquería en Barcelona.”</p>
       <div class="review-author">
         <div class="review-avatar av-2">L</div>
@@ -326,7 +347,7 @@
     </div>
     <div class="review-card">
       <span class="review-badge">Google</span>
-      <div class="review-stars">★★★★★</div>
+        <div class="review-stars">★★★★★</div>
       <p class="review-text">“Una experiencia maravillosa. Diana te hace sentir bienvenida desde el primer minuto, el corte quedó increíble y el masaje al lavar el pelo fue una auténtica delicia.”</p>
       <div class="review-author">
         <div class="review-avatar av-3">C</div>
@@ -336,7 +357,7 @@
     </div>
     <div class="review-card">
       <span class="review-badge">Google</span>
-      <div class="review-stars">★★★★★</div>
+        <div class="review-stars">★★★★★</div>
       <p class="review-text">“Corte, tratamiento y masaje capilar fueron geniales. Un lugar tranquilo, relajante y acogedor para desconectar después del trabajo.”</p>
       <div class="review-author">
         <div class="review-avatar av-4">O</div>
@@ -346,7 +367,7 @@
     </div>
     <div class="review-card">
       <span class="review-badge">Google</span>
-      <div class="review-stars">★★★★★</div>
+        <div class="review-stars">★★★★★</div>
       <p class="review-text">“Diana superó todas mis expectativas. Hizo magia en mi pelo y salí feliz con el cambio de look.”</p>
       <div class="review-author">
         <div class="review-avatar av-1">P</div>
@@ -361,7 +382,7 @@
   <p>Reserva online o escríbenos por WhatsApp para consultar disponibilidad.</p>
   <div class="cta-btns">
     <a href="reserva.html" class="btn-primary">✦ Reservar cita online</a>
-    <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20reservar%20una%20cita%20en%20D%27Raggio%20Estilistas." target="_blank" class="btn-outline">💬 Escribir por WhatsApp</a>
+    <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20reservar%20una%20cita%20en%20D%27Raggio%20Estilistas." target="_blank" class="btn-outline" rel="noopener">💬 Escribir por WhatsApp</a>
   </div>
 </div>
 
@@ -371,9 +392,9 @@
       <a href="index.html" class="nav-logo">D'Raggio <span>✦</span> Estilistas</a>
       <p>Salón cerca de Sagrada Família especializado en balayage, coloración, cortes y tratamientos capilares personalizados.</p>
       <div class="footer-social">
-        <a href="LINK_INSTAGRAM_REAL" target="_blank" rel="noopener" class="social-btn">📸</a>
-        <a href="LINK_FACEBOOK_REAL" target="_blank" rel="noopener" class="social-btn">📘</a>
-        <a href="https://wa.me/34601003780" target="_blank" class="social-btn">💬</a>
+        <a href="https://www.instagram.com/dianaraggioestilistas/" target="_blank" rel="noopener" class="social-btn">📸</a>
+        <a href="https://www.facebook.com/draggio.estilistas" target="_blank" rel="noopener" class="social-btn">📘</a>
+        <a href="https://wa.me/34601003780" target="_blank" class="social-btn" rel="noopener">💬</a>
       </div>
     </div>
     <div class="footer-col">
@@ -391,7 +412,7 @@
       <h4>Contacto</h4>
       <ul class="footer-links">
         <li><a href="tel:+34601003780">601 00 37 80</a></li>
-        <li><a href="https://wa.me/34601003780">WhatsApp</a></li>
+        <li><a href="https://wa.me/34601003780" target="_blank" rel="noopener">WhatsApp</a></li>
         <li><a href="contacto.html">Carrer de Lepant, 282, 08013 Barcelona · Zona Sagrada Família</a></li>
         <li>Carrer de Lepant, 282, 08013 Barcelona · Zona Sagrada Família</li>
       </ul>
@@ -403,7 +424,7 @@
   </div>
 </footer>
 
-<a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20D%27Raggio%20Estilistas." target="_blank" class="wa-float">💬</a>
+<a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20D%27Raggio%20Estilistas." target="_blank" class="wa-float" rel="noopener">💬</a>
 
 <script>
   const navbar = document.getElementById('navbar');

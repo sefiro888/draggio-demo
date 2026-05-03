@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Servicios de peluquería de D'Raggio Estilistas cerca de Sagrada Família: balayage, mechas, coloración, corte, peinado, keratina y tratamientos capilares según diagnóstico.">
+<meta name="description" content="Servicios de peluquería de D'Raggio Estilistas cerca de Sagrada Família: balayage, mechas, coloración, corte, peinado, alisados y tratamientos capilares.">
 <title>Servicios | D'Raggio Estilistas Barcelona</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -12,13 +12,12 @@
     --cream: #faf6f1; --warm-white: #fdf9f5; --blush: #f0e0d0;
     --rose: #c9967a; --rose-dark: #a8735a; --gold: #c8a96e; --gold-light: #e8c990;
     --charcoal: #2a2420; --mid: #6b5a52; --light-mid: #9e8a80;
-    --border: rgba(200,169,110,0.2); --shadow: 0 4px 40px rgba(42,36,32,0.08);
+    --border: rgba(200,169,110,0.22); --shadow: 0 4px 40px rgba(42,36,32,0.08);
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
 
-  /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 68px; background: rgba(250,246,241,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s; }
   nav.scrolled { box-shadow: var(--shadow); }
   .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; color: var(--charcoal); text-decoration: none; letter-spacing: 0.04em; }
@@ -36,7 +35,6 @@
   .mobile-menu a { font-size: 1rem; color: var(--charcoal); text-decoration: none; padding: 0.5rem 0; border-bottom: 1px solid var(--border); letter-spacing: 0.06em; }
   .mobile-menu .m-cta { background: var(--charcoal); color: var(--cream); text-align: center; padding: 0.9rem; border-radius: 2px; border: none; margin-top: 0.5rem; }
 
-  /* PAGE HERO */
   .page-hero {
     padding-top: 68px; min-height: 42vh; display: flex; align-items: center;
     background: linear-gradient(135deg, #fdf8f2 0%, #f5e8d8 50%, #eeddc8 100%);
@@ -45,68 +43,81 @@
   .page-hero::after { content: ''; position: absolute; right: -80px; top: -80px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(200,169,110,0.12) 0%, transparent 70%); }
   .page-hero-content { padding: 4rem 5%; position: relative; z-index: 1; }
   .page-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem; }
-  .page-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+  .page-eyebrow::before, .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
   .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 300; line-height: 1.1; color: var(--charcoal); }
   .page-hero h1 em { font-style: italic; color: var(--rose-dark); }
   .page-hero p { font-size: 1rem; color: var(--mid); line-height: 1.7; max-width: 520px; margin-top: 1rem; font-weight: 300; }
 
-  /* SHARED */
   .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem; }
-  .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
-  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 300; line-height: 1.2; color: var(--charcoal); margin-bottom: 1rem; }
-  .section-title em { font-style: italic; color: var(--rose-dark); }
-
-  /* SERVICE CATEGORIES */
   .services-page { padding: 80px 5%; }
   .price-note {
-    max-width: 980px; margin: 0 auto 2rem; padding: 1.1rem 1.3rem;
+    max-width: 980px; margin: 0 auto 2rem; padding: 1rem 1.2rem;
     background: rgba(200,169,110,0.1); border: 1px solid var(--border);
-    color: var(--mid); font-size: 0.9rem; line-height: 1.6; font-weight: 300;
+    color: var(--mid); font-size: 0.88rem; line-height: 1.6; font-weight: 300;
   }
+  .trust-strip {
+    max-width: 980px; margin: 0 auto 2.2rem; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+  }
+  .trust-item { background: var(--warm-white); padding: 1rem; font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-align: center; }
+  .trust-item strong { display: block; color: var(--rose-dark); font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; letter-spacing: 0; text-transform: none; margin-bottom: 0.2rem; }
   .cat-nav { display: flex; flex-wrap: wrap; gap: 0.7rem; margin: 0 auto 4rem; max-width: 980px; }
   .cat-nav a {
     text-decoration: none; color: var(--rose-dark); border: 1px solid var(--border);
     background: var(--warm-white); padding: 0.65rem 1rem; border-radius: 999px;
     font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
-  .service-category { margin-bottom: 5rem; }
-  .cat-header { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: start; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
-  .cat-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; color: rgba(200,169,110,0.25); font-weight: 300; line-height: 1; }
-  .cat-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--charcoal); margin-bottom: 0.5rem; }
-  .cat-desc { font-size: 0.9rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
+  .cat-nav a:hover { transform: translateY(-2px); border-color: rgba(200,169,110,0.55); box-shadow: 0 10px 24px rgba(42,36,32,0.07); }
+  .service-category { margin-bottom: 4.2rem; }
+  .cat-header { display: grid; grid-template-columns: 0.55fr 2fr; gap: 2rem; align-items: start; margin-bottom: 1.8rem; padding-bottom: 1.4rem; border-bottom: 1px solid var(--border); }
+  .cat-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: rgba(200,169,110,0.24); font-weight: 300; line-height: 1; }
+  .cat-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--charcoal); margin-bottom: 0.45rem; }
+  .cat-desc { font-size: 0.88rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
 
-  .service-items-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .service-item { background: var(--warm-white); padding: 2rem 1.8rem; transition: background 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
-  .service-item::after { content: ''; position: absolute; bottom: 0; left: 1.8rem; width: 0; height: 1px; background: var(--gold); transition: width 0.4s; }
-  .service-item:hover { background: #faf4ed; }
-  .service-item:hover::after { width: calc(100% - 3.6rem); }
-  .service-item-icon { font-size: 1.4rem; margin-bottom: 0.8rem; }
-  .service-item-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.5rem; }
-  .service-item-desc { font-size: 0.84rem; color: var(--mid); line-height: 1.6; font-weight: 300; }
-  .service-item-meta { margin-top: auto; padding-top: 1.2rem; display: grid; gap: 0.35rem; }
-  .service-item-price { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--rose-dark); font-weight: 400; }
-  .service-item-duration { font-size: 0.78rem; color: var(--light-mid); }
-  .service-actions { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; }
+  .service-items-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .service-item {
+    background: rgba(253,249,245,0.92); padding: 1.65rem 1.55rem; border: 1px solid rgba(200,169,110,0.18);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    position: relative; overflow: hidden; display: flex; flex-direction: column; min-height: 265px;
+  }
+  .service-item::after { content: ''; position: absolute; bottom: 0; left: 1.4rem; width: 0; height: 1px; background: var(--gold); transition: width 0.35s ease; }
+  .service-item:hover { transform: translateY(-4px); border-color: rgba(200,169,110,0.5); background: #fffaf4; box-shadow: 0 18px 42px rgba(42,36,32,0.08); }
+  .service-item:hover::after { width: calc(100% - 2.8rem); }
+  .service-item-icon { display: inline-flex; width: fit-content; margin-bottom: 0.75rem; padding: 0.2rem 0.55rem; border: 1px solid rgba(200,169,110,0.22); color: var(--rose-dark); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .service-item-name { font-family: 'Cormorant Garamond', serif; font-size: 1.28rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.45rem; }
+  .service-item-desc { font-size: 0.83rem; color: var(--mid); line-height: 1.55; font-weight: 300; }
+  .service-item-meta { margin-top: auto; padding-top: 1rem; display: grid; gap: 0.25rem; }
+  .service-item-price { font-family: 'Cormorant Garamond', serif; font-size: 1.34rem; color: var(--rose-dark); font-weight: 400; }
+  .service-item-duration, .service-item-note { font-size: 0.76rem; color: var(--light-mid); }
+  .service-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.95rem; }
+  .service-actions a, .btn-primary, .btn-outline {
+    position: relative; overflow: hidden; isolation: isolate;
+  }
   .service-actions a {
-    text-decoration: none; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 0.65rem 0.8rem; border-radius: 2px; border: 1px solid var(--border);
-    color: var(--charcoal); background: #fff; transition: background 0.2s, color 0.2s;
+    flex: 1 1 120px; text-align: center; text-decoration: none; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.68rem 0.72rem; border-radius: 2px; border: 1px solid var(--border);
+    color: var(--charcoal); background: #fff; transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
   .service-actions a:first-child { background: var(--charcoal); color: var(--cream); border-color: var(--charcoal); }
-  .service-actions a:hover { background: var(--rose-dark); color: #fff; border-color: var(--rose-dark); }
+  .service-actions a:hover { transform: translateY(-1px); background: var(--rose-dark); color: #fff; border-color: var(--rose-dark); }
+  .service-actions a:first-child::before, .btn-primary::before, .btn-outline::before {
+    content: ''; position: absolute; inset: -40% auto -40% -70%; width: 42%; transform: rotate(18deg);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent);
+    transition: left 0.55s ease; z-index: 0; pointer-events: none;
+  }
+  .service-actions a:first-child:hover::before, .btn-primary:hover::before, .btn-outline:hover::before { left: 130%; }
 
-  /* CTA BAND */
   .cta-band { background: var(--charcoal); padding: 70px 5%; text-align: center; }
   .cta-band h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 300; color: var(--cream); margin-bottom: 0.8rem; }
   .cta-band h2 em { font-style: italic; color: var(--gold-light); }
-  .cta-band p { font-size: 0.9rem; color: rgba(250,246,241,0.6); margin-bottom: 2rem; font-weight: 300; }
+  .cta-band p { font-size: 0.9rem; color: rgba(250,246,241,0.68); margin-bottom: 2rem; font-weight: 300; }
   .cta-btns { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--rose-dark); color: #fff; padding: 1rem 2rem; border-radius: 2px; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.25s; }
-  .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
-  .btn-outline { display: inline-flex; align-items: center; gap: 0.6rem; background: transparent; color: var(--cream); padding: 1rem 1.8rem; border-radius: 2px; border: 1px solid rgba(250,246,241,0.2); font-size: 0.85rem; text-decoration: none; transition: all 0.25s; }
-  .btn-outline:hover { border-color: rgba(250,246,241,0.5); background: rgba(255,255,255,0.05); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--rose-dark); color: #fff; padding: 1rem 2rem; border-radius: 2px; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease; }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 14px 34px rgba(168,115,90,0.18); }
+  .btn-outline { display: inline-flex; align-items: center; gap: 0.6rem; background: transparent; color: var(--cream); padding: 1rem 1.8rem; border-radius: 2px; border: 1px solid rgba(250,246,241,0.24); font-size: 0.85rem; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease; }
+  .btn-outline:hover { transform: translateY(-2px); border-color: rgba(232,201,144,0.55); background: rgba(255,255,255,0.06); }
 
-  /* FOOTER */
   footer { background: var(--charcoal); color: rgba(250,246,241,0.7); padding: 60px 5% 30px; }
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(200,169,110,0.15); }
   .footer-brand .nav-logo { font-size: 1.5rem; display: block; margin-bottom: 1rem; color: var(--cream); }
@@ -121,7 +132,6 @@
   .footer-links a:hover { color: var(--cream); }
   .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
   .footer-bottom p { font-size: 0.78rem; }
-
   .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 900; width: 56px; height: 56px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4); animation: waPulse 3s ease-in-out infinite; transition: transform 0.2s; }
   .wa-float:hover { transform: scale(1.1); }
   @keyframes waPulse { 0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); } 50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); } }
@@ -131,17 +141,25 @@
     .nav-hamburger { display: flex; }
     .cat-header { grid-template-columns: 1fr; gap: 1rem; }
     .cat-num { font-size: 2.5rem; }
+    .trust-strip { grid-template-columns: 1fr 1fr; }
     .service-items-grid { grid-template-columns: 1fr 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 600px) {
     nav { padding: 0 4%; }
-    .service-items-grid { grid-template-columns: 1fr; }
-    .cat-nav a, .service-actions a { width: 100%; text-align: center; }
+    .services-page { padding: 64px 4%; }
+    .page-hero-content { padding: 3.4rem 4%; }
+    .trust-strip, .service-items-grid { grid-template-columns: 1fr; }
+    .service-category { margin-bottom: 3.2rem; }
+    .cat-nav a, .service-actions a { width: 100%; }
+    .service-item { min-height: auto; padding: 1.45rem; }
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; text-align: center; }
     .cta-btns { flex-direction: column; align-items: center; }
-    .btn-primary, .btn-outline { width: 100%; max-width: 300px; justify-content: center; }
+    .btn-primary, .btn-outline { width: 100%; max-width: 320px; justify-content: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
   }
 </style>
 </head>
@@ -157,9 +175,7 @@
     <li><a href="contacto.html">Contacto</a></li>
     <li><a href="reserva.html" class="nav-cta">Reservar cita</a></li>
   </ul>
-  <button class="nav-hamburger" id="hamburger" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html">Inicio</a>
@@ -174,13 +190,21 @@
   <div class="page-hero-content">
     <div class="page-eyebrow">Nuestros servicios</div>
     <h1>Servicios de peluquería en<br><em>D'Raggio Estilistas</em></h1>
-    <p>Color, balayage, cortes y tratamientos capilares cerca de Sagrada Família, con asesoramiento personalizado según tu cabello.</p>
+    <p>Balayage, coloración, cortes y tratamientos cerca de Sagrada Família, con asesoramiento previo para elegir bien.</p>
   </div>
 </div>
 
-<div class="services-page">
+<main class="services-page">
   <div class="price-note">
     Precios orientativos. El importe final puede variar según largo, densidad, técnica necesaria y diagnóstico previo del cabello.
+  </div>
+
+  <div class="trust-strip" aria-label="Confianza">
+    <div class="trust-item"><strong>5,0 en Google</strong>reseñas reales</div>
+    <div class="trust-item"><strong>Balayage</strong>especialidad</div>
+    <div class="trust-item"><strong>Sagrada Família</strong>Barcelona</div>
+    <div class="trust-item"><strong>WhatsApp</strong>consulta rápida</div>
+    <div class="trust-item"><strong>Desde</strong>precios orientativos</div>
   </div>
 
   <div class="cat-nav" aria-label="Categorías de servicios">
@@ -191,181 +215,99 @@
     <a href="#otros">Otros</a>
   </div>
 
-  <!-- MECHAS Y BALAYAGE -->
-  <div class="service-category" id="color-balayage">
+  <section class="service-category" id="color-balayage">
     <div class="cat-header">
       <div class="cat-num">01</div>
       <div>
         <div class="section-label">Color y balayage</div>
-        <div class="cat-title">Mechas, balayage y color</div>
-        <p class="cat-desc">Iluminaciones, matices y coloración con acabado cuidado y asesoramiento previo.</p>
+        <div class="cat-title">Luz, matiz y técnica</div>
+        <p class="cat-desc">Opciones para iluminar, retocar o transformar el tono con un acabado cuidado.</p>
       </div>
     </div>
     <div class="service-items-grid">
-      <div class="service-item">
-        <div class="service-item-icon">✦</div>
-        <div class="service-item-name">Balayage full blonde</div>
-        <p class="service-item-desc">Iluminación global para conseguir un rubio luminoso y trabajado con transición natural.</p>
-        <div class="service-item-meta"><div class="service-item-price">Desde 150 €</div><div class="service-item-duration">Duración aproximada: 4h 35min</div></div>
-        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20balayage." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
-      </div>
-      <div class="service-item">
-        <div class="service-item-icon">✦</div>
-        <div class="service-item-name">Balayage Ombré</div>
-        <p class="service-item-desc">Degradado suave de raíz a puntas para aportar luz sin perder profundidad.</p>
-        <div class="service-item-meta"><div class="service-item-price">Desde 150 €</div><div class="service-item-duration">Duración aproximada: 4h 45min</div></div>
-        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20balayage." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
-      </div>
-      <div class="service-item">
-        <div class="service-item-icon">✦</div>
-        <div class="service-item-name">Balayage morena iluminada</div>
-        <p class="service-item-desc">Luz estratégica para bases morenas, con contraste elegante y efecto natural.</p>
-        <div class="service-item-meta"><div class="service-item-price">Desde 140 €</div><div class="service-item-duration">Duración aproximada: 4h 45min</div></div>
-        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20balayage." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
-      </div>
-      <div class="service-item">
-        <div class="service-item-icon">✦</div>
-        <div class="service-item-name">Mechas balayage contorno</div>
-        <p class="service-item-desc">Iluminación localizada alrededor del rostro para aportar frescura y dimensión.</p>
-        <div class="service-item-meta"><div class="service-item-price">Desde 90 €</div><div class="service-item-duration">Duración aproximada: 3h 45min</div></div>
-        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20balayage." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
-      </div>
-      <div class="service-item">
-        <div class="service-item-icon">Color</div>
-        <div class="service-item-name">Tinte raíz pack completo</div>
-        <p class="service-item-desc">Retoque de raíz con acabado cuidado y resultado uniforme.</p>
-        <div class="service-item-meta"><div class="service-item-price">Desde 55 €</div><div class="service-item-duration">Duración aproximada: 1h 30min</div></div>
-        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
-      </div>
-      <div class="service-item">
-        <div class="service-item-icon">Color</div>
-        <div class="service-item-name">Color raíz, hidratación, corte y secado</div>
-        <p class="service-item-desc">Pack completo de color en raíz con cuidado, corte y secado.</p>
-        <div class="service-item-meta"><div class="service-item-price">Desde 83 €</div><div class="service-item-duration">Duración aproximada: 2h 15min</div></div>
-        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
-      </div>
-      <div class="service-item">
-        <div class="service-item-icon">Color</div>
-        <div class="service-item-name">Tinte pelo largo</div>
-        <p class="service-item-desc">Coloración para largos con cobertura y acabado uniforme.</p>
-        <div class="service-item-meta"><div class="service-item-price">Desde 65 €</div><div class="service-item-duration">Duración aproximada: 1h 45min</div></div>
-        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
-      </div>
-      <div class="service-item">
-        <div class="service-item-icon">Color</div>
-        <div class="service-item-name">Baño de color</div>
-        <p class="service-item-desc">Refresca el tono y devuelve brillo y luminosidad.</p>
-        <div class="service-item-meta"><div class="service-item-price">Desde 37 €</div><div class="service-item-duration">Duración aproximada: 1h 45min</div></div>
-        <div class="service-item-duration">Según largo y cantidad.</div>
-        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
-      </div>
-      <div class="service-item">
-        <div class="service-item-icon">Deco</div>
-        <div class="service-item-name">Decoloración global cabello corto</div>
-        <p class="service-item-desc">Aclaración global en cabello corto, con valoración previa de resistencia.</p>
-        <div class="service-item-meta"><div class="service-item-price">Desde 95 €</div><div class="service-item-duration">Duración aproximada: 3h 45min</div></div>
-        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
-      </div>
+      <article class="service-item"><span class="service-item-icon">Balayage</span><h3 class="service-item-name">Balayage full blonde / Ombré</h3><p class="service-item-desc">Rubio luminoso o degradado suave de raíz a puntas, con transición natural.</p><div class="service-item-meta"><div class="service-item-price">Desde 150 €</div><div class="service-item-duration">Duración aproximada: 4h 35min</div><div class="service-item-note">Según técnica y duración.</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20balayage." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Balayage</span><h3 class="service-item-name">Balayage morena iluminada</h3><p class="service-item-desc">Luz estratégica en bases morenas, con contraste elegante y efecto natural.</p><div class="service-item-meta"><div class="service-item-price">Desde 140 €</div><div class="service-item-duration">Duración aproximada: 4h 45min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20balayage." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Mechas</span><h3 class="service-item-name">Mechas balayage contorno</h3><p class="service-item-desc">Iluminación localizada alrededor del rostro para aportar frescura y dimensión.</p><div class="service-item-meta"><div class="service-item-price">Desde 90 €</div><div class="service-item-duration">Duración aproximada: 3h 45min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20balayage." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Raíz</span><h3 class="service-item-name">Tinte raíz pack completo</h3><p class="service-item-desc">Retoque de raíz con acabado uniforme y servicio completo de salón.</p><div class="service-item-meta"><div class="service-item-price">Desde 55 €</div><div class="service-item-duration">Duración aproximada: 1h 30min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Pack</span><h3 class="service-item-name">Color raíz, hidratación, corte y secado</h3><p class="service-item-desc">Retoque con cuidado, corte y acabado en una sola visita.</p><div class="service-item-meta"><div class="service-item-price">Desde 83 €</div><div class="service-item-duration">Duración aproximada: 2h 15min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Tinte</span><h3 class="service-item-name">Tinte pelo largo</h3><p class="service-item-desc">Cobertura y tono uniforme para melenas largas.</p><div class="service-item-meta"><div class="service-item-price">Desde 65 €</div><div class="service-item-duration">Duración aproximada: 1h 45min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Brillo</span><h3 class="service-item-name">Baño de color</h3><p class="service-item-desc">Refresca el tono y devuelve luminosidad.</p><div class="service-item-meta"><div class="service-item-price">Desde 37 €</div><div class="service-item-duration">Duración aproximada: 1h 45min</div><div class="service-item-note">Según largo y cantidad.</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Deco</span><h3 class="service-item-name">Decoloración global cabello corto</h3><p class="service-item-desc">Aclaración global en corto con valoración previa de resistencia.</p><div class="service-item-meta"><div class="service-item-price">Desde 95 €</div><div class="service-item-duration">Duración aproximada: 3h 45min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20precio%20y%20disponibilidad%20para%20coloraci%C3%B3n." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
     </div>
-  </div>
+  </section>
 
-  <!-- CORTES -->
-  <div class="service-category" id="cortes">
+  <section class="service-category" id="cortes">
     <div class="cat-header">
       <div class="cat-num">02</div>
       <div>
         <div class="section-label">Cortes y peinados</div>
-        <div class="cat-title">Corte, lavado y acabado</div>
-        <p class="cat-desc">Cortes, lavado y acabado para renovar forma, movimiento y estilo.</p>
+        <div class="cat-title">Forma, lavado y acabado</div>
+        <p class="cat-desc">Servicios de corte y styling para renovar movimiento y estilo.</p>
       </div>
     </div>
     <div class="service-items-grid">
-      <div class="service-item">
-        <div class="service-item-icon">Corte</div>
-        <div class="service-item-name">Cortar y quitar humedad</div>
-        <p class="service-item-desc">Corte rápido con retirada de humedad y acabado natural.</p>
-        <div class="service-item-meta"><div class="service-item-price">Desde 32 €</div><div class="service-item-duration">Duración aproximada: 1h</div></div>
-        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
-      </div>
-      <div class="service-item">
-        <div class="service-item-icon">Corte</div>
-        <div class="service-item-name">Corte pack completo</div>
-        <p class="service-item-desc">Corte con lavado y acabado para renovar forma, movimiento y estilo.</p>
-        <div class="service-item-meta"><div class="service-item-price">Desde 40 €</div><div class="service-item-duration">Duración aproximada: 1h 15min</div></div>
-        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
-      </div>
-      <div class="service-item">
-        <div class="service-item-icon">Corte</div>
-        <div class="service-item-name">Corte cabello extra largo</div>
-        <p class="service-item-desc">Corte para melenas extra largas, con tiempo específico para trabajar forma y movimiento.</p>
-        <div class="service-item-meta"><div class="service-item-price">Desde 49,99 €</div><div class="service-item-duration">Duración aproximada: 1h 30min</div></div>
-        <div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div>
-      </div>
-      <div class="service-item"><div class="service-item-icon">Corte</div><div class="service-item-name">Corte terapéutico</div><p class="service-item-desc">Servicio para sanear largos y recuperar una forma más ligera.</p><div class="service-item-meta"><div class="service-item-price">Desde 60 €</div><div class="service-item-duration">Duración aproximada: 1h 30min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
-      <div class="service-item"><div class="service-item-icon">Corte</div><div class="service-item-name">Corte y peinado</div><p class="service-item-desc">Corte con acabado adaptado al largo, textura y estilo de cada clienta.</p><div class="service-item-meta"><div class="service-item-price">Desde 36,99 €</div><div class="service-item-duration">Duración aproximada: 1h 30min</div></div><div class="service-item-duration">Según largo y acabado.</div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
-      <div class="service-item"><div class="service-item-icon">Peinado</div><div class="service-item-name">Lavado y peinado</div><p class="service-item-desc">Acabado limpio y pulido según largo, textura y ocasión.</p><div class="service-item-meta"><div class="service-item-price">Desde 20 €</div><div class="service-item-duration">Duración aproximada: 45min</div></div><div class="service-item-duration">Según largo y densidad.</div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <article class="service-item"><span class="service-item-icon">Corte</span><h3 class="service-item-name">Cortar y quitar humedad</h3><p class="service-item-desc">Corte rápido con retirada de humedad y acabado natural.</p><div class="service-item-meta"><div class="service-item-price">Desde 32 €</div><div class="service-item-duration">Duración aproximada: 1h</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Corte</span><h3 class="service-item-name">Corte pack completo</h3><p class="service-item-desc">Corte con lavado y acabado para renovar forma y movimiento.</p><div class="service-item-meta"><div class="service-item-price">Desde 40 €</div><div class="service-item-duration">Duración aproximada: 1h 15min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Melena</span><h3 class="service-item-name">Corte cabello extra largo</h3><p class="service-item-desc">Tiempo específico para trabajar forma en melenas largas.</p><div class="service-item-meta"><div class="service-item-price">Desde 49,99 €</div><div class="service-item-duration">Duración aproximada: 1h 30min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Cuidado</span><h3 class="service-item-name">Corte terapéutico</h3><p class="service-item-desc">Servicio para sanear largos y recuperar una forma más ligera.</p><div class="service-item-meta"><div class="service-item-price">Desde 60 €</div><div class="service-item-duration">Duración aproximada: 1h 30min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Styling</span><h3 class="service-item-name">Corte y peinado</h3><p class="service-item-desc">Corte con acabado según largo, textura y estilo.</p><div class="service-item-meta"><div class="service-item-price">Desde 36,99 €</div><div class="service-item-duration">Duración aproximada: 1h 30min</div><div class="service-item-note">Según largo y acabado.</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20corte." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Peinado</span><h3 class="service-item-name">Lavado y peinado</h3><p class="service-item-desc">Acabado limpio y pulido según textura y ocasión.</p><div class="service-item-meta"><div class="service-item-price">Desde 20 €</div><div class="service-item-duration">Duración aproximada: 45min</div><div class="service-item-note">Según largo y densidad.</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
     </div>
-  </div>
+  </section>
 
-  <!-- TRATAMIENTOS -->
-  <div class="service-category" id="tratamientos">
+  <section class="service-category" id="tratamientos">
     <div class="cat-header">
       <div class="cat-num">03</div>
       <div>
         <div class="section-label">Tratamientos</div>
         <div class="cat-title">Cuidado capilar</div>
-        <p class="cat-desc">Rituales de cuidado para mejorar tacto, brillo y resistencia.</p>
+        <p class="cat-desc">Rituales para mejorar tacto, brillo y resistencia.</p>
       </div>
     </div>
     <div class="service-items-grid">
-      <div class="service-item"><div class="service-item-icon">Cuidado</div><div class="service-item-name">Tratamiento de proteína</div><p class="service-item-desc">Refuerza la fibra y mejora la sensación de cuerpo.</p><div class="service-item-meta"><div class="service-item-price">Desde 65 €</div><div class="service-item-duration">Duración aproximada: 1h 35min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
-      <div class="service-item"><div class="service-item-icon">Cuidado</div><div class="service-item-name">Reconstrucción capilar</div><p class="service-item-desc">Cuidado intensivo para aportar suavidad, cuerpo y mejor textura.</p><div class="service-item-meta"><div class="service-item-price">Desde 30 €</div><div class="service-item-duration">Duración aproximada: 1h</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
-      <div class="service-item"><div class="service-item-icon">Cuidado</div><div class="service-item-name">Mascarilla</div><p class="service-item-desc">Extra de suavidad y brillo para completar el servicio.</p><div class="service-item-meta"><div class="service-item-price">Desde 15 €</div><div class="service-item-duration">Duración aproximada: 30min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
-      <div class="service-item"><div class="service-item-icon">Cuidado</div><div class="service-item-name">Vitaminas</div><p class="service-item-desc">Complemento rápido para potenciar el acabado.</p><div class="service-item-meta"><div class="service-item-price">Desde 4 €</div><div class="service-item-duration">Duración aproximada: 15min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <article class="service-item"><span class="service-item-icon">Proteína</span><h3 class="service-item-name">Tratamiento de proteína</h3><p class="service-item-desc">Refuerza la fibra y mejora la sensación de cuerpo.</p><div class="service-item-meta"><div class="service-item-price">Desde 65 €</div><div class="service-item-duration">Duración aproximada: 1h 35min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Cuidado</span><h3 class="service-item-name">Reconstrucción capilar</h3><p class="service-item-desc">Cuidado intensivo para aportar suavidad, cuerpo y mejor textura.</p><div class="service-item-meta"><div class="service-item-price">Desde 30 €</div><div class="service-item-duration">Duración aproximada: 1h</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Extras</span><h3 class="service-item-name">Mascarilla y vitaminas</h3><p class="service-item-desc">Complementos rápidos para potenciar suavidad, brillo y acabado.</p><div class="service-item-meta"><div class="service-item-price">Desde 4 €</div><div class="service-item-duration">Duración aproximada: 15min</div><div class="service-item-note">Mascarilla desde 15 €.</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
     </div>
-  </div>
+  </section>
 
-  <!-- ALISADOS -->
-  <div class="service-category" id="alisados">
+  <section class="service-category" id="alisados">
     <div class="cat-header">
       <div class="cat-num">04</div>
       <div>
         <div class="section-label">Alisados</div>
-        <div class="cat-title">Alisados y queratinas</div>
+        <div class="cat-title">Control y pulido</div>
         <p class="cat-desc">Opciones para controlar volumen, encrespamiento y facilitar el peinado.</p>
       </div>
     </div>
     <div class="service-items-grid">
-      <div class="service-item"><div class="service-item-icon">Liso</div><div class="service-item-name">Bioplastia / alisado botánico</div><p class="service-item-desc">Tratamiento botánico para suavizar, pulir y controlar el frizz.</p><div class="service-item-meta"><div class="service-item-price">Desde 130 €</div><div class="service-item-duration">Duración aproximada: 2h 15min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
-      <div class="service-item"><div class="service-item-icon">Liso</div><div class="service-item-name">Alisado orgánico</div><p class="service-item-desc">Servicio para controlar volumen y encrespamiento con acabado natural.</p><div class="service-item-meta"><div class="service-item-price">Desde 121 €</div><div class="service-item-duration">Duración aproximada: 2h 30min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
-      <div class="service-item"><div class="service-item-icon">Liso</div><div class="service-item-name">Bioplastia terapia antifrizz</div><p class="service-item-desc">Terapia antifrizz sujeta a valoración del cabello y disponibilidad.</p><div class="service-item-meta"><div class="service-item-price">Consultar</div><div class="service-item-duration">Duración aproximada: 2h 30min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <article class="service-item"><span class="service-item-icon">Botánico</span><h3 class="service-item-name">Bioplastia / alisado botánico</h3><p class="service-item-desc">Tratamiento para suavizar, pulir y controlar el frizz.</p><div class="service-item-meta"><div class="service-item-price">Desde 130 €</div><div class="service-item-duration">Duración aproximada: 2h 15min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Orgánico</span><h3 class="service-item-name">Alisado orgánico</h3><p class="service-item-desc">Servicio para controlar volumen con acabado natural.</p><div class="service-item-meta"><div class="service-item-price">Desde 121 €</div><div class="service-item-duration">Duración aproximada: 2h 30min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Antifrizz</span><h3 class="service-item-name">Bioplastia terapia antifrizz</h3><p class="service-item-desc">Terapia para suavizar la textura y facilitar el peinado.</p><div class="service-item-meta"><div class="service-item-price">Consultar</div><div class="service-item-duration">Duración aproximada: 2h 30min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
     </div>
-  </div>
+  </section>
 
-  <!-- OTROS -->
-  <div class="service-category" id="otros">
+  <section class="service-category" id="otros">
     <div class="cat-header">
       <div class="cat-num">05</div>
       <div>
         <div class="section-label">Otros servicios</div>
-        <div class="cat-title">Servicios complementarios</div>
-        <p class="cat-desc">Servicios adicionales sujetos a disponibilidad y valoración previa.</p>
+        <div class="cat-title">Complementarios</div>
+        <p class="cat-desc">Servicios adicionales sujetos a consulta y disponibilidad.</p>
       </div>
     </div>
     <div class="service-items-grid">
-      <div class="service-item"><div class="service-item-icon">Extra</div><div class="service-item-name">Permanente pelo corto</div><p class="service-item-desc">Servicio de permanente para pelo corto, previa valoración del cabello.</p><div class="service-item-meta"><div class="service-item-price">Desde 69,95 €</div><div class="service-item-duration">Duración aproximada: 2h 55min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
-      <div class="service-item"><div class="service-item-icon">Extra</div><div class="service-item-name">Terapia biodinámica craneosacral</div><p class="service-item-desc">Servicio complementario sujeto a consulta y disponibilidad.</p><div class="service-item-meta"><div class="service-item-price">Consultar</div><div class="service-item-duration">Duración aproximada: 45min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></div>
+      <article class="service-item"><span class="service-item-icon">Extra</span><h3 class="service-item-name">Permanente pelo corto</h3><p class="service-item-desc">Servicio de permanente para pelo corto con acabado definido.</p><div class="service-item-meta"><div class="service-item-price">Desde 69,95 €</div><div class="service-item-duration">Duración aproximada: 2h 55min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
+      <article class="service-item"><span class="service-item-icon">Extra</span><h3 class="service-item-name">Terapia biodinámica craneosacral</h3><p class="service-item-desc">Servicio complementario sujeto a consulta previa.</p><div class="service-item-meta"><div class="service-item-price">Consultar</div><div class="service-item-duration">Duración aproximada: 45min</div></div><div class="service-actions"><a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank" rel="noopener">Consultar por WhatsApp</a><a href="reserva.html">Reservar cita</a></div></article>
     </div>
-  </div>
+  </section>
+</main>
 
-</div>
-
-<!-- CTA -->
 <div class="cta-band">
   <h2>¿No sabes qué <em>servicio</em> elegir?</h2>
   <p>Escríbenos por WhatsApp y te orientamos antes de reservar.</p>
   <div class="cta-btns">
-    <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank" class="btn-outline">💬 Consultar por WhatsApp</a>
+    <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20consultar%20qu%C3%A9%20servicio%20me%20recomend%C3%A1is%20para%20mi%20cabello." target="_blank" class="btn-outline" rel="noopener">💬 Consultar por WhatsApp</a>
     <a href="reserva.html" class="btn-primary">✦ Reservar cita</a>
   </div>
 </div>
@@ -376,9 +318,9 @@
       <a href="index.html" class="nav-logo">D'Raggio <span>✦</span> Estilistas</a>
       <p>Salón cerca de Sagrada Família especializado en balayage, coloración, cortes y tratamientos capilares personalizados.</p>
       <div class="footer-social">
-        <a href="LINK_INSTAGRAM_REAL" target="_blank" rel="noopener" class="social-btn">📸</a>
-        <a href="LINK_FACEBOOK_REAL" target="_blank" rel="noopener" class="social-btn">📘</a>
-        <a href="https://wa.me/34601003780" target="_blank" class="social-btn">💬</a>
+        <a href="https://www.instagram.com/dianaraggioestilistas/" target="_blank" rel="noopener" class="social-btn">📸</a>
+        <a href="https://www.facebook.com/draggio.estilistas" target="_blank" rel="noopener" class="social-btn">📘</a>
+        <a href="https://wa.me/34601003780" target="_blank" class="social-btn" rel="noopener">💬</a>
       </div>
     </div>
     <div class="footer-col">
@@ -396,7 +338,7 @@
       <h4>Contacto</h4>
       <ul class="footer-links">
         <li><a href="tel:+34601003780">601 00 37 80</a></li>
-        <li><a href="https://wa.me/34601003780">WhatsApp</a></li>
+        <li><a href="https://wa.me/34601003780" target="_blank" rel="noopener">WhatsApp</a></li>
         <li><a href="contacto.html">Carrer de Lepant, 282, 08013 Barcelona · Zona Sagrada Família</a></li>
         <li>Carrer de Lepant, 282, 08013 Barcelona · Zona Sagrada Família</li>
       </ul>
@@ -408,7 +350,7 @@
   </div>
 </footer>
 
-<a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20D%27Raggio%20Estilistas." target="_blank" class="wa-float">💬</a>
+<a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20D%27Raggio%20Estilistas." target="_blank" class="wa-float" rel="noopener">💬</a>
 
 <script>
   const navbar = document.getElementById('navbar');

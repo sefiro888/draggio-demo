@@ -94,10 +94,12 @@
   .hair-mass {
     transform-origin: 315px 162px;
     animation: hairBreath 7s ease-in-out infinite;
+    transform-box: fill-box;
   }
   .hair-layer {
     transform-origin: 315px 170px;
-    animation: hairWave 6.5s ease-in-out infinite;
+    animation: hairWave 6.2s ease-in-out infinite;
+    transform-box: fill-box;
   }
   .hair-layer.layer-2 { animation-delay: -1.2s; }
   .hair-layer.layer-3 { animation-delay: -2.1s; }
@@ -109,28 +111,51 @@
   .hair-highlight.delay-1 { animation-delay: 2s; }
   .hair-highlight.delay-2 { animation-delay: 2.6s; }
   .hair-strand-line {
-    stroke-dasharray: 700; stroke-dashoffset: 700;
-    animation: strandDraw 2.1s ease forwards;
+    stroke-dasharray: 780; stroke-dashoffset: 780;
+    animation: strandDraw 2.1s ease forwards, strandSway 7.4s ease-in-out 2.1s infinite;
+    transform-box: fill-box;
+    transform-origin: 50% 15%;
   }
   .hair-strand-line.delay-1 { animation-delay: 0.24s; }
   .hair-strand-line.delay-2 { animation-delay: 0.42s; }
   .hair-strand-line.delay-3 { animation-delay: 0.6s; }
+  .hair-free-strand {
+    stroke-dasharray: 820; stroke-dashoffset: 820;
+    animation: strandDraw 2.35s ease forwards, freeStrandSway 6.8s ease-in-out 2.2s infinite;
+    transform-box: fill-box;
+    transform-origin: 50% 12%;
+  }
+  .hair-free-strand.delay-1 { animation-delay: 0.48s, 2.5s; }
+  .hair-free-strand.delay-2 { animation-delay: 0.72s, 2.8s; }
+  .hair-free-strand.delay-3 { animation-delay: 0.96s, 3s; }
   @keyframes hairFigureIn {
     from { opacity: 0; transform: translateY(-48%) translateX(28px) scale(0.98); }
     to { opacity: 0.44; transform: translateY(-50%) translateX(0) scale(1); }
   }
   @keyframes hairBreath {
     0%, 100% { transform: rotate(0deg) translateY(0); }
-    50% { transform: rotate(-1.2deg) translateY(-6px); }
+    42% { transform: rotate(-1.6deg) translateY(-5px) translateX(-2px); }
+    68% { transform: rotate(0.8deg) translateY(3px) translateX(2px); }
   }
   @keyframes hairWave {
-    0%, 100% { transform: translateX(0) rotate(0deg); }
-    50% { transform: translateX(7px) rotate(1.5deg); }
+    0%, 100% { transform: translateX(0) rotate(0deg) skewX(0deg); }
+    45% { transform: translateX(10px) rotate(2.1deg) skewX(-1.6deg); }
+    72% { transform: translateX(-5px) rotate(-0.9deg) skewX(1deg); }
   }
   @keyframes highlightSweep {
     0% { stroke-dashoffset: 620; opacity: 0; }
     18%, 58% { opacity: 0.52; }
     100% { stroke-dashoffset: -120; opacity: 0; }
+  }
+  @keyframes strandSway {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    45% { transform: translateX(8px) rotate(1.8deg); }
+    75% { transform: translateX(-4px) rotate(-0.8deg); }
+  }
+  @keyframes freeStrandSway {
+    0%, 100% { transform: translateX(0) rotate(0deg); opacity: 0.72; }
+    45% { transform: translateX(12px) rotate(2.4deg); opacity: 0.9; }
+    72% { transform: translateX(-7px) rotate(-1.3deg); opacity: 0.78; }
   }
   @keyframes strandDraw { to { stroke-dashoffset: 0; } }
   .hero-content { position: relative; z-index: 2; padding: 0 5%; max-width: 660px; }
@@ -156,16 +181,24 @@
     background: var(--charcoal); color: var(--cream);
     padding: 1rem 2rem; border-radius: 2px;
     font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-    text-decoration: none; transition: background 0.25s, transform 0.2s;
+    text-decoration: none; transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    position: relative; overflow: hidden; isolation: isolate;
   }
-  .btn-primary:hover { background: var(--rose-dark); transform: translateY(-2px); }
+  .btn-primary::before, .btn-wa::before, .btn-booksy::before, .btn-wa-big::before {
+    content: ''; position: absolute; inset: -40% auto -40% -70%; width: 42%; transform: rotate(18deg);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent);
+    transition: left 0.55s ease; z-index: 0; pointer-events: none;
+  }
+  .btn-primary:hover { background: var(--rose-dark); transform: translateY(-2px); box-shadow: 0 14px 34px rgba(42,36,32,0.12); }
+  .btn-primary:hover::before, .btn-wa:hover::before, .btn-booksy:hover::before, .btn-wa-big:hover::before { left: 130%; }
   .btn-wa {
     display: inline-flex; align-items: center; gap: 0.6rem;
     background: transparent; color: var(--charcoal);
     padding: 1rem 1.8rem; border-radius: 2px; border: 1px solid rgba(42,36,32,0.25);
     font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-decoration: none; transition: all 0.25s;
+    position: relative; overflow: hidden; isolation: isolate;
   }
-  .btn-wa:hover { border-color: #25d366; color: #1a7a40; background: rgba(37,211,102,0.06); }
+  .btn-wa:hover { border-color: rgba(200,169,110,0.55); color: var(--rose-dark); background: rgba(255,255,255,0.45); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(42,36,32,0.07); }
   .wa-icon { color: #25d366; font-size: 1.1rem; }
 
   .hero-trust { margin-top: 3rem; display: flex; align-items: center; gap: 1.2rem; }
@@ -182,14 +215,20 @@
   .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
   .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; line-height: 1.2; color: var(--charcoal); margin-bottom: 1rem; }
   .section-title em { font-style: italic; color: var(--rose-dark); }
+  .section-title::after {
+    content: ''; display: block; width: 54px; height: 1px; margin-top: 0.8rem;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    animation: titleLineIn 1.2s ease both;
+  }
+  @keyframes titleLineIn { from { transform: scaleX(0); opacity: 0; } to { transform: scaleX(1); opacity: 1; } }
   .section-sub { font-size: 0.95rem; color: var(--mid); line-height: 1.8; max-width: 520px; font-weight: 300; }
 
   /* SERVICIOS */
   #servicios { background: var(--warm-white); }
   .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; margin-top: 3.5rem; background: var(--border); border: 1px solid var(--border); }
-  .service-card { background: var(--warm-white); padding: 2.5rem 2rem; position: relative; overflow: hidden; transition: background 0.3s; }
+  .service-card { background: var(--warm-white); padding: 2.5rem 2rem; border: 1px solid transparent; position: relative; overflow: hidden; transition: background 0.3s, transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
   .service-card::after { content: ''; position: absolute; bottom: 0; left: 2rem; width: 0; height: 1px; background: var(--gold); transition: width 0.4s ease; }
-  .service-card:hover { background: #faf4ed; }
+  .service-card:hover { background: #faf4ed; transform: translateY(-5px); box-shadow: 0 18px 42px rgba(42,36,32,0.09); border-color: rgba(200,169,110,0.45); }
   .service-card:hover::after { width: calc(100% - 4rem); }
   .service-icon { font-size: 1.8rem; margin-bottom: 1.2rem; display: block; }
   .service-cat { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; font-weight: 500; }
@@ -230,8 +269,10 @@
     width: 100%; height: 100%; min-height: 160px;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     background: linear-gradient(135deg, var(--blush), #e8d0bc);
-    transition: transform 0.5s ease; position: relative;
+    transition: transform 0.5s ease; position: relative; border: 1px solid rgba(200,169,110,0.16);
   }
+  .gallery-placeholder::before { content: ''; position: absolute; inset: 14px; border: 1px solid rgba(255,255,255,0.28); box-shadow: inset 0 0 0 1px rgba(200,169,110,0.08); pointer-events: none; }
+  .gallery-placeholder::after { content: ''; position: absolute; width: 68%; height: 1px; bottom: 28%; left: 16%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent); opacity: 0.55; }
   .gallery-item:nth-child(1) .gallery-placeholder { background: linear-gradient(135deg, #e8cdb4, #c9967a40); }
   .gallery-item:nth-child(2) .gallery-placeholder { background: linear-gradient(145deg, #f0ddd0, #e0c4a8); }
   .gallery-item:nth-child(3) .gallery-placeholder { background: linear-gradient(160deg, #d4b89a, #f0e0cc); }
@@ -239,8 +280,9 @@
   .gallery-item:nth-child(5) .gallery-placeholder { background: linear-gradient(140deg, #c8a87060, #e8d4bc); }
   .gallery-item:nth-child(6) .gallery-placeholder { background: linear-gradient(135deg, #f0e4d4, #d8b898); }
   .gallery-item:hover .gallery-placeholder { transform: scale(1.06); }
-  .gallery-label { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--rose-dark); opacity: 0.8; text-align: center; }
-  .gallery-icon { font-size: 1.6rem; opacity: 0.4; margin-bottom: 0.5rem; }
+  .gallery-label { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; color: var(--charcoal); opacity: 0.72; text-align: center; position: relative; z-index: 1; }
+  .gallery-icon { font-size: 1.45rem; opacity: 0.34; margin-bottom: 0.55rem; position: relative; z-index: 1; }
+  .gallery-note { margin-top: 1.2rem; font-size: 0.82rem; color: var(--light-mid); text-align: center; font-weight: 300; }
   .gallery-overlay { position: absolute; inset: 0; background: rgba(42,36,32,0); display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
   .gallery-overlay span { color: #fff; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0; transition: opacity 0.3s; }
   .gallery-item:hover .gallery-overlay { background: rgba(42,36,32,0.3); }
@@ -249,8 +291,8 @@
   /* TESTIMONIOS */
   #opiniones { background: var(--blush); }
   .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
-  .review-card { background: var(--warm-white); padding: 2rem; border-radius: 2px; position: relative; transition: transform 0.3s, box-shadow 0.3s; }
-  .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .review-card { background: var(--warm-white); padding: 2rem; border-radius: 2px; border: 1px solid transparent; position: relative; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
+  .review-card:hover { transform: translateY(-4px); box-shadow: 0 18px 42px rgba(42,36,32,0.09); border-color: rgba(200,169,110,0.42); }
   .review-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 1rem; }
   .review-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--charcoal); line-height: 1.6; margin-bottom: 1.5rem; font-weight: 300; }
   .review-author { display: flex; align-items: center; gap: 0.8rem; }
@@ -276,6 +318,7 @@
     padding: 1.2rem 3rem; border-radius: 2px;
     font-size: 0.9rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
     text-decoration: none; transition: all 0.25s; width: 100%; max-width: 340px; justify-content: center;
+    position: relative; overflow: hidden; isolation: isolate;
   }
   .btn-booksy:hover { background: var(--charcoal); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(42,36,32,0.15); }
   .btn-wa-big {
@@ -284,8 +327,9 @@
     padding: 1rem 2.5rem; border-radius: 2px; border: 1px solid var(--border);
     font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-decoration: none;
     transition: all 0.25s; width: 100%; max-width: 340px; justify-content: center;
+    position: relative; overflow: hidden; isolation: isolate;
   }
-  .btn-wa-big:hover { border-color: #25d366; background: rgba(37,211,102,0.04); }
+  .btn-wa-big:hover { border-color: rgba(37,211,102,0.45); background: rgba(37,211,102,0.04); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(42,36,32,0.07); }
   .reservar-note { margin-top: 1.5rem; font-size: 0.78rem; color: var(--light-mid); display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
 
   /* CONTACTO */
@@ -418,13 +462,20 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
     .hero-hair-figure,
     .hero-hair-figure * {
       animation: none !important;
       transition: none !important;
     }
     .hero-hair-figure { opacity: 0.38; }
-    .hair-strand-line { stroke-dashoffset: 0; }
+    .hair-strand-line,
+    .hair-free-strand { stroke-dashoffset: 0; }
   }
 </style>
 </head>
@@ -456,26 +507,26 @@
 
 <section id="inicio">
   <div class="hero-hair-figure" aria-hidden="true">
-    <svg viewBox="0 0 620 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 620 760" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="hairBase" x1="310" y1="86" x2="310" y2="650" gradientUnits="userSpaceOnUse">
+        <linearGradient id="hairBase" x1="310" y1="86" x2="310" y2="724" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stop-color="#2f2522"/>
           <stop offset="36%" stop-color="#5f3f34"/>
           <stop offset="64%" stop-color="#a8735a"/>
           <stop offset="84%" stop-color="#d5ad6b"/>
           <stop offset="100%" stop-color="#f2d696"/>
         </linearGradient>
-        <linearGradient id="hairSideLeft" x1="176" y1="126" x2="268" y2="638" gradientUnits="userSpaceOnUse">
+        <linearGradient id="hairSideLeft" x1="176" y1="126" x2="248" y2="722" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stop-color="#3b2a25"/>
           <stop offset="52%" stop-color="#8a5a48"/>
           <stop offset="100%" stop-color="#e4bd77"/>
         </linearGradient>
-        <linearGradient id="hairSideRight" x1="446" y1="128" x2="370" y2="638" gradientUnits="userSpaceOnUse">
+        <linearGradient id="hairSideRight" x1="446" y1="128" x2="388" y2="722" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stop-color="#3a2a25"/>
           <stop offset="52%" stop-color="#9b664e"/>
           <stop offset="100%" stop-color="#edcf8a"/>
         </linearGradient>
-        <linearGradient id="balayageStroke" x1="300" y1="220" x2="330" y2="640" gradientUnits="userSpaceOnUse">
+        <linearGradient id="balayageStroke" x1="300" y1="220" x2="330" y2="720" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stop-color="rgba(255,248,232,0)"/>
           <stop offset="48%" stop-color="#c9967a"/>
           <stop offset="75%" stop-color="#e8c990"/>
@@ -486,27 +537,31 @@
           <stop offset="72%" stop-color="#3b2a25"/>
           <stop offset="100%" stop-color="#2a2420"/>
         </radialGradient>
-        <filter id="hairSoftShadow" x="-20%" y="-12%" width="140%" height="132%">
+        <filter id="hairSoftShadow" x="-22%" y="-12%" width="144%" height="140%">
           <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#6b4230" flood-opacity="0.18"/>
         </filter>
       </defs>
 
       <g class="hair-silhouette" filter="url(#hairSoftShadow)">
-        <path class="hair-mass" d="M313 70 C229 73 165 139 145 235 C125 331 142 462 111 604 C172 637 250 643 314 627 C377 644 454 637 511 604 C480 459 498 331 475 235 C452 137 394 72 313 70Z" fill="url(#hairBase)"/>
-        <path class="hair-layer layer-1" d="M299 90 C214 141 184 228 187 332 C190 442 226 532 201 626 C156 624 126 615 111 604 C142 462 125 331 145 235 C164 146 221 86 299 90Z" fill="url(#hairSideLeft)" opacity="0.74"/>
-        <path class="hair-layer layer-2" d="M332 90 C417 141 445 229 441 334 C436 446 401 532 424 626 C468 624 496 615 511 604 C480 459 498 331 475 235 C454 145 398 86 332 90Z" fill="url(#hairSideRight)" opacity="0.76"/>
+        <path class="hair-mass" d="M313 70 C226 73 165 139 145 235 C121 333 145 464 103 681 C162 716 246 730 315 702 C384 731 464 716 523 681 C482 463 502 333 475 235 C449 136 394 72 313 70Z" fill="url(#hairBase)"/>
+        <path class="hair-layer layer-1" d="M299 90 C212 141 181 226 184 331 C187 444 231 544 193 707 C145 704 116 692 103 681 C145 464 121 333 145 235 C164 146 221 86 299 90Z" fill="url(#hairSideLeft)" opacity="0.74"/>
+        <path class="hair-layer layer-2" d="M332 90 C418 141 447 228 444 335 C440 449 393 548 431 707 C478 703 509 692 523 681 C482 463 502 333 475 235 C454 145 398 86 332 90Z" fill="url(#hairSideRight)" opacity="0.76"/>
         <path d="M245 116 C249 72 284 48 322 54 C363 61 392 94 389 137 C386 185 354 217 314 219 C270 220 241 171 245 116Z" fill="url(#crownShadow)" opacity="0.98"/>
         <path d="M271 185 C284 209 299 222 315 223 C333 222 349 209 360 185 C356 237 342 285 315 314 C288 285 275 237 271 185Z" fill="rgba(250,246,241,0.28)"/>
 
-        <path class="hair-strand-line" d="M309 88 C275 187 274 303 296 413 C313 499 314 569 299 624" stroke="rgba(42,36,32,0.32)" stroke-width="3" stroke-linecap="round"/>
-        <path class="hair-strand-line delay-1" d="M252 133 C215 222 209 330 230 432 C247 513 251 579 233 630" stroke="rgba(66,44,37,0.24)" stroke-width="3" stroke-linecap="round"/>
-        <path class="hair-strand-line delay-2" d="M371 134 C412 225 416 333 389 438 C369 516 365 580 382 630" stroke="rgba(66,44,37,0.24)" stroke-width="3" stroke-linecap="round"/>
-        <path class="hair-strand-line delay-3" d="M191 241 C181 347 197 466 174 610" stroke="rgba(255,228,174,0.22)" stroke-width="2.4" stroke-linecap="round"/>
-        <path class="hair-strand-line delay-2" d="M447 241 C457 350 438 466 462 610" stroke="rgba(255,228,174,0.2)" stroke-width="2.4" stroke-linecap="round"/>
+        <path class="hair-strand-line" d="M309 88 C272 190 286 293 300 402 C314 510 320 618 300 702" stroke="rgba(42,36,32,0.32)" stroke-width="3" stroke-linecap="round"/>
+        <path class="hair-strand-line delay-1" d="M252 133 C208 223 222 324 239 424 C258 534 250 621 229 710" stroke="rgba(66,44,37,0.24)" stroke-width="3" stroke-linecap="round"/>
+        <path class="hair-strand-line delay-2" d="M371 134 C417 226 401 330 382 434 C363 536 374 623 397 710" stroke="rgba(66,44,37,0.24)" stroke-width="3" stroke-linecap="round"/>
+        <path class="hair-strand-line delay-3" d="M191 241 C174 348 204 468 168 692" stroke="rgba(255,228,174,0.22)" stroke-width="2.4" stroke-linecap="round"/>
+        <path class="hair-strand-line delay-2" d="M447 241 C468 352 429 471 468 692" stroke="rgba(255,228,174,0.2)" stroke-width="2.4" stroke-linecap="round"/>
+        <path class="hair-free-strand" d="M151 282 C115 374 153 468 132 562 C121 613 95 650 91 710" stroke="rgba(91,57,43,0.24)" stroke-width="2.5" stroke-linecap="round"/>
+        <path class="hair-free-strand delay-1" d="M214 198 C181 296 231 406 205 514 C191 573 170 636 179 720" stroke="rgba(255,226,174,0.24)" stroke-width="2.6" stroke-linecap="round"/>
+        <path class="hair-free-strand delay-2" d="M425 198 C458 294 407 409 433 515 C448 575 470 638 459 720" stroke="rgba(255,226,174,0.22)" stroke-width="2.6" stroke-linecap="round"/>
+        <path class="hair-free-strand delay-3" d="M486 280 C522 374 484 470 506 562 C519 614 545 652 548 710" stroke="rgba(91,57,43,0.22)" stroke-width="2.5" stroke-linecap="round"/>
 
-        <path class="hair-highlight" d="M267 300 C276 392 302 492 284 612" stroke="url(#balayageStroke)" stroke-width="9" stroke-linecap="round"/>
-        <path class="hair-highlight delay-1" d="M350 292 C335 392 338 505 323 626" stroke="url(#balayageStroke)" stroke-width="8" stroke-linecap="round"/>
-        <path class="hair-highlight delay-2" d="M411 342 C400 438 384 531 398 616" stroke="url(#balayageStroke)" stroke-width="7" stroke-linecap="round"/>
+        <path class="hair-highlight" d="M267 300 C284 396 306 514 282 704" stroke="url(#balayageStroke)" stroke-width="9" stroke-linecap="round"/>
+        <path class="hair-highlight delay-1" d="M350 292 C328 398 345 526 321 716" stroke="url(#balayageStroke)" stroke-width="8" stroke-linecap="round"/>
+        <path class="hair-highlight delay-2" d="M411 342 C394 444 376 542 404 700" stroke="url(#balayageStroke)" stroke-width="7" stroke-linecap="round"/>
       </g>
     </svg>
   </div>
@@ -517,7 +572,7 @@
     <p class="hero-sub">D'Raggio Estilistas es un salón cerca de Sagrada Família especializado en color, balayage, tratamientos capilares y cortes personalizados. Reserva online o escríbenos por WhatsApp.</p>
     <div class="hero-btns">
       <a href="reserva.html" class="btn-primary">✦ Reservar cita</a>
-      <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20D%27Raggio%20Estilistas." target="_blank" class="btn-wa">
+      <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20D%27Raggio%20Estilistas." target="_blank" class="btn-wa" rel="noopener">
         <span class="wa-icon">💬</span> Escribir por WhatsApp
       </a>
       <a href="servicios.html" class="btn-wa">Ver servicios</a>
@@ -527,6 +582,7 @@
       <p class="trust-text"><strong>5,0 en Booksy</strong> · Más de 200 reseñas verificadas</p>
     </div>
   </div>
+  <p class="gallery-note">Galería preparada para incorporar trabajos reales del salón.</p>
 </section>
 
 <div class="divider"></div>
@@ -537,7 +593,7 @@
   <p class="section-sub">Servicios de peluquería adaptados al estado, largo y objetivo de cada cabello.</p>
   <div class="services-grid">
     <div class="service-card">
-      <span class="service-icon">🌿</span>
+      <span class="service-icon">✂️</span>
       <div class="service-cat">Color</div>
       <h3 class="service-name">Balayage & Mechas</h3>
       <p class="service-desc">Técnicas de coloración libre para conseguir un acabado luminoso y personalizado según tu base y objetivo.</p>
@@ -548,7 +604,7 @@
       </div>
     </div>
     <div class="service-card">
-      <span class="service-icon">✨</span>
+      <span class="service-icon">✦</span>
       <div class="service-cat">Coloración</div>
       <h3 class="service-name">Tinte & Color</h3>
       <p class="service-desc">Coloración personalizada, cobertura de canas y cambios de tono con diagnóstico previo del cabello.</p>
@@ -559,7 +615,7 @@
       </div>
     </div>
     <div class="service-card">
-      <span class="service-icon">💧</span>
+      <span class="service-icon">🎨</span>
       <div class="service-cat">Tratamientos</div>
       <h3 class="service-name">Keratina & Alisados</h3>
       <p class="service-desc">Keratina y alisados según diagnóstico para controlar el encrespamiento y mejorar el acabado del cabello.</p>
@@ -570,7 +626,7 @@
       </div>
     </div>
     <div class="service-card">
-      <span class="service-icon">🌸</span>
+      <span class="service-icon">💇‍♀️</span>
       <div class="service-cat">Hidratación</div>
       <h3 class="service-name">Tratamientos Capilares</h3>
       <p class="service-desc">Tratamientos capilares adaptados al estado de la fibra para aportar hidratación, nutrición y mejor tacto.</p>
@@ -581,7 +637,7 @@
       </div>
     </div>
     <div class="service-card">
-      <span class="service-icon">✂️</span>
+      <span class="service-icon">✨</span>
       <div class="service-cat">Corte & Estilo</div>
       <h3 class="service-name">Corte & Peinado</h3>
       <p class="service-desc">Cortes modernos con técnica y criterio estético. Peinados para el día a día o para ocasiones especiales.</p>
@@ -592,7 +648,7 @@
       </div>
     </div>
     <div class="service-card">
-      <span class="service-icon">🔬</span>
+      <span class="service-icon">🌿</span>
       <div class="service-cat">Diagnóstico</div>
       <h3 class="service-name">Consulta Capilar</h3>
       <p class="service-desc">Asesoramiento profesional según tu cabello para orientar el tratamiento, coloración o corte más adecuado.</p>
@@ -645,19 +701,19 @@
       <div class="section-label">Nuestro trabajo</div>
       <h2 class="section-title">Resultados que <em>hablan</em></h2>
     </div>
-    <a href="LINK_INSTAGRAM_REAL" target="_blank" rel="noopener" class="btn-wa">Ver en Instagram →</a>
+    <a href="https://www.instagram.com/dianaraggioestilistas/" target="_blank" rel="noopener" class="btn-wa">Ver en Instagram →</a>
   </div>
   <div class="gallery-grid">
     <div class="gallery-item">
-      <div class="gallery-placeholder"><span class="gallery-icon">✨</span><span class="gallery-label">Balayage californiano</span></div>
+      <div class="gallery-placeholder"><span class="gallery-icon">✦</span><span class="gallery-label">Balayage californiano</span></div>
       <div class="gallery-overlay"><span>Ver detalle</span></div>
     </div>
     <div class="gallery-item">
-      <div class="gallery-placeholder"><span class="gallery-icon">🌿</span><span class="gallery-label">Mechas babylights</span></div>
+      <div class="gallery-placeholder"><span class="gallery-icon">✨</span><span class="gallery-label">Mechas babylights</span></div>
       <div class="gallery-overlay"><span>Ver detalle</span></div>
     </div>
     <div class="gallery-item">
-      <div class="gallery-placeholder"><span class="gallery-icon">💫</span><span class="gallery-label">Coloración personalizada</span></div>
+      <div class="gallery-placeholder"><span class="gallery-icon">🎨</span><span class="gallery-label">Coloración personalizada</span></div>
       <div class="gallery-overlay"><span>Ver detalle</span></div>
     </div>
     <div class="gallery-item">
@@ -665,11 +721,11 @@
       <div class="gallery-overlay"><span>Ver detalle</span></div>
     </div>
     <div class="gallery-item">
-      <div class="gallery-placeholder"><span class="gallery-icon">💧</span><span class="gallery-label">Keratina / alisado</span></div>
+      <div class="gallery-placeholder"><span class="gallery-icon">🌿</span><span class="gallery-label">Keratina / alisado</span></div>
       <div class="gallery-overlay"><span>Ver detalle</span></div>
     </div>
     <div class="gallery-item">
-      <div class="gallery-placeholder"><span class="gallery-icon">🌸</span><span class="gallery-label">Tratamiento hidratante</span></div>
+      <div class="gallery-placeholder"><span class="gallery-icon">💧</span><span class="gallery-label">Tratamiento hidratante</span></div>
       <div class="gallery-overlay"><span>Ver detalle</span></div>
     </div>
   </div>
@@ -714,8 +770,8 @@
     <h2 class="section-title">Reserva tu cita<br><em>ahora</em></h2>
     <p class="section-sub">Elige el día y servicio que prefieres o escríbenos por WhatsApp para resolver dudas antes de reservar.</p>
     <div class="reservar-btns">
-      <a href="LINK_BOOKSY_REAL" target="_blank" rel="noopener" class="btn-booksy">✦ Reservar en Booksy</a>
-      <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20reservar%20una%20cita%20en%20D%27Raggio%20Estilistas." target="_blank" class="btn-wa-big">
+      <a href="https://booksy.com/es-es/82021_peluqueria-diana-raggio_peluqueria_48863_barcelona" target="_blank" rel="noopener" class="btn-booksy">✦ Reservar en Booksy</a>
+      <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20reservar%20una%20cita%20en%20D%27Raggio%20Estilistas." target="_blank" class="btn-wa-big" rel="noopener">
         <span style="color:#25d366">💬</span> Reservar por WhatsApp
       </a>
     </div>
@@ -729,21 +785,21 @@
   <div class="contacto-grid">
     <div class="contacto-items">
       <div class="contacto-item">
-        <div class="contacto-icon-wrap">📍</div>
+      <div class="contacto-icon-wrap">📍</div>
         <div>
           <div class="contacto-label">Dirección</div>
           <div class="contacto-value">Carrer de Lepant, 282, 08013 Barcelona · Zona Sagrada Família</div>
         </div>
       </div>
       <div class="contacto-item">
-        <div class="contacto-icon-wrap">📞</div>
+      <div class="contacto-icon-wrap">💬</div>
         <div>
           <div class="contacto-label">Teléfono / WhatsApp</div>
           <div class="contacto-value"><a href="tel:+34601003780">601 00 37 80</a></div>
         </div>
       </div>
       <div class="contacto-item">
-        <div class="contacto-icon-wrap">🕐</div>
+      <div class="contacto-icon-wrap">⏰</div>
         <div>
           <div class="contacto-label">Horario</div>
           <div class="horario-grid">
@@ -760,11 +816,11 @@
     </div>
     <div>
       <div class="map-placeholder">
-        <span class="map-pin">📍</span>
+          <span class="map-pin">📍</span>
         <div class="map-address-box">
           <strong>D'Raggio Estilistas</strong>
           <p>Carrer de Lepant, 282, 08013 Barcelona · Zona Sagrada Família</p>
-          <a href="https://maps.google.com/?q=Carrer+de+Lepant+282+Barcelona" target="_blank" class="btn-maps">Abrir en Google Maps →</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Peluquer%C3%ADa%20Diana%20Raggio%20Carrer%20de%20Lepant%20282%20Barcelona" target="_blank" class="btn-maps" rel="noopener">Abrir en Google Maps →</a>
         </div>
       </div>
     </div>
@@ -777,9 +833,9 @@
       <a href="index.html" class="nav-logo">D'Raggio <span>✦</span> Estilistas</a>
       <p>Salón cerca de Sagrada Família especializado en balayage, coloración, cortes y tratamientos capilares personalizados.</p>
       <div class="footer-social">
-        <a href="LINK_INSTAGRAM_REAL" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">📸</a>
-        <a href="LINK_FACEBOOK_REAL" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">📘</a>
-        <a href="https://wa.me/34601003780" target="_blank" class="social-btn" aria-label="WhatsApp">💬</a>
+        <a href="https://www.instagram.com/dianaraggioestilistas/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">📸</a>
+        <a href="https://www.facebook.com/draggio.estilistas" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">📘</a>
+        <a href="https://wa.me/34601003780" target="_blank" class="social-btn" aria-label="WhatsApp" rel="noopener">💬</a>
       </div>
     </div>
     <div class="footer-col">
@@ -797,8 +853,8 @@
       <h4>Contacto</h4>
       <ul class="footer-links">
         <li><a href="tel:+34601003780">601 00 37 80</a></li>
-        <li><a href="https://wa.me/34601003780">WhatsApp</a></li>
-        <li><a href="https://maps.google.com/?q=Carrer+de+Lepant+282+08013+Barcelona" target="_blank">Carrer de Lepant, 282, 08013 Barcelona · Zona Sagrada Família</a></li>
+        <li><a href="https://wa.me/34601003780" target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=Peluquer%C3%ADa%20Diana%20Raggio%20Carrer%20de%20Lepant%20282%20Barcelona" target="_blank" rel="noopener">Carrer de Lepant, 282, 08013 Barcelona · Zona Sagrada Família</a></li>
         <li>Carrer de Lepant, 282, 08013 Barcelona · Zona Sagrada Família</li>
       </ul>
     </div>
@@ -809,7 +865,7 @@
   </div>
 </footer>
 
-<a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20D%27Raggio%20Estilistas." target="_blank" class="wa-float" aria-label="WhatsApp">💬</a>
+<a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20D%27Raggio%20Estilistas." target="_blank" class="wa-float" aria-label="WhatsApp" rel="noopener">💬</a>
 
 <script>
   const navbar = document.getElementById('navbar');
