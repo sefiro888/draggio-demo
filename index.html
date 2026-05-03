@@ -87,9 +87,10 @@
     position: absolute; right: 4.5%; top: 54%; width: min(42vw, 540px);
     transform: translateY(-50%); z-index: 1; pointer-events: none;
     opacity: 0; animation: hairFigureIn 1.2s ease 0.2s forwards;
+    filter: saturate(0.72) contrast(0.82) blur(0.15px);
   }
   .hero-hair-figure svg { display: block; width: 100%; height: auto; overflow: visible; }
-  .hair-silhouette { filter: drop-shadow(0 28px 34px rgba(82,54,43,0.16)); }
+  .hair-silhouette { filter: drop-shadow(0 24px 30px rgba(82,54,43,0.08)); }
   .hair-mass {
     transform-origin: 315px 162px;
     animation: hairBreath 7s ease-in-out infinite;
@@ -102,7 +103,8 @@
   .hair-layer.layer-3 { animation-delay: -2.1s; }
   .hair-highlight {
     stroke-dasharray: 95 560; stroke-dashoffset: 620;
-    animation: highlightSweep 4.8s ease-in-out 1.4s infinite;
+    opacity: 0.42;
+    animation: highlightSweep 5.8s ease-in-out 1.4s infinite;
   }
   .hair-highlight.delay-1 { animation-delay: 2s; }
   .hair-highlight.delay-2 { animation-delay: 2.6s; }
@@ -115,7 +117,7 @@
   .hair-strand-line.delay-3 { animation-delay: 0.6s; }
   @keyframes hairFigureIn {
     from { opacity: 0; transform: translateY(-48%) translateX(28px) scale(0.98); }
-    to { opacity: 0.92; transform: translateY(-50%) translateX(0) scale(1); }
+    to { opacity: 0.34; transform: translateY(-50%) translateX(0) scale(1); }
   }
   @keyframes hairBreath {
     0%, 100% { transform: rotate(0deg) translateY(0); }
@@ -127,7 +129,7 @@
   }
   @keyframes highlightSweep {
     0% { stroke-dashoffset: 620; opacity: 0; }
-    18%, 58% { opacity: 0.85; }
+    18%, 58% { opacity: 0.38; }
     100% { stroke-dashoffset: -120; opacity: 0; }
   }
   @keyframes strandDraw { to { stroke-dashoffset: 0; } }
@@ -346,7 +348,7 @@
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .dif-pillars { grid-template-columns: 1fr 1fr; }
     .hero-hair-figure {
-      right: -8%; top: 56%; width: min(46vw, 380px); opacity: 0.52;
+      right: -10%; top: 55%; width: min(48vw, 390px);
     }
   }
 
@@ -361,20 +363,26 @@
     .hero-btns { flex-direction: column; }
     .btn-primary, .btn-wa { width: 100%; justify-content: center; }
     #inicio {
-      min-height: auto;
+      min-height: 92vh;
       display: flex;
-      flex-direction: column;
-      align-items: stretch;
+      flex-direction: row;
+      align-items: flex-start;
       justify-content: flex-start;
       padding-top: 120px;
-      padding-bottom: 44px;
     }
     .hero-content {
-      order: 1;
       position: relative;
       z-index: 3;
       max-width: none;
       width: 100%;
+    }
+    .hero-content::before {
+      content: '';
+      position: absolute;
+      inset: -18px -10px;
+      z-index: -1;
+      background: linear-gradient(90deg, rgba(253,248,242,0.94) 0%, rgba(253,248,242,0.84) 58%, rgba(253,248,242,0.18) 100%);
+      border-radius: 2px;
     }
     .hero-eyebrow,
     .hero-h1,
@@ -385,20 +393,18 @@
       z-index: 3;
     }
     .hero-hair-figure {
-      order: 2;
-      position: relative;
-      right: auto;
-      top: auto;
-      transform: none;
-      width: min(76vw, 300px);
-      margin: 22px auto 0;
-      opacity: 0.88;
+      position: absolute;
+      right: -38%;
+      top: 42%;
+      transform: translateY(-50%);
+      width: 108vw;
+      margin: 0;
+      opacity: 0;
       z-index: 1;
     }
     .hero-hair-figure svg {
       width: 100%;
       height: auto;
-      max-height: 270px;
     }
   }
 
@@ -408,7 +414,7 @@
       animation: none !important;
       transition: none !important;
     }
-    .hero-hair-figure { opacity: 0.86; }
+    .hero-hair-figure { opacity: 0.28; }
     .hair-strand-line { stroke-dashoffset: 0; }
   }
 </style>
