@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Galería y opiniones de D'Raggio Estilistas – Balayage, Coloración y Tratamientos en Barcelona Sagrada Família.">
+<title>Galería & Opiniones | D'Raggio Estilistas Barcelona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf6f1; --warm-white: #fdf9f5; --blush: #f0e0d0;
+    --rose: #c9967a; --rose-dark: #a8735a; --gold: #c8a96e; --gold-light: #e8c990;
+    --charcoal: #2a2420; --mid: #6b5a52; --light-mid: #9e8a80;
+    --border: rgba(200,169,110,0.2); --shadow: 0 4px 40px rgba(42,36,32,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 68px; background: rgba(250,246,241,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s; }
+  nav.scrolled { box-shadow: var(--shadow); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; color: var(--charcoal); text-decoration: none; letter-spacing: 0.04em; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.82rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-active { color: var(--charcoal) !important; font-weight: 500 !important; }
+  .nav-cta { background: var(--charcoal); color: var(--cream) !important; padding: 0.55rem 1.3rem; border-radius: 2px; font-size: 0.78rem !important; letter-spacing: 0.1em !important; transition: background 0.2s !important; }
+  .nav-cta:hover { background: var(--rose-dark) !important; }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--charcoal); }
+  .mobile-menu { display: none; position: fixed; top: 68px; left: 0; right: 0; background: var(--warm-white); border-bottom: 1px solid var(--border); padding: 1.5rem 5%; z-index: 999; flex-direction: column; gap: 1rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 1rem; color: var(--charcoal); text-decoration: none; padding: 0.5rem 0; border-bottom: 1px solid var(--border); letter-spacing: 0.06em; }
+  .mobile-menu .m-cta { background: var(--charcoal); color: var(--cream); text-align: center; padding: 0.9rem; border-radius: 2px; border: none; margin-top: 0.5rem; }
+
+  /* PAGE HERO */
+  .page-hero { padding-top: 68px; min-height: 38vh; display: flex; align-items: center; background: linear-gradient(135deg, #fdf8f2 0%, #f5e8d8 50%, #eeddc8 100%); position: relative; overflow: hidden; }
+  .page-hero::after { content: ''; position: absolute; right: -80px; top: -80px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(200,169,110,0.12) 0%, transparent 70%); }
+  .page-hero-content { padding: 4rem 5%; position: relative; z-index: 1; }
+  .page-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem; }
+  .page-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+  .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 300; line-height: 1.1; color: var(--charcoal); }
+  .page-hero h1 em { font-style: italic; color: var(--rose-dark); }
+  .page-hero p { font-size: 1rem; color: var(--mid); line-height: 1.7; max-width: 520px; margin-top: 1rem; font-weight: 300; }
+
+  .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem; }
+  .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 300; line-height: 1.2; color: var(--charcoal); margin-bottom: 1rem; }
+  .section-title em { font-style: italic; color: var(--rose-dark); }
+
+  /* GALLERY */
+  .gallery-section { padding: 80px 5%; }
+  .gallery-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+  .btn-ig { display: inline-flex; align-items: center; gap: 0.6rem; background: transparent; color: var(--charcoal); padding: 0.8rem 1.5rem; border-radius: 2px; border: 1px solid rgba(42,36,32,0.2); font-size: 0.82rem; text-decoration: none; transition: all 0.25s; }
+  .btn-ig:hover { border-color: var(--rose); color: var(--rose-dark); }
+
+  /* Masonry-style grid */
+  .gallery-masonry { columns: 4; column-gap: 8px; }
+  .gallery-masonry .g-item { break-inside: avoid; margin-bottom: 8px; position: relative; overflow: hidden; border-radius: 2px; cursor: pointer; }
+  .g-placeholder { width: 100%; display: block; transition: transform 0.5s ease; }
+  .g-item:hover .g-placeholder { transform: scale(1.05); }
+
+  .g-item svg { display: block; width: 100%; }
+
+  .g-overlay { position: absolute; inset: 0; background: rgba(42,36,32,0); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem; transition: background 0.3s; }
+  .g-overlay span { color: #fff; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0; transition: opacity 0.3s; }
+  .g-overlay .g-tag { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; opacity: 0; transition: opacity 0.3s 0.05s; }
+  .g-item:hover .g-overlay { background: rgba(42,36,32,0.35); }
+  .g-item:hover .g-overlay span, .g-item:hover .g-overlay .g-tag { opacity: 1; }
+
+  /* Filter tabs */
+  .gallery-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .filter-btn { padding: 0.5rem 1.2rem; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--mid); font-size: 0.8rem; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .filter-btn.active, .filter-btn:hover { background: var(--charcoal); color: var(--cream); border-color: var(--charcoal); }
+
+  /* OPINIONES */
+  #opiniones { background: var(--blush); padding: 80px 5%; }
+  .reviews-intro { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+  .rating-summary { display: flex; align-items: center; gap: 1.5rem; }
+  .rating-big { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: var(--charcoal); line-height: 1; }
+  .rating-stars { color: var(--gold); font-size: 1.2rem; letter-spacing: 3px; display: block; margin-bottom: 0.3rem; }
+  .rating-count { font-size: 0.8rem; color: var(--light-mid); }
+
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .review-card { background: var(--warm-white); padding: 2rem; border-radius: 2px; position: relative; transition: transform 0.3s, box-shadow 0.3s; }
+  .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .review-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 1rem; }
+  .review-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--charcoal); line-height: 1.6; margin-bottom: 1.5rem; font-weight: 300; }
+  .review-author { display: flex; align-items: center; gap: 0.8rem; }
+  .review-avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--cream); flex-shrink: 0; }
+  .av-1 { background: var(--rose); } .av-2 { background: var(--gold); } .av-3 { background: #9a8870; } .av-4 { background: #7a6a5a; }
+  .review-name { font-size: 0.88rem; font-weight: 500; color: var(--charcoal); }
+  .review-service { font-size: 0.78rem; color: var(--light-mid); margin-top: 0.1rem; }
+  .review-badge { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light-mid); background: var(--blush); padding: 0.2rem 0.6rem; border-radius: 20px; }
+  .review-date { font-size: 0.72rem; color: var(--light-mid); margin-top: 0.8rem; }
+
+  /* CTA BAND */
+  .cta-band { background: var(--charcoal); padding: 70px 5%; text-align: center; }
+  .cta-band h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 300; color: var(--cream); margin-bottom: 0.8rem; }
+  .cta-band h2 em { font-style: italic; color: var(--gold-light); }
+  .cta-band p { font-size: 0.9rem; color: rgba(250,246,241,0.6); margin-bottom: 2rem; font-weight: 300; }
+  .cta-btns { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--rose-dark); color: #fff; padding: 1rem 2rem; border-radius: 2px; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.25s; }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
+  .btn-outline { display: inline-flex; align-items: center; gap: 0.6rem; background: transparent; color: var(--cream); padding: 1rem 1.8rem; border-radius: 2px; border: 1px solid rgba(250,246,241,0.2); font-size: 0.85rem; text-decoration: none; transition: all 0.25s; }
+  .btn-outline:hover { border-color: rgba(250,246,241,0.5); }
+
+  /* FOOTER */
+  footer { background: var(--charcoal); color: rgba(250,246,241,0.7); padding: 60px 5% 30px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(200,169,110,0.15); }
+  .footer-brand .nav-logo { font-size: 1.5rem; display: block; margin-bottom: 1rem; color: var(--cream); }
+  .footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 280px; font-weight: 300; }
+  .footer-social { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
+  .social-btn { width: 38px; height: 38px; border: 1px solid rgba(200,169,110,0.2); border-radius: 2px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1rem; transition: all 0.2s; color: rgba(250,246,241,0.6); }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-col h4 { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; font-weight: 500; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.6rem; }
+  .footer-links a { font-size: 0.88rem; color: rgba(250,246,241,0.6); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-bottom p { font-size: 0.78rem; }
+
+  .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 900; width: 56px; height: 56px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4); animation: waPulse 3s ease-in-out infinite; transition: transform 0.2s; }
+  .wa-float:hover { transform: scale(1.1); }
+  @keyframes waPulse { 0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); } 50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); } }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .gallery-masonry { columns: 2; }
+    .reviews-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .reviews-intro { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 0 4%; }
+    .gallery-section, #opiniones { padding: 70px 4%; }
+    .gallery-masonry { columns: 2; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .cta-btns { flex-direction: column; align-items: center; }
+    .btn-primary, .btn-outline { width: 100%; max-width: 300px; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="draggio-estilistas.html" class="nav-logo">D'Raggio <span>✦</span> Estilistas</a>
+  <ul class="nav-links">
+    <li><a href="draggio-estilistas.html">Inicio</a></li>
+    <li><a href="draggio-servicios.html">Servicios</a></li>
+    <li><a href="draggio-galeria.html" class="nav-active">Galería</a></li>
+    <li><a href="draggio-galeria.html#opiniones">Opiniones</a></li>
+    <li><a href="draggio-contacto.html">Contacto</a></li>
+    <li><a href="draggio-reservar.html" class="nav-cta">Reservar cita</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="draggio-estilistas.html">Inicio</a>
+  <a href="draggio-servicios.html">Servicios</a>
+  <a href="draggio-galeria.html">Galería</a>
+  <a href="draggio-galeria.html#opiniones">Opiniones</a>
+  <a href="draggio-contacto.html">Contacto</a>
+  <a href="draggio-reservar.html" class="m-cta">✦ Reservar cita ahora</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-content">
+    <div class="page-eyebrow">Nuestro trabajo</div>
+    <h1>Resultados que<br><em>hablan por sí solos</em></h1>
+    <p>Cada foto cuenta una historia de transformación. Descubre lo que podemos hacer por tu cabello.</p>
+  </div>
+</div>
+
+<!-- GALERÍA -->
+<div class="gallery-section">
+  <div class="gallery-header">
+    <div>
+      <div class="section-label">Galería</div>
+      <h2 class="section-title">Antes & <em>después</em></h2>
+    </div>
+    <a href="https://www.instagram.com" target="_blank" class="btn-ig">📸 Síguenos en Instagram</a>
+  </div>
+
+  <div class="gallery-filters">
+    <button class="filter-btn active">Todo</button>
+    <button class="filter-btn">Balayage</button>
+    <button class="filter-btn">Mechas</button>
+    <button class="filter-btn">Color</button>
+    <button class="filter-btn">Keratina</button>
+    <button class="filter-btn">Corte</button>
+  </div>
+
+  <div class="gallery-masonry">
+    <!-- Item 1 – tall -->
+    <div class="g-item">
+      <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e8cdb4"/><stop offset="100%" stop-color="#c9967a"/></linearGradient></defs>
+        <rect width="300" height="400" fill="url(#g1)"/>
+        <text x="150" y="185" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="rgba(255,255,255,0.4)" font-style="italic">Balayage</text>
+        <text x="150" y="218" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.3)">californiano</text>
+      </svg>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Balayage californiano</span></div>
+    </div>
+    <!-- Item 2 – square -->
+    <div class="g-item">
+      <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f0ddd0"/><stop offset="100%" stop-color="#d4a880"/></linearGradient></defs>
+        <rect width="300" height="280" fill="url(#g2)"/>
+        <text x="150" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(100,60,40,0.4)" font-style="italic">Mechas</text>
+        <text x="150" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(100,60,40,0.3)">babylights</text>
+      </svg>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Mechas babylights</span></div>
+    </div>
+    <!-- Item 3 -->
+    <div class="g-item">
+      <svg viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d4b89a"/><stop offset="100%" stop-color="#8b5a3a"/></linearGradient></defs>
+        <rect width="300" height="350" fill="url(#g3)"/>
+        <text x="150" y="165" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.45)" font-style="italic">Balayage</text>
+        <text x="150" y="192" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.3)">oscuro</text>
+      </svg>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Balayage oscuro</span></div>
+    </div>
+    <!-- Item 4 -->
+    <div class="g-item">
+      <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e8c89a"/><stop offset="100%" stop-color="#c9967a"/></linearGradient></defs>
+        <rect width="300" height="300" fill="url(#g4)"/>
+        <text x="150" y="140" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.45)" font-style="italic">Keratina</text>
+        <text x="150" y="165" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.3)">brasileña</text>
+      </svg>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Keratina brasileña</span></div>
+    </div>
+    <!-- Item 5 – tall -->
+    <div class="g-item">
+      <svg viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g5" x1="0%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#f0e4d4"/><stop offset="100%" stop-color="#b87850"/></linearGradient></defs>
+        <rect width="300" height="420" fill="url(#g5)"/>
+        <text x="150" y="198" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(100,50,30,0.4)" font-style="italic">Color</text>
+        <text x="150" y="225" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(100,50,30,0.3)">fantasía</text>
+      </svg>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Color fantasía</span></div>
+    </div>
+    <!-- Item 6 -->
+    <div class="g-item">
+      <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e0ceb8"/><stop offset="100%" stop-color="#a8835a"/></linearGradient></defs>
+        <rect width="300" height="260" fill="url(#g6)"/>
+        <text x="150" y="120" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.45)" font-style="italic">Corte</text>
+        <text x="150" y="146" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.3)">& estilo</text>
+      </svg>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Corte & estilo</span></div>
+    </div>
+    <!-- Item 7 -->
+    <div class="g-item">
+      <svg viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f5e8d8"/><stop offset="100%" stop-color="#c09060"/></linearGradient></defs>
+        <rect width="300" height="340" fill="url(#g7)"/>
+        <text x="150" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(100,60,30,0.4)" font-style="italic">Tinte</text>
+        <text x="150" y="183" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(100,60,30,0.3)">global</text>
+      </svg>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Tinte global</span></div>
+    </div>
+    <!-- Item 8 -->
+    <div class="g-item">
+      <svg viewBox="0 0 300 290" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d8c4a8"/><stop offset="100%" stop-color="#8a6845"/></linearGradient></defs>
+        <rect width="300" height="290" fill="url(#g8)"/>
+        <text x="150" y="133" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.45)" font-style="italic">Hidratación</text>
+        <text x="150" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.3)">profunda</text>
+      </svg>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Hidratación profunda</span></div>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top: 2.5rem;">
+    <a href="https://www.instagram.com" target="_blank" class="btn-ig">Ver más trabajos en Instagram →</a>
+  </div>
+</div>
+
+<!-- OPINIONES -->
+<div id="opiniones">
+  <div class="reviews-intro">
+    <div>
+      <div class="section-label">Opiniones reales</div>
+      <h2 class="section-title">Lo que dicen<br>nuestras <em>clientas</em></h2>
+    </div>
+    <div class="rating-summary">
+      <div class="rating-big">5.0</div>
+      <div>
+        <span class="rating-stars">★★★★★</span>
+        <div class="rating-count">+80 reseñas en Google</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <span class="review-badge">Google ⭐</span>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Llevaba años queriendo hacerme un balayage y siempre me daba miedo. Aquí me explicaron todo, el resultado fue exactamente lo que pedí. Natural y precioso."</p>
+      <div class="review-author">
+        <div class="review-avatar av-1">L</div>
+        <div><div class="review-name">Laura M.</div><div class="review-service">Balayage californiano</div></div>
+      </div>
+      <div class="review-date">Hace 2 semanas</div>
+    </div>
+    <div class="review-card">
+      <span class="review-badge">Google ⭐</span>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"La keratina que me hicieron duró meses. Mi pelo estaba completamente seco y lo dejaron sedoso. Son profesionales de verdad, sin chapuzas."</p>
+      <div class="review-author">
+        <div class="review-avatar av-2">S</div>
+        <div><div class="review-name">Sandra P.</div><div class="review-service">Keratina brasileña</div></div>
+      </div>
+      <div class="review-date">Hace 1 mes</div>
+    </div>
+    <div class="review-card">
+      <span class="review-badge">Google ⭐</span>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Mi peluquería de confianza en Barcelona. Me mudé al barrio y entré sin cita. Desde ese día no voy a ningún otro sitio. El trato y el resultado, impecables."</p>
+      <div class="review-author">
+        <div class="review-avatar av-3">C</div>
+        <div><div class="review-name">Carmen R.</div><div class="review-service">Tinte & Corte</div></div>
+      </div>
+      <div class="review-date">Hace 3 semanas</div>
+    </div>
+    <div class="review-card">
+      <span class="review-badge">Google ⭐</span>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Fui a hacerme las mechas babylights y quedé enamorada. Son muy detallistas, explican cada paso y el acabado es de salón de lujo. Precio muy justo."</p>
+      <div class="review-author">
+        <div class="review-avatar av-4">M</div>
+        <div><div class="review-name">Marta G.</div><div class="review-service">Mechas babylights</div></div>
+      </div>
+      <div class="review-date">Hace 1 semana</div>
+    </div>
+    <div class="review-card">
+      <span class="review-badge">Google ⭐</span>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Pedí un balayage oscuro y quedé flipando. Tenía miedo de que quedara muy duro pero fue todo lo contrario. Súper natural y con mucho brillo."</p>
+      <div class="review-author">
+        <div class="review-avatar av-1">A</div>
+        <div><div class="review-name">Ana V.</div><div class="review-service">Balayage oscuro</div></div>
+      </div>
+      <div class="review-date">Hace 2 meses</div>
+    </div>
+    <div class="review-card">
+      <span class="review-badge">Google ⭐</span>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Vine de urgencia porque tenía una boda y necesitaba un peinado. Me atendieron sin problema y el resultado fue espectacular. Muy agradecidas."</p>
+      <div class="review-author">
+        <div class="review-avatar av-2">N</div>
+        <div><div class="review-name">Núria F.</div><div class="review-service">Peinado de evento</div></div>
+      </div>
+      <div class="review-date">Hace 5 semanas</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-band">
+  <h2>¿Lista para tu <em>transformación</em>?</h2>
+  <p>Reserva tu cita en segundos. Sin esperas, sin complicaciones.</p>
+  <div class="cta-btns">
+    <a href="draggio-reservar.html" class="btn-primary">✦ Reservar cita online</a>
+    <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20reservar%20una%20cita" target="_blank" class="btn-outline">💬 Escribir por WhatsApp</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="draggio-estilistas.html" class="nav-logo">D'Raggio <span>✦</span> Estilistas</a>
+      <p>Especialistas en balayage, coloración y tratamientos capilares en Barcelona. Zona Sagrada Família.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com" target="_blank" class="social-btn">📸</a>
+        <a href="https://facebook.com" target="_blank" class="social-btn">📘</a>
+        <a href="https://wa.me/34601003780" target="_blank" class="social-btn">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul class="footer-links">
+        <li><a href="draggio-servicios.html">Balayage</a></li>
+        <li><a href="draggio-servicios.html">Mechas</a></li>
+        <li><a href="draggio-servicios.html">Coloración</a></li>
+        <li><a href="draggio-servicios.html">Keratina</a></li>
+        <li><a href="draggio-servicios.html">Tratamientos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul class="footer-links">
+        <li><a href="tel:+34601003780">601 00 37 80</a></li>
+        <li><a href="https://wa.me/34601003780">WhatsApp</a></li>
+        <li><a href="draggio-contacto.html">Carrer de Lepant 282</a></li>
+        <li><a href="draggio-reservar.html">Reservar cita</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 D'Raggio Estilistas · Barcelona</p>
+    <p>Carrer de Lepant 282 · 601 00 37 80</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n" target="_blank" class="wa-float">💬</a>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 30); });
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
+
+  // Filter tabs (visual only)
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

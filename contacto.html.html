@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contacto D'Raggio Estilistas – Carrer de Lepant 282 Barcelona. Teléfono, WhatsApp, horario y cómo llegar. Zona Sagrada Família.">
+<title>Contacto | D'Raggio Estilistas Barcelona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf6f1; --warm-white: #fdf9f5; --blush: #f0e0d0;
+    --rose: #c9967a; --rose-dark: #a8735a; --gold: #c8a96e; --gold-light: #e8c990;
+    --charcoal: #2a2420; --mid: #6b5a52; --light-mid: #9e8a80;
+    --border: rgba(200,169,110,0.2); --shadow: 0 4px 40px rgba(42,36,32,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 68px; background: rgba(250,246,241,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s; }
+  nav.scrolled { box-shadow: var(--shadow); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; color: var(--charcoal); text-decoration: none; letter-spacing: 0.04em; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.82rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-active { color: var(--charcoal) !important; font-weight: 500 !important; }
+  .nav-cta { background: var(--charcoal); color: var(--cream) !important; padding: 0.55rem 1.3rem; border-radius: 2px; font-size: 0.78rem !important; letter-spacing: 0.1em !important; transition: background 0.2s !important; }
+  .nav-cta:hover { background: var(--rose-dark) !important; }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--charcoal); }
+  .mobile-menu { display: none; position: fixed; top: 68px; left: 0; right: 0; background: var(--warm-white); border-bottom: 1px solid var(--border); padding: 1.5rem 5%; z-index: 999; flex-direction: column; gap: 1rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 1rem; color: var(--charcoal); text-decoration: none; padding: 0.5rem 0; border-bottom: 1px solid var(--border); letter-spacing: 0.06em; }
+  .mobile-menu .m-cta { background: var(--charcoal); color: var(--cream); text-align: center; padding: 0.9rem; border-radius: 2px; border: none; margin-top: 0.5rem; }
+
+  /* PAGE HERO */
+  .page-hero { padding-top: 68px; min-height: 38vh; display: flex; align-items: center; background: linear-gradient(135deg, #fdf8f2 0%, #f5e8d8 50%, #eeddc8 100%); position: relative; overflow: hidden; }
+  .page-hero::after { content: ''; position: absolute; right: -80px; top: -80px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(200,169,110,0.12) 0%, transparent 70%); }
+  .page-hero-content { padding: 4rem 5%; position: relative; z-index: 1; }
+  .page-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem; }
+  .page-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+  .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 300; line-height: 1.1; color: var(--charcoal); }
+  .page-hero h1 em { font-style: italic; color: var(--rose-dark); }
+  .page-hero p { font-size: 1rem; color: var(--mid); line-height: 1.7; max-width: 520px; margin-top: 1rem; font-weight: 300; }
+
+  .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem; }
+  .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 300; line-height: 1.2; color: var(--charcoal); margin-bottom: 1rem; }
+  .section-title em { font-style: italic; color: var(--rose-dark); }
+
+  /* CONTACTO MAIN */
+  .contacto-main { padding: 80px 5%; }
+  .contacto-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
+
+  /* INFO */
+  .contact-items { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); }
+  .contact-item { padding: 1.8rem 2rem; display: flex; gap: 1.2rem; align-items: flex-start; border-bottom: 1px solid var(--border); transition: background 0.2s; }
+  .contact-item:last-child { border-bottom: none; }
+  .contact-item:hover { background: var(--warm-white); }
+  .contact-icon { width: 44px; height: 44px; border: 1px solid var(--border); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; background: var(--cream); }
+  .contact-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--light-mid); margin-bottom: 0.3rem; }
+  .contact-value { font-size: 1rem; color: var(--charcoal); font-weight: 400; line-height: 1.5; }
+  .contact-value a { color: inherit; text-decoration: none; transition: color 0.2s; }
+  .contact-value a:hover { color: var(--rose-dark); }
+  .contact-sub { font-size: 0.8rem; color: var(--light-mid); margin-top: 0.2rem; }
+
+  /* CHANNEL CARDS */
+  .channels { display: flex; flex-direction: column; gap: 1rem; }
+  .channel-card { padding: 2rem; border-radius: 2px; position: relative; overflow: hidden; }
+  .channel-card.cc-phone { background: var(--warm-white); border: 1px solid var(--border); }
+  .channel-card.cc-wa { background: var(--charcoal); }
+  .channel-card.cc-ig { background: linear-gradient(135deg, #f5e8d8, #e8d0bc); border: 1px solid var(--border); }
+  .ch-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.6rem; }
+  .cc-phone .ch-label { color: var(--light-mid); }
+  .cc-wa .ch-label { color: rgba(250,246,241,0.5); }
+  .cc-ig .ch-label { color: var(--mid); }
+  .ch-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; margin-bottom: 0.4rem; }
+  .cc-phone .ch-name { color: var(--charcoal); }
+  .cc-wa .ch-name { color: var(--cream); }
+  .cc-ig .ch-name { color: var(--charcoal); }
+  .ch-value { font-size: 1.1rem; font-weight: 500; text-decoration: none; display: block; transition: opacity 0.2s; }
+  .ch-value:hover { opacity: 0.7; }
+  .cc-phone .ch-value { color: var(--charcoal); }
+  .cc-wa .ch-value { color: #25d366; }
+  .cc-ig .ch-value { color: var(--rose-dark); }
+  .ch-btn { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; padding: 0.7rem 1.4rem; border-radius: 2px; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+  .cc-phone .ch-btn { background: var(--charcoal); color: var(--cream); }
+  .cc-phone .ch-btn:hover { background: var(--rose-dark); }
+  .cc-wa .ch-btn { background: #25d366; color: #fff; }
+  .cc-wa .ch-btn:hover { background: #1da851; }
+  .cc-ig .ch-btn { background: var(--charcoal); color: var(--cream); }
+  .cc-ig .ch-btn:hover { background: var(--rose-dark); }
+
+  /* MAP SECTION */
+  .map-section { background: var(--charcoal); padding: 80px 5%; }
+  .map-header { margin-bottom: 3rem; }
+  .map-header .section-label { color: var(--gold-light); }
+  .map-header .section-label::before { background: var(--gold-light); }
+  .map-header .section-title { color: var(--cream); }
+  .map-header .section-title em { color: var(--gold-light); }
+  .map-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: center; }
+
+  .map-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .map-info-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .map-info-icon { width: 40px; height: 40px; border: 1px solid rgba(200,169,110,0.2); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .map-info-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(250,246,241,0.4); margin-bottom: 0.2rem; }
+  .map-info-value { font-size: 0.9rem; color: rgba(250,246,241,0.8); line-height: 1.5; }
+  .map-info-value a { color: var(--gold-light); text-decoration: none; }
+
+  .horario-block { margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.3rem; }
+  .h-row { display: flex; justify-content: space-between; font-size: 0.85rem; color: rgba(250,246,241,0.6); padding: 0.35rem 0; border-bottom: 1px solid rgba(200,169,110,0.1); }
+  .h-row:last-child { border-bottom: none; }
+  .h-row .hora { color: rgba(250,246,241,0.85); font-weight: 500; }
+
+  .map-placeholder { aspect-ratio: 1.3; background: linear-gradient(135deg, #e8e0d8, #d0c8c0); border-radius: 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; position: relative; overflow: hidden; }
+  .map-placeholder::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(200,169,110,0.05) 40px, rgba(200,169,110,0.05) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(200,169,110,0.05) 40px, rgba(200,169,110,0.05) 41px); }
+  .map-pin { font-size: 2.5rem; animation: bounce 2s ease-in-out infinite; position: relative; z-index: 1; }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .map-card { background: rgba(255,255,255,0.9); padding: 1.2rem 1.8rem; border-radius: 2px; text-align: center; position: relative; z-index: 1; }
+  .map-card strong { display: block; font-size: 0.75rem; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .map-card p { font-size: 0.9rem; color: var(--charcoal); margin-bottom: 0.8rem; }
+  .btn-maps { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--charcoal); color: var(--cream); padding: 0.7rem 1.4rem; border-radius: 2px; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+  .btn-maps:hover { background: var(--rose-dark); }
+
+  /* CÓMO LLEGAR */
+  .llegar-section { padding: 80px 5%; background: var(--warm-white); }
+  .llegar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .llegar-card { padding: 2rem; border: 1px solid var(--border); border-radius: 2px; background: var(--cream); }
+  .llegar-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .llegar-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.6rem; }
+  .llegar-text { font-size: 0.85rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
+  .llegar-detail { font-size: 0.8rem; color: var(--gold); font-weight: 500; margin-top: 0.5rem; }
+
+  /* FOOTER */
+  footer { background: var(--charcoal); color: rgba(250,246,241,0.7); padding: 60px 5% 30px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(200,169,110,0.15); }
+  .footer-brand .nav-logo { font-size: 1.5rem; display: block; margin-bottom: 1rem; color: var(--cream); }
+  .footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 280px; font-weight: 300; }
+  .footer-social { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
+  .social-btn { width: 38px; height: 38px; border: 1px solid rgba(200,169,110,0.2); border-radius: 2px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1rem; transition: all 0.2s; color: rgba(250,246,241,0.6); }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-col h4 { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; font-weight: 500; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.6rem; }
+  .footer-links a { font-size: 0.88rem; color: rgba(250,246,241,0.6); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-bottom p { font-size: 0.78rem; }
+
+  .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 900; width: 56px; height: 56px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4); animation: waPulse 3s ease-in-out infinite; transition: transform 0.2s; }
+  .wa-float:hover { transform: scale(1.1); }
+  @keyframes waPulse { 0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); } 50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); } }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .contacto-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .map-grid { grid-template-columns: 1fr; }
+    .llegar-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 0 4%; }
+    .contacto-main, .llegar-section { padding-left: 4%; padding-right: 4%; }
+    .llegar-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="draggio-estilistas.html" class="nav-logo">D'Raggio <span>✦</span> Estilistas</a>
+  <ul class="nav-links">
+    <li><a href="draggio-estilistas.html">Inicio</a></li>
+    <li><a href="draggio-servicios.html">Servicios</a></li>
+    <li><a href="draggio-galeria.html">Galería</a></li>
+    <li><a href="draggio-galeria.html#opiniones">Opiniones</a></li>
+    <li><a href="draggio-contacto.html" class="nav-active">Contacto</a></li>
+    <li><a href="draggio-reservar.html" class="nav-cta">Reservar cita</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="draggio-estilistas.html">Inicio</a>
+  <a href="draggio-servicios.html">Servicios</a>
+  <a href="draggio-galeria.html">Galería</a>
+  <a href="draggio-galeria.html#opiniones">Opiniones</a>
+  <a href="draggio-contacto.html">Contacto</a>
+  <a href="draggio-reservar.html" class="m-cta">✦ Reservar cita ahora</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-content">
+    <div class="page-eyebrow">Estamos aquí para ti</div>
+    <h1>Visítanos en la<br><em>Sagrada Família</em></h1>
+    <p>En Carrer de Lepant 282, a pocos pasos del metro. Te esperamos con tiempo, dedicación y el mejor café.</p>
+  </div>
+</div>
+
+<div class="contacto-main">
+  <div class="contacto-grid">
+    <div>
+      <div class="section-label">Información</div>
+      <h2 class="section-title">Todos nuestros<br><em>datos</em></h2>
+      <div class="contact-items" style="margin-top: 2rem;">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Dirección</div>
+            <div class="contact-value">Carrer de Lepant 282<br>08013 Barcelona</div>
+            <div class="contact-sub">Zona Sagrada Família · 2º piso</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Teléfono</div>
+            <div class="contact-value"><a href="tel:+34601003780">601 00 37 80</a></div>
+            <div class="contact-sub">También por WhatsApp</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-label">Horario de apertura</div>
+            <div class="contact-value">
+              <div class="horario-block">
+                <div class="h-row"><span>Lunes – Viernes</span><span class="hora">10:00 – 20:00</span></div>
+                <div class="h-row"><span>Sábado</span><span class="hora">10:00 – 18:00</span></div>
+                <div class="h-row"><span>Domingo</span><span class="hora">Cerrado</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🚇</div>
+          <div>
+            <div class="contact-label">Transporte</div>
+            <div class="contact-value">Metro: Sagrada Família (L2, L5)</div>
+            <div class="contact-sub">A 4 minutos andando</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="channels">
+      <div class="channel-card cc-wa">
+        <div class="ch-label">WhatsApp</div>
+        <div class="ch-name">Escríbenos ahora</div>
+        <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n" target="_blank" class="ch-value">601 00 37 80</a>
+        <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n" target="_blank" class="ch-btn">💬 Abrir WhatsApp</a>
+      </div>
+      <div class="channel-card cc-phone">
+        <div class="ch-label">Teléfono</div>
+        <div class="ch-name">Llámanos directamente</div>
+        <a href="tel:+34601003780" class="ch-value">601 00 37 80</a>
+        <a href="tel:+34601003780" class="ch-btn">📞 Llamar ahora</a>
+      </div>
+      <div class="channel-card cc-ig">
+        <div class="ch-label">Instagram</div>
+        <div class="ch-name">Síguenos y descubre nuestro trabajo</div>
+        <a href="https://instagram.com" target="_blank" class="ch-value">@draggio.estilistas</a>
+        <a href="https://instagram.com" target="_blank" class="ch-btn">📸 Ver Instagram</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAPA -->
+<div class="map-section">
+  <div class="map-header">
+    <div class="section-label">Encuéntranos</div>
+    <h2 class="section-title">Cómo <em>llegar</em></h2>
+  </div>
+  <div class="map-grid">
+    <div class="map-info">
+      <div class="map-info-item">
+        <div class="map-info-icon">📍</div>
+        <div>
+          <div class="map-info-label">Dirección completa</div>
+          <div class="map-info-value">Carrer de Lepant 282, 08013 Barcelona<br>Barrio de la Sagrada Família</div>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-info-icon">🚇</div>
+        <div>
+          <div class="map-info-label">Metro más cercano</div>
+          <div class="map-info-value">Sagrada Família · Líneas L2 y L5<br>4 minutos a pie</div>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-info-icon">🚌</div>
+        <div>
+          <div class="map-info-label">Autobús</div>
+          <div class="map-info-value">Líneas 19, 33, 34, 43, 44, 50, 51<br>Parada Lepant – Mallorca</div>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-info-icon">🚗</div>
+        <div>
+          <div class="map-info-label">En coche</div>
+          <div class="map-info-value">Parking público disponible en<br><a href="https://maps.google.com" target="_blank">C/ Cartagena y alrededores</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-placeholder">
+      <span class="map-pin">📍</span>
+      <div class="map-card">
+        <strong>D'Raggio Estilistas</strong>
+        <p>Carrer de Lepant 282, Barcelona</p>
+        <a href="https://maps.google.com/?q=Carrer+de+Lepant+282+Barcelona" target="_blank" class="btn-maps">Abrir en Google Maps →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CÓMO LLEGAR -->
+<div class="llegar-section">
+  <div class="section-label">Transporte</div>
+  <h2 class="section-title">Fácil de <em>encontrar</em></h2>
+  <div class="llegar-grid">
+    <div class="llegar-card">
+      <div class="llegar-icon">🚇</div>
+      <div class="llegar-title">Metro</div>
+      <p class="llegar-text">Estación Sagrada Família, líneas L2 (morada) y L5 (azul). Salida por la calle Lepant y camina hacia el norte.</p>
+      <div class="llegar-detail">4 min a pie</div>
+    </div>
+    <div class="llegar-card">
+      <div class="llegar-icon">🚌</div>
+      <div class="llegar-title">Autobús</div>
+      <p class="llegar-text">Múltiples líneas con paradas a menos de 2 minutos: 19, 33, 34, 43, 44, 50 y 51. Parada en Lepant con Mallorca.</p>
+      <div class="llegar-detail">2 min a pie</div>
+    </div>
+    <div class="llegar-card">
+      <div class="llegar-icon">🚴</div>
+      <div class="llegar-title">Bici / Patinete</div>
+      <p class="llegar-text">Estación de Bicing en Lepant con Av. Gaudí. Carril bici en Lepant y calles paralelas del Eixample.</p>
+      <div class="llegar-detail">Carril bici directo</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="draggio-estilistas.html" class="nav-logo">D'Raggio <span>✦</span> Estilistas</a>
+      <p>Especialistas en balayage, coloración y tratamientos capilares en Barcelona. Zona Sagrada Família.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com" target="_blank" class="social-btn">📸</a>
+        <a href="https://facebook.com" target="_blank" class="social-btn">📘</a>
+        <a href="https://wa.me/34601003780" target="_blank" class="social-btn">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul class="footer-links">
+        <li><a href="draggio-servicios.html">Balayage</a></li>
+        <li><a href="draggio-servicios.html">Mechas</a></li>
+        <li><a href="draggio-servicios.html">Coloración</a></li>
+        <li><a href="draggio-servicios.html">Keratina</a></li>
+        <li><a href="draggio-servicios.html">Tratamientos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul class="footer-links">
+        <li><a href="tel:+34601003780">601 00 37 80</a></li>
+        <li><a href="https://wa.me/34601003780">WhatsApp</a></li>
+        <li><a href="draggio-contacto.html">Carrer de Lepant 282</a></li>
+        <li><a href="draggio-reservar.html">Reservar cita</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 D'Raggio Estilistas · Barcelona</p>
+    <p>Carrer de Lepant 282 · 601 00 37 80</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n" target="_blank" class="wa-float">💬</a>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 30); });
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
+</script>
+</body>
+</html>

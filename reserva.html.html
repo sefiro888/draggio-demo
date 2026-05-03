@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Reserva tu cita en D'Raggio Estilistas Barcelona. Online a través de Booksy o por WhatsApp. Zona Sagrada Família.">
+<title>Reservar Cita | D'Raggio Estilistas Barcelona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf6f1; --warm-white: #fdf9f5; --blush: #f0e0d0;
+    --rose: #c9967a; --rose-dark: #a8735a; --gold: #c8a96e; --gold-light: #e8c990;
+    --charcoal: #2a2420; --mid: #6b5a52; --light-mid: #9e8a80;
+    --border: rgba(200,169,110,0.2); --shadow: 0 4px 40px rgba(42,36,32,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 68px; background: rgba(250,246,241,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s; }
+  nav.scrolled { box-shadow: var(--shadow); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; color: var(--charcoal); text-decoration: none; letter-spacing: 0.04em; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.82rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-active { color: var(--charcoal) !important; font-weight: 500 !important; }
+  .nav-cta { background: var(--charcoal); color: var(--cream) !important; padding: 0.55rem 1.3rem; border-radius: 2px; font-size: 0.78rem !important; letter-spacing: 0.1em !important; transition: background 0.2s !important; }
+  .nav-cta:hover { background: var(--rose-dark) !important; }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--charcoal); }
+  .mobile-menu { display: none; position: fixed; top: 68px; left: 0; right: 0; background: var(--warm-white); border-bottom: 1px solid var(--border); padding: 1.5rem 5%; z-index: 999; flex-direction: column; gap: 1rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 1rem; color: var(--charcoal); text-decoration: none; padding: 0.5rem 0; border-bottom: 1px solid var(--border); letter-spacing: 0.06em; }
+  .mobile-menu .m-cta { background: var(--charcoal); color: var(--cream); text-align: center; padding: 0.9rem; border-radius: 2px; border: none; margin-top: 0.5rem; }
+
+  /* PAGE HERO */
+  .page-hero { padding-top: 68px; min-height: 38vh; display: flex; align-items: center; background: linear-gradient(135deg, #fdf8f2 0%, #f5e8d8 50%, #eeddc8 100%); position: relative; overflow: hidden; }
+  .page-hero::after { content: ''; position: absolute; right: -80px; top: -80px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(200,169,110,0.12) 0%, transparent 70%); }
+  .page-hero-content { padding: 4rem 5%; position: relative; z-index: 1; }
+  .page-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem; }
+  .page-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+  .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 300; line-height: 1.1; color: var(--charcoal); }
+  .page-hero h1 em { font-style: italic; color: var(--rose-dark); }
+  .page-hero p { font-size: 1rem; color: var(--mid); line-height: 1.7; max-width: 520px; margin-top: 1rem; font-weight: 300; }
+
+  .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem; }
+  .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 300; line-height: 1.2; color: var(--charcoal); margin-bottom: 1rem; }
+  .section-title em { font-style: italic; color: var(--rose-dark); }
+
+  /* RESERVAR MAIN */
+  .reservar-section { padding: 80px 5%; }
+  .reservar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+  /* BOOKSY CARD */
+  .booksy-card { background: var(--charcoal); border-radius: 4px; padding: 3rem; text-align: center; position: relative; overflow: hidden; }
+  .booksy-card::before { content: ''; position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(200,169,110,0.1) 0%, transparent 70%); }
+  .booksy-badge { display: inline-block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); background: rgba(200,169,110,0.1); border: 1px solid rgba(200,169,110,0.2); padding: 0.3rem 0.8rem; border-radius: 20px; margin-bottom: 1.5rem; }
+  .booksy-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .booksy-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--cream); margin-bottom: 0.8rem; }
+  .booksy-card h3 em { font-style: italic; color: var(--gold-light); }
+  .booksy-card p { font-size: 0.88rem; color: rgba(250,246,241,0.6); line-height: 1.7; margin-bottom: 2rem; font-weight: 300; }
+  .btn-booksy-main { display: block; background: var(--rose-dark); color: #fff; padding: 1.2rem; border-radius: 2px; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.25s; margin-bottom: 1rem; }
+  .btn-booksy-main:hover { background: var(--gold); transform: translateY(-2px); }
+  .booksy-note { font-size: 0.75rem; color: rgba(250,246,241,0.35); }
+
+  /* WA CARD */
+  .wa-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 4px; padding: 3rem; text-align: center; }
+  .wa-card-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .wa-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--charcoal); margin-bottom: 0.8rem; }
+  .wa-card h3 em { font-style: italic; color: var(--rose-dark); }
+  .wa-card p { font-size: 0.88rem; color: var(--mid); line-height: 1.7; margin-bottom: 2rem; font-weight: 300; }
+  .btn-wa-main { display: block; background: #25d366; color: #fff; padding: 1.2rem; border-radius: 2px; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.08em; text-decoration: none; transition: all 0.25s; margin-bottom: 1rem; }
+  .btn-wa-main:hover { background: #1da851; transform: translateY(-2px); }
+  .wa-number { font-size: 1.2rem; color: var(--charcoal); font-weight: 500; margin-top: 0.5rem; }
+  .wa-number a { color: inherit; text-decoration: none; }
+
+  /* INFO CARDS */
+  .info-section { padding: 0 5% 80px; }
+  .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .info-card { background: var(--warm-white); padding: 2rem; border-radius: 2px; border: 1px solid var(--border); }
+  .info-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+  .info-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.6rem; }
+  .info-text { font-size: 0.85rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
+
+  /* FAQ */
+  .faq-section { padding: 0 5% 80px; background: var(--blush); padding-top: 60px; }
+  .faq-grid { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); }
+  .faq-item { background: var(--warm-white); border-bottom: 1px solid var(--border); }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q { padding: 1.4rem 1.8rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem; font-weight: 500; color: var(--charcoal); user-select: none; }
+  .faq-q:hover { background: #faf4ed; }
+  .faq-arrow { color: var(--gold); font-size: 1rem; transition: transform 0.3s; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+  .faq-a { display: none; padding: 0 1.8rem 1.4rem; font-size: 0.88rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
+  .faq-item.open .faq-a { display: block; }
+
+  /* FOOTER */
+  footer { background: var(--charcoal); color: rgba(250,246,241,0.7); padding: 60px 5% 30px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(200,169,110,0.15); }
+  .footer-brand .nav-logo { font-size: 1.5rem; display: block; margin-bottom: 1rem; color: var(--cream); }
+  .footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 280px; font-weight: 300; }
+  .footer-social { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
+  .social-btn { width: 38px; height: 38px; border: 1px solid rgba(200,169,110,0.2); border-radius: 2px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1rem; transition: all 0.2s; color: rgba(250,246,241,0.6); }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-col h4 { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; font-weight: 500; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.6rem; }
+  .footer-links a { font-size: 0.88rem; color: rgba(250,246,241,0.6); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-bottom p { font-size: 0.78rem; }
+
+  .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 900; width: 56px; height: 56px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4); animation: waPulse 3s ease-in-out infinite; transition: transform 0.2s; }
+  .wa-float:hover { transform: scale(1.1); }
+  @keyframes waPulse { 0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); } 50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); } }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .reservar-grid { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 0 4%; }
+    .reservar-section, .info-section { padding-left: 4%; padding-right: 4%; }
+    .info-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="draggio-estilistas.html" class="nav-logo">D'Raggio <span>✦</span> Estilistas</a>
+  <ul class="nav-links">
+    <li><a href="draggio-estilistas.html">Inicio</a></li>
+    <li><a href="draggio-servicios.html">Servicios</a></li>
+    <li><a href="draggio-galeria.html">Galería</a></li>
+    <li><a href="draggio-galeria.html#opiniones">Opiniones</a></li>
+    <li><a href="draggio-contacto.html">Contacto</a></li>
+    <li><a href="draggio-reservar.html" class="nav-cta nav-active">Reservar cita</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="draggio-estilistas.html">Inicio</a>
+  <a href="draggio-servicios.html">Servicios</a>
+  <a href="draggio-galeria.html">Galería</a>
+  <a href="draggio-galeria.html#opiniones">Opiniones</a>
+  <a href="draggio-contacto.html">Contacto</a>
+  <a href="draggio-reservar.html" class="m-cta">✦ Reservar cita ahora</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-content">
+    <div class="page-eyebrow">Tu cita, tu momento</div>
+    <h1>Reserva tu <em>transformación</em></h1>
+    <p>Elige la opción que más te convenga. Sin esperas, sin complicaciones. Estamos aquí para recibirte.</p>
+  </div>
+</div>
+
+<div class="reservar-section">
+  <div class="reservar-grid">
+    <div class="booksy-card">
+      <div class="booksy-badge">Recomendado</div>
+      <div class="booksy-icon">📅</div>
+      <h3>Reserva <em>online</em></h3>
+      <p>Elige tu servicio, día y hora en segundos. Sin llamadas, sin espera. Disponible 24h.</p>
+      <a href="https://booksy.com" target="_blank" class="btn-booksy-main">✦ Reservar en Booksy</a>
+      <p class="booksy-note">🔒 Reserva gratuita · Cancela hasta 24h antes</p>
+    </div>
+
+    <div class="wa-card">
+      <div class="wa-card-icon">💬</div>
+      <h3>Por <em>WhatsApp</em></h3>
+      <p>Prefiere hablar con nosotras directamente? Escríbenos y te respondemos lo antes posible para gestionar tu cita.</p>
+      <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20reservar%20una%20cita" target="_blank" class="btn-wa-main">💬 Escribir por WhatsApp</a>
+      <div class="wa-number"><a href="tel:+34601003780">601 00 37 80</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="info-section">
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-icon">🕐</div>
+      <div class="info-title">Horario</div>
+      <p class="info-text">Lunes a Viernes: 10:00 – 20:00<br>Sábado: 10:00 – 18:00<br>Domingo: Cerrado</p>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">📍</div>
+      <div class="info-title">Dónde estamos</div>
+      <p class="info-text">Carrer de Lepant 282<br>08013 Barcelona<br>Zona Sagrada Família</p>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">⏱️</div>
+      <div class="info-title">Duración aproximada</div>
+      <p class="info-text">Balayage: 3-4h · Mechas: 2-3h<br>Tinte: 1.5h · Keratina: 2-3h<br>Corte: 45-60min</p>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">Preguntas <em>frecuentes</em></h2>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <div class="faq-q">¿Necesito dejar señal para reservar? <span class="faq-arrow">↓</span></div>
+      <div class="faq-a">No. La reserva es completamente gratuita y no requiere ningún pago previo. Solo te pedimos que nos avises con al menos 24h de antelación si necesitas cancelar.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Puedo venir sin cita previa? <span class="faq-arrow">↓</span></div>
+      <div class="faq-a">Intentamos atender a todas nuestras clientas, pero con cita previa garantizamos disponibilidad y dedicación exclusiva. Recomendamos siempre reservar con antelación, especialmente para servicios de coloración.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Hacéis consulta previa gratuita? <span class="faq-arrow">↓</span></div>
+      <div class="faq-a">Sí. Antes de cualquier servicio realizamos una consulta capilar sin coste donde analizamos tu cabello y diseñamos el tratamiento más adecuado para ti.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Cuánto tiempo tarda un balayage? <span class="faq-arrow">↓</span></div>
+      <div class="faq-a">El balayage requiere entre 3 y 4 horas según el largo y densidad del cabello. Te recomendamos venir con tiempo y sin prisa para disfrutar de la experiencia.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Aceptáis grupos o peinados de novia? <span class="faq-arrow">↓</span></div>
+      <div class="faq-a">Sí, realizamos peinados de novia y para grupos. Contacta con nosotras por WhatsApp o por teléfono para planificar la cita con tiempo suficiente.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="draggio-estilistas.html" class="nav-logo">D'Raggio <span>✦</span> Estilistas</a>
+      <p>Especialistas en balayage, coloración y tratamientos capilares en Barcelona. Zona Sagrada Família.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com" target="_blank" class="social-btn">📸</a>
+        <a href="https://facebook.com" target="_blank" class="social-btn">📘</a>
+        <a href="https://wa.me/34601003780" target="_blank" class="social-btn">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul class="footer-links">
+        <li><a href="draggio-servicios.html">Balayage</a></li>
+        <li><a href="draggio-servicios.html">Mechas</a></li>
+        <li><a href="draggio-servicios.html">Coloración</a></li>
+        <li><a href="draggio-servicios.html">Keratina</a></li>
+        <li><a href="draggio-servicios.html">Tratamientos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul class="footer-links">
+        <li><a href="tel:+34601003780">601 00 37 80</a></li>
+        <li><a href="https://wa.me/34601003780">WhatsApp</a></li>
+        <li><a href="draggio-contacto.html">Carrer de Lepant 282</a></li>
+        <li><a href="draggio-reservar.html">Reservar cita</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 D'Raggio Estilistas · Barcelona</p>
+    <p>Carrer de Lepant 282 · 601 00 37 80</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n" target="_blank" class="wa-float">💬</a>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 30); });
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
+
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>

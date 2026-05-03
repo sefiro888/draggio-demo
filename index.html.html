@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="D'Raggio Estilistas – Especialistas en Balayage, Coloración y Tratamientos Capilares en Barcelona. Zona Sagrada Família. Reserva tu cita online.">
+<title>D'Raggio Estilistas | Balayage & Color en Barcelona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf6f1;
+    --warm-white: #fdf9f5;
+    --blush: #f0e0d0;
+    --rose: #c9967a;
+    --rose-dark: #a8735a;
+    --gold: #c8a96e;
+    --gold-light: #e8c990;
+    --charcoal: #2a2420;
+    --mid: #6b5a52;
+    --light-mid: #9e8a80;
+    --border: rgba(200,169,110,0.2);
+    --shadow: 0 4px 40px rgba(42,36,32,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 68px;
+    background: rgba(250,246,241,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: var(--shadow); }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600;
+    color: var(--charcoal); text-decoration: none; letter-spacing: 0.04em;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 400; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-active { color: var(--charcoal) !important; font-weight: 500 !important; }
+  .nav-cta {
+    background: var(--charcoal); color: var(--cream) !important;
+    padding: 0.55rem 1.3rem; border-radius: 2px;
+    font-size: 0.78rem !important; letter-spacing: 0.1em !important; transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--rose-dark) !important; color: #fff !important; }
+  .nav-hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; background: none; border: none; padding: 4px;
+  }
+  .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--charcoal); transition: all 0.3s; }
+  .mobile-menu {
+    display: none; position: fixed; top: 68px; left: 0; right: 0;
+    background: var(--warm-white); border-bottom: 1px solid var(--border);
+    padding: 1.5rem 5%; z-index: 999; flex-direction: column; gap: 1rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: 1rem; color: var(--charcoal); text-decoration: none;
+    padding: 0.5rem 0; border-bottom: 1px solid var(--border); letter-spacing: 0.06em;
+  }
+  .mobile-menu .m-cta {
+    background: var(--charcoal); color: var(--cream); text-align: center;
+    padding: 0.9rem; border-radius: 2px; border: none; margin-top: 0.5rem;
+  }
+
+  /* HERO */
+  #inicio {
+    min-height: 100vh; display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #fdf8f2 0%, #f5e8d8 40%, #f0dcc8 100%);
+    padding-top: 68px;
+  }
+  .hero-bg { position: absolute; inset: 0; overflow: hidden; }
+  .streak { position: absolute; border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; opacity: 0; animation: streakIn 2s ease forwards; }
+  .streak-1 { width: 500px; height: 500px; background: radial-gradient(ellipse at 30% 40%, rgba(200,169,110,0.18) 0%, transparent 70%); top: -100px; right: -80px; animation-delay: 0.3s; }
+  .streak-2 { width: 600px; height: 350px; background: radial-gradient(ellipse at 60% 50%, rgba(201,150,122,0.12) 0%, transparent 70%); bottom: -60px; left: -100px; animation-delay: 0.6s; }
+  .streak-3 { width: 300px; height: 600px; background: linear-gradient(160deg, rgba(232,201,144,0.15) 0%, transparent 60%); top: 10%; right: 15%; animation-delay: 0.9s; }
+  @keyframes streakIn { to { opacity: 1; } }
+
+  .particle { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: var(--gold); opacity: 0; animation: floatParticle linear infinite; }
+  @keyframes floatParticle {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    10% { opacity: 0.6; } 90% { opacity: 0.3; }
+    100% { transform: translateY(-20px) scale(1); opacity: 0; }
+  }
+
+  .hair-art { position: absolute; right: 6%; top: 50%; transform: translateY(-50%); width: 220px; opacity: 0; animation: fadeSlideIn 1.2s ease 0.5s forwards; }
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(-45%) translateX(20px); }
+    to { opacity: 1; transform: translateY(-50%) translateX(0); }
+  }
+
+  .hero-content { position: relative; z-index: 2; padding: 0 5%; max-width: 660px; }
+  .hero-eyebrow {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem; opacity: 0; animation: slideUp 0.8s ease 0.4s forwards;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+  .hero-h1 {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 300; line-height: 1.1; color: var(--charcoal); margin-bottom: 1.4rem;
+    opacity: 0; animation: slideUp 0.8s ease 0.6s forwards;
+  }
+  .hero-h1 em { font-style: italic; color: var(--rose-dark); }
+  .hero-sub {
+    font-size: 1rem; font-weight: 300; color: var(--mid); line-height: 1.7;
+    margin-bottom: 2.4rem; max-width: 460px; opacity: 0; animation: slideUp 0.8s ease 0.8s forwards;
+  }
+  .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; opacity: 0; animation: slideUp 0.8s ease 1s forwards; }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--charcoal); color: var(--cream);
+    padding: 1rem 2rem; border-radius: 2px;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.25s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--rose-dark); transform: translateY(-2px); }
+  .btn-wa {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: transparent; color: var(--charcoal);
+    padding: 1rem 1.8rem; border-radius: 2px; border: 1px solid rgba(42,36,32,0.25);
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-decoration: none; transition: all 0.25s;
+  }
+  .btn-wa:hover { border-color: #25d366; color: #1a7a40; background: rgba(37,211,102,0.06); }
+  .wa-icon { color: #25d366; font-size: 1.1rem; }
+
+  .hero-trust { margin-top: 3rem; display: flex; align-items: center; gap: 1.2rem; opacity: 0; animation: slideUp 0.8s ease 1.2s forwards; }
+  .trust-stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 2px; }
+  .trust-text { font-size: 0.8rem; color: var(--light-mid); }
+  .trust-text strong { color: var(--mid); }
+
+  /* SECTIONS */
+  section { padding: 90px 5%; }
+  .section-label {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; line-height: 1.2; color: var(--charcoal); margin-bottom: 1rem; }
+  .section-title em { font-style: italic; color: var(--rose-dark); }
+  .section-sub { font-size: 0.95rem; color: var(--mid); line-height: 1.8; max-width: 520px; font-weight: 300; }
+
+  /* SERVICIOS */
+  #servicios { background: var(--warm-white); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; margin-top: 3.5rem; background: var(--border); border: 1px solid var(--border); }
+  .service-card { background: var(--warm-white); padding: 2.5rem 2rem; position: relative; overflow: hidden; transition: background 0.3s; }
+  .service-card::after { content: ''; position: absolute; bottom: 0; left: 2rem; width: 0; height: 1px; background: var(--gold); transition: width 0.4s ease; }
+  .service-card:hover { background: #faf4ed; }
+  .service-card:hover::after { width: calc(100% - 4rem); }
+  .service-icon { font-size: 1.8rem; margin-bottom: 1.2rem; display: block; }
+  .service-cat { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; font-weight: 500; }
+  .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.8rem; }
+  .service-desc { font-size: 0.88rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
+  .service-items { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .service-tag { font-size: 0.73rem; background: var(--blush); color: var(--rose-dark); padding: 0.25rem 0.7rem; border-radius: 20px; }
+
+  /* DIFERENCIAL */
+  #diferencial { background: var(--charcoal); color: var(--cream); }
+  .dif-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .dif-text .section-label { color: var(--gold-light); }
+  .dif-text .section-label::before { background: var(--gold-light); }
+  .dif-text .section-title { color: var(--cream); }
+  .dif-text .section-title em { color: var(--gold-light); }
+  .dif-text .section-sub { color: rgba(250,246,241,0.65); max-width: 100%; }
+  .dif-quote { border-left: 1px solid var(--gold); padding-left: 1.5rem; margin: 2rem 0; }
+  .dif-quote p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.4rem; font-weight: 300; color: var(--cream); line-height: 1.5; }
+  .dif-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .pillar { padding: 1.5rem; border: 1px solid rgba(200,169,110,0.15); border-radius: 2px; background: rgba(255,255,255,0.03); transition: border-color 0.3s, background 0.3s; }
+  .pillar:hover { border-color: rgba(200,169,110,0.4); background: rgba(255,255,255,0.06); }
+  .pillar-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold); font-weight: 300; line-height: 1; margin-bottom: 0.5rem; }
+  .pillar-title { font-size: 0.85rem; font-weight: 500; color: var(--cream); margin-bottom: 0.4rem; }
+  .pillar-desc { font-size: 0.8rem; color: rgba(250,246,241,0.5); line-height: 1.6; font-weight: 300; }
+
+  /* GALERÍA */
+  #galeria { background: var(--cream); }
+  .gallery-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .gallery-item { position: relative; overflow: hidden; border-radius: 2px; background: var(--blush); cursor: pointer; }
+  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: 1; }
+  .gallery-item:nth-child(2) { aspect-ratio: 0.85; }
+  .gallery-item:nth-child(3) { aspect-ratio: 0.85; }
+  .gallery-item:nth-child(4) { aspect-ratio: 0.85; }
+  .gallery-item:nth-child(5) { aspect-ratio: 0.85; }
+  .gallery-item:nth-child(6) { grid-column: span 2; aspect-ratio: 2; }
+  .gallery-placeholder {
+    width: 100%; height: 100%; min-height: 160px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--blush), #e8d0bc);
+    transition: transform 0.5s ease; position: relative;
+  }
+  .gallery-item:nth-child(1) .gallery-placeholder { background: linear-gradient(135deg, #e8cdb4, #c9967a40); }
+  .gallery-item:nth-child(2) .gallery-placeholder { background: linear-gradient(145deg, #f0ddd0, #e0c4a8); }
+  .gallery-item:nth-child(3) .gallery-placeholder { background: linear-gradient(160deg, #d4b89a, #f0e0cc); }
+  .gallery-item:nth-child(4) .gallery-placeholder { background: linear-gradient(120deg, #e8c89a, #d4a878); }
+  .gallery-item:nth-child(5) .gallery-placeholder { background: linear-gradient(140deg, #c8a87060, #e8d4bc); }
+  .gallery-item:nth-child(6) .gallery-placeholder { background: linear-gradient(135deg, #f0e4d4, #d8b898); }
+  .gallery-item:hover .gallery-placeholder { transform: scale(1.06); }
+  .gallery-label { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--rose-dark); opacity: 0.8; text-align: center; }
+  .gallery-icon { font-size: 1.6rem; opacity: 0.4; margin-bottom: 0.5rem; }
+  .gallery-overlay { position: absolute; inset: 0; background: rgba(42,36,32,0); display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+  .gallery-overlay span { color: #fff; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0; transition: opacity 0.3s; }
+  .gallery-item:hover .gallery-overlay { background: rgba(42,36,32,0.3); }
+  .gallery-item:hover .gallery-overlay span { opacity: 1; }
+
+  /* TESTIMONIOS */
+  #opiniones { background: var(--blush); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .review-card { background: var(--warm-white); padding: 2rem; border-radius: 2px; position: relative; transition: transform 0.3s, box-shadow 0.3s; }
+  .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .review-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 1rem; }
+  .review-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--charcoal); line-height: 1.6; margin-bottom: 1.5rem; font-weight: 300; }
+  .review-author { display: flex; align-items: center; gap: 0.8rem; }
+  .review-avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--cream); flex-shrink: 0; }
+  .av-1 { background: var(--rose); }
+  .av-2 { background: var(--gold); }
+  .av-3 { background: #9a8870; }
+  .review-name { font-size: 0.88rem; font-weight: 500; color: var(--charcoal); }
+  .review-service { font-size: 0.78rem; color: var(--light-mid); margin-top: 0.1rem; }
+  .review-badge { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light-mid); background: var(--blush); padding: 0.2rem 0.6rem; border-radius: 20px; }
+
+  /* RESERVAR */
+  #reservar { background: linear-gradient(135deg, var(--cream) 0%, #f0e0cc 100%); text-align: center; }
+  .reservar-inner { max-width: 600px; margin: 0 auto; }
+  .reservar-inner .section-label { justify-content: center; }
+  .reservar-inner .section-label::before { display: none; }
+  .reservar-inner .section-title { text-align: center; }
+  .reservar-inner .section-sub { text-align: center; margin: 0 auto 2.5rem; }
+  .reservar-btns { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+  .btn-booksy {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--rose-dark); color: #fff;
+    padding: 1.2rem 3rem; border-radius: 2px;
+    font-size: 0.9rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.25s; width: 100%; max-width: 340px; justify-content: center;
+  }
+  .btn-booksy:hover { background: var(--charcoal); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(42,36,32,0.15); }
+  .btn-wa-big {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: #fff; color: var(--charcoal);
+    padding: 1rem 2.5rem; border-radius: 2px; border: 1px solid var(--border);
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-decoration: none;
+    transition: all 0.25s; width: 100%; max-width: 340px; justify-content: center;
+  }
+  .btn-wa-big:hover { border-color: #25d366; background: rgba(37,211,102,0.04); }
+  .reservar-note { margin-top: 1.5rem; font-size: 0.78rem; color: var(--light-mid); display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+
+  /* CONTACTO */
+  #contacto { background: var(--warm-white); }
+  .contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+  .contacto-items { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contacto-item { display: flex; gap: 1.2rem; align-items: flex-start; }
+  .contacto-icon-wrap { width: 44px; height: 44px; border: 1px solid var(--border); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; background: var(--cream); }
+  .contacto-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--light-mid); margin-bottom: 0.3rem; }
+  .contacto-value { font-size: 0.95rem; color: var(--charcoal); font-weight: 400; }
+  .contacto-value a { color: inherit; text-decoration: none; }
+  .contacto-value a:hover { color: var(--rose-dark); }
+  .horario-grid { display: grid; grid-template-columns: 1fr; gap: 0; margin-top: 0.4rem; }
+  .horario-row { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--mid); padding: 0.4rem 0; border-bottom: 1px solid var(--border); }
+  .horario-row .dia { font-weight: 400; }
+  .horario-row .hora { color: var(--charcoal); font-weight: 500; }
+  .map-placeholder { aspect-ratio: 1.1; background: linear-gradient(135deg, #e8e0d8, #d4ccc4); border-radius: 2px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1rem; }
+  .map-pin { font-size: 2.5rem; animation: bounce 2s ease-in-out infinite; }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .map-address-box { text-align: center; background: rgba(255,255,255,0.85); padding: 1rem 1.5rem; border-radius: 2px; }
+  .map-address-box p { font-size: 0.88rem; color: var(--charcoal); }
+  .map-address-box strong { display: block; font-size: 0.78rem; color: var(--mid); margin-bottom: 0.3rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .btn-maps { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--charcoal); color: var(--cream); padding: 0.8rem 1.6rem; border-radius: 2px; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; margin-top: 0.5rem; transition: background 0.2s; }
+  .btn-maps:hover { background: var(--rose-dark); }
+
+  /* FOOTER */
+  footer { background: var(--charcoal); color: rgba(250,246,241,0.7); padding: 60px 5% 30px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(200,169,110,0.15); }
+  .footer-brand .nav-logo { font-size: 1.5rem; display: block; margin-bottom: 1rem; color: var(--cream); }
+  .footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 280px; font-weight: 300; }
+  .footer-social { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
+  .social-btn { width: 38px; height: 38px; border: 1px solid rgba(200,169,110,0.2); border-radius: 2px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1rem; transition: all 0.2s; color: rgba(250,246,241,0.6); }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-col h4 { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; font-weight: 500; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.6rem; }
+  .footer-links a { font-size: 0.88rem; color: rgba(250,246,241,0.6); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-bottom p { font-size: 0.78rem; }
+
+  /* WA FLOAT */
+  .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 900; width: 56px; height: 56px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4); animation: waPulse 3s ease-in-out infinite; transition: transform 0.2s; }
+  .wa-float:hover { transform: scale(1.1); }
+  @keyframes waPulse { 0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); } 50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); } }
+
+  .divider { height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); opacity: 0.3; margin: 0 5%; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .hair-art { display: none; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .dif-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item:nth-child(1) { grid-column: span 2; }
+    .gallery-item:nth-child(6) { grid-column: span 2; }
+    .reviews-grid { grid-template-columns: 1fr 1fr; }
+    .contacto-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .dif-pillars { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 4%; }
+    section { padding: 70px 4%; }
+    .services-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .dif-pillars { grid-template-columns: 1fr; }
+    .hero-btns { flex-direction: column; }
+    .btn-primary, .btn-wa { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#inicio" class="nav-logo">D'Raggio <span>✦</span> Estilistas</a>
+  <ul class="nav-links">
+    <li><a href="draggio-estilistas.html" class="nav-active">Inicio</a></li>
+    <li><a href="draggio-servicios.html">Servicios</a></li>
+    <li><a href="draggio-galeria.html">Galería</a></li>
+    <li><a href="draggio-galeria.html#opiniones">Opiniones</a></li>
+    <li><a href="draggio-contacto.html">Contacto</a></li>
+    <li><a href="draggio-reservar.html" class="nav-cta">Reservar cita</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="draggio-estilistas.html" onclick="closeMobile()">Inicio</a>
+  <a href="draggio-servicios.html" onclick="closeMobile()">Servicios</a>
+  <a href="draggio-galeria.html" onclick="closeMobile()">Galería</a>
+  <a href="draggio-galeria.html#opiniones" onclick="closeMobile()">Opiniones</a>
+  <a href="draggio-contacto.html" onclick="closeMobile()">Contacto</a>
+  <a href="draggio-reservar.html" class="m-cta" onclick="closeMobile()">✦ Reservar cita ahora</a>
+</div>
+
+<section id="inicio">
+  <div class="hero-bg">
+    <div class="streak streak-1"></div>
+    <div class="streak streak-2"></div>
+    <div class="streak streak-3"></div>
+    <div id="particles"></div>
+  </div>
+
+  <svg class="hair-art" viewBox="0 0 200 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="hair1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#c8a96e"/>
+        <stop offset="40%" stop-color="#d4956e"/>
+        <stop offset="100%" stop-color="#8b5a3a"/>
+      </linearGradient>
+      <linearGradient id="hair2" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#e8c890"/>
+        <stop offset="50%" stop-color="#c9967a"/>
+        <stop offset="100%" stop-color="#6b4230"/>
+      </linearGradient>
+      <linearGradient id="hair3" x1="0%" y1="0%" x2="80%" y2="100%">
+        <stop offset="0%" stop-color="#f0d8b0"/>
+        <stop offset="60%" stop-color="#b87850"/>
+        <stop offset="100%" stop-color="#5a3020"/>
+      </linearGradient>
+    </defs>
+    <path d="M100 0 C80 60, 60 120, 90 200 C120 280, 80 340, 110 500" stroke="url(#hair1)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7">
+      <animate attributeName="d" values="M100 0 C80 60, 60 120, 90 200 C120 280, 80 340, 110 500;M100 0 C90 60, 70 130, 95 210 C115 290, 75 350, 105 500;M100 0 C80 60, 60 120, 90 200 C120 280, 80 340, 110 500" dur="6s" repeatCount="indefinite"/>
+    </path>
+    <path d="M120 0 C140 80, 160 160, 130 250 C100 340, 140 400, 115 500" stroke="url(#hair2)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6">
+      <animate attributeName="d" values="M120 0 C140 80, 160 160, 130 250 C100 340, 140 400, 115 500;M120 0 C135 80, 155 170, 125 260 C100 350, 135 410, 110 500;M120 0 C140 80, 160 160, 130 250 C100 340, 140 400, 115 500" dur="8s" repeatCount="indefinite"/>
+    </path>
+    <path d="M80 0 C60 70, 40 150, 70 240 C100 330, 60 420, 95 500" stroke="url(#hair3)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5">
+      <animate attributeName="d" values="M80 0 C60 70, 40 150, 70 240 C100 330, 60 420, 95 500;M80 0 C65 70, 45 155, 75 245 C105 335, 65 425, 100 500;M80 0 C60 70, 40 150, 70 240 C100 330, 60 420, 95 500" dur="7s" repeatCount="indefinite"/>
+    </path>
+    <path d="M145 20 C155 100, 145 180, 160 280 C175 380, 150 430, 165 500" stroke="url(#hair1)" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.35">
+      <animate attributeName="d" values="M145 20 C155 100, 145 180, 160 280 C175 380, 150 430, 165 500;M145 20 C150 100, 140 185, 158 285 C175 385, 148 435, 162 500;M145 20 C155 100, 145 180, 160 280 C175 380, 150 430, 165 500" dur="9s" repeatCount="indefinite"/>
+    </path>
+    <path d="M60 30 C45 100, 55 190, 40 270 C25 350, 55 420, 45 500" stroke="url(#hair2)" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.3">
+      <animate attributeName="d" values="M60 30 C45 100, 55 190, 40 270 C25 350, 55 420, 45 500;M60 30 C50 100, 60 190, 44 275 C30 355, 58 425, 48 500;M60 30 C45 100, 55 190, 40 270 C25 350, 55 420, 45 500" dur="10s" repeatCount="indefinite"/>
+    </path>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Barcelona · Sagrada Família</div>
+    <h1 class="hero-h1">Especialistas en <em>Balayage</em> y Color en Barcelona</h1>
+    <p class="hero-sub">Transformamos tu cabello con técnicas de coloración avanzada. Resultados naturales, personalizados para ti. Tu mejor versión empieza aquí.</p>
+    <div class="hero-btns">
+      <a href="https://booksy.com" target="_blank" class="btn-primary">✦ Reservar cita</a>
+      <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20vuestros%20servicios" target="_blank" class="btn-wa">
+        <span class="wa-icon">💬</span> Escribir por WhatsApp
+      </a>
+    </div>
+    <div class="hero-trust">
+      <span class="trust-stars">★★★★★</span>
+      <p class="trust-text"><strong>+200 clientas satisfechas</strong> en Barcelona</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="servicios">
+  <div class="section-label">Lo que hacemos</div>
+  <h2 class="section-title">Servicios <em>especializados</em><br>para tu cabello</h2>
+  <p class="section-sub">Cada servicio está pensado para resaltar tu belleza natural con técnicas actualizadas y productos de alta calidad.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">🌿</span>
+      <div class="service-cat">Color</div>
+      <h3 class="service-name">Balayage & Mechas</h3>
+      <p class="service-desc">Técnicas de coloración libre para lograr resultados naturales, luminosos y de larga duración. Sin raíces marcadas.</p>
+      <div class="service-items">
+        <span class="service-tag">Balayage californiano</span>
+        <span class="service-tag">Mechas babylights</span>
+        <span class="service-tag">Balayage oscuro</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">✨</span>
+      <div class="service-cat">Coloración</div>
+      <h3 class="service-name">Tinte & Color</h3>
+      <p class="service-desc">Cobertura total de canas, cambios de tono y coloraciones fantasía con fórmulas personalizadas para tu tipo de cabello.</p>
+      <div class="service-items">
+        <span class="service-tag">Tinte global</span>
+        <span class="service-tag">Color fantasía</span>
+        <span class="service-tag">Cobertura canas</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">💧</span>
+      <div class="service-cat">Tratamientos</div>
+      <h3 class="service-name">Keratina & Alisados</h3>
+      <p class="service-desc">Alisados permanentes y tratamientos de queratina para un cabello domado, brillante y sin encrespamiento.</p>
+      <div class="service-items">
+        <span class="service-tag">Keratina brasileña</span>
+        <span class="service-tag">Alisado japonés</span>
+        <span class="service-tag">Nanoplastia</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🌸</span>
+      <div class="service-cat">Hidratación</div>
+      <h3 class="service-name">Tratamientos Capilares</h3>
+      <p class="service-desc">Recupera la salud y brillo de tu cabello con tratamientos de hidratación profunda adaptados a tu necesidad.</p>
+      <div class="service-items">
+        <span class="service-tag">Hidratación profunda</span>
+        <span class="service-tag">Olaplex</span>
+        <span class="service-tag">Nutrición intensiva</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">✂️</span>
+      <div class="service-cat">Corte & Estilo</div>
+      <h3 class="service-name">Corte & Peinado</h3>
+      <p class="service-desc">Cortes modernos con técnica y criterio estético. Peinados para el día a día o para ocasiones especiales.</p>
+      <div class="service-items">
+        <span class="service-tag">Corte mujer</span>
+        <span class="service-tag">Peinado novia</span>
+        <span class="service-tag">Brushing</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🔬</span>
+      <div class="service-cat">Diagnóstico</div>
+      <h3 class="service-name">Consulta Capilar</h3>
+      <p class="service-desc">Análisis personalizado de tu tipo de cabello para diseñar el tratamiento y coloración más adecuados para ti.</p>
+      <div class="service-items">
+        <span class="service-tag">Gratuita</span>
+        <span class="service-tag">Sin compromiso</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="diferencial">
+  <div class="dif-inner">
+    <div class="dif-text">
+      <div class="section-label">Nuestra filosofía</div>
+      <h2 class="section-title">Tu cabello,<br><em>nuestra pasión</em></h2>
+      <div class="dif-quote">
+        <p>"No seguimos tendencias. Creamos la que mejor va contigo."</p>
+      </div>
+      <p class="section-sub">En D'Raggio cada visita empieza con una consulta profunda para entender tu cabello, tu estilo de vida y lo que buscas. El resultado siempre es único, natural y pensado para durar.</p>
+    </div>
+    <div class="dif-pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">Personalización total</div>
+        <p class="pillar-desc">Cada coloración se formula a medida de tu tono, textura y deseo.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">Resultados naturales</div>
+        <p class="pillar-desc">Técnicas que respetan la identidad de tu cabello. Sin artificialidad.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">Cuidado ante todo</div>
+        <p class="pillar-desc">Trabajamos con productos premium que nutren mientras transforman.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">04</div>
+        <div class="pillar-title">Experiencia única</div>
+        <p class="pillar-desc">El salón es tu espacio. Tiempo para ti, sin prisa ni presión.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="gallery-header">
+    <div>
+      <div class="section-label">Nuestro trabajo</div>
+      <h2 class="section-title">Resultados que <em>hablan</em></h2>
+    </div>
+    <a href="https://www.instagram.com" target="_blank" class="btn-wa">Ver en Instagram →</a>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span class="gallery-icon">✨</span><span class="gallery-label">Balayage californiano</span></div>
+      <div class="gallery-overlay"><span>Ver detalle</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span class="gallery-icon">🌿</span><span class="gallery-label">Mechas babylights</span></div>
+      <div class="gallery-overlay"><span>Ver detalle</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span class="gallery-icon">💫</span><span class="gallery-label">Color fantasía</span></div>
+      <div class="gallery-overlay"><span>Ver detalle</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span class="gallery-icon">✂️</span><span class="gallery-label">Corte & Peinado</span></div>
+      <div class="gallery-overlay"><span>Ver detalle</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span class="gallery-icon">💧</span><span class="gallery-label">Keratina brasileña</span></div>
+      <div class="gallery-overlay"><span>Ver detalle</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span class="gallery-icon">🌸</span><span class="gallery-label">Tratamiento hidratante</span></div>
+      <div class="gallery-overlay"><span>Ver detalle</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="opiniones">
+  <div class="section-label">Opiniones</div>
+  <h2 class="section-title">Lo que dicen<br>nuestras <em>clientas</em></h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <span class="review-badge">Google ⭐</span>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Llevaba años queriendo hacerme un balayage y siempre me daba miedo. Aquí me explicaron todo, el resultado fue exactamente lo que pedí. Natural y precioso."</p>
+      <div class="review-author">
+        <div class="review-avatar av-1">L</div>
+        <div><div class="review-name">Laura M.</div><div class="review-service">Balayage californiano</div></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <span class="review-badge">Google ⭐</span>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"La keratina que me hicieron duró meses. Mi pelo estaba completamente seco y lo dejaron sedoso. Son profesionales de verdad, sin chapuzas."</p>
+      <div class="review-author">
+        <div class="review-avatar av-2">S</div>
+        <div><div class="review-name">Sandra P.</div><div class="review-service">Keratina brasileña</div></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <span class="review-badge">Google ⭐</span>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Mi peluquería de confianza en Barcelona. Me mudé al barrio y entré sin cita. Desde ese día no voy a ningún otro sitio. El trato y el resultado, impecables."</p>
+      <div class="review-author">
+        <div class="review-avatar av-3">C</div>
+        <div><div class="review-name">Carmen R.</div><div class="review-service">Tinte & Corte</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reservar">
+  <div class="reservar-inner">
+    <div class="section-label">Agenda tu visita</div>
+    <h2 class="section-title">Reserva tu cita<br><em>ahora</em></h2>
+    <p class="section-sub">Elige el día y servicio que prefieres. Sin esperas innecesarias. Tu tiempo es valioso.</p>
+    <div class="reservar-btns">
+      <a href="https://booksy.com" target="_blank" class="btn-booksy">✦ Reservar cita online</a>
+      <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20reservar%20una%20cita" target="_blank" class="btn-wa-big">
+        <span style="color:#25d366">💬</span> Reservar por WhatsApp
+      </a>
+    </div>
+    <p class="reservar-note">🔒 Reserva gratuita · Sin pago previo · Cancela hasta 24h antes</p>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="section-label">Encuéntranos</div>
+  <h2 class="section-title">Estamos en el corazón<br>de la <em>Sagrada Família</em></h2>
+  <div class="contacto-grid">
+    <div class="contacto-items">
+      <div class="contacto-item">
+        <div class="contacto-icon-wrap">📍</div>
+        <div>
+          <div class="contacto-label">Dirección</div>
+          <div class="contacto-value">Carrer de Lepant 282<br>08013 Barcelona (Sagrada Família)</div>
+        </div>
+      </div>
+      <div class="contacto-item">
+        <div class="contacto-icon-wrap">📞</div>
+        <div>
+          <div class="contacto-label">Teléfono / WhatsApp</div>
+          <div class="contacto-value"><a href="tel:+34601003780">601 00 37 80</a></div>
+        </div>
+      </div>
+      <div class="contacto-item">
+        <div class="contacto-icon-wrap">🕐</div>
+        <div>
+          <div class="contacto-label">Horario</div>
+          <div class="horario-grid">
+            <div class="horario-row"><span class="dia">Lunes – Viernes</span><span class="hora">10:00 – 20:00</span></div>
+            <div class="horario-row"><span class="dia">Sábado</span><span class="hora">10:00 – 18:00</span></div>
+            <div class="horario-row"><span class="dia">Domingo</span><span class="hora">Cerrado</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="map-placeholder">
+        <span class="map-pin">📍</span>
+        <div class="map-address-box">
+          <strong>D'Raggio Estilistas</strong>
+          <p>Carrer de Lepant 282, Barcelona</p>
+          <a href="https://maps.google.com/?q=Carrer+de+Lepant+282+Barcelona" target="_blank" class="btn-maps">Abrir en Google Maps →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#inicio" class="nav-logo">D'Raggio <span>✦</span> Estilistas</a>
+      <p>Especialistas en balayage, coloración y tratamientos capilares en Barcelona. Tu salón de confianza en la zona de la Sagrada Família.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com" target="_blank" class="social-btn" aria-label="Instagram">📸</a>
+        <a href="https://facebook.com" target="_blank" class="social-btn" aria-label="Facebook">📘</a>
+        <a href="https://wa.me/34601003780" target="_blank" class="social-btn" aria-label="WhatsApp">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul class="footer-links">
+        <li><a href="#servicios">Balayage</a></li>
+        <li><a href="#servicios">Mechas</a></li>
+        <li><a href="#servicios">Coloración</a></li>
+        <li><a href="#servicios">Keratina</a></li>
+        <li><a href="#servicios">Tratamientos</a></li>
+        <li><a href="#servicios">Corte & Estilo</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul class="footer-links">
+        <li><a href="tel:+34601003780">601 00 37 80</a></li>
+        <li><a href="https://wa.me/34601003780">WhatsApp</a></li>
+        <li><a href="https://maps.google.com/?q=Carrer+de+Lepant+282+Barcelona" target="_blank">Carrer de Lepant 282</a></li>
+        <li><a href="#reservar">Reservar cita</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 D'Raggio Estilistas · Barcelona</p>
+    <p>Carrer de Lepant 282 · 601 00 37 80</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n" target="_blank" class="wa-float" aria-label="WhatsApp">💬</a>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 30); });
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
+  function closeMobile() { mobileMenu.classList.remove('open'); }
+
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 3 + 1.5;
+    p.style.cssText = `left:${Math.random()*100}%;width:${size}px;height:${size}px;animation-duration:${Math.random()*12+10}s;animation-delay:${Math.random()*10}s;`;
+    container.appendChild(p);
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', () => closeMobile()); });
+</script>
+</body>
+</html>
