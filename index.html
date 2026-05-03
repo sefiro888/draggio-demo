@@ -83,45 +83,71 @@
     background: linear-gradient(135deg, #fdf8f2 0%, #f5e8d8 40%, #f0dcc8 100%);
     padding-top: 68px;
   }
-  .hero-bg { position: absolute; inset: 0; overflow: hidden; }
-  .streak { position: absolute; border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; opacity: 0; animation: streakIn 2s ease forwards; }
-  .streak-1 { width: 500px; height: 500px; background: radial-gradient(ellipse at 30% 40%, rgba(200,169,110,0.18) 0%, transparent 70%); top: -100px; right: -80px; animation-delay: 0.3s; }
-  .streak-2 { width: 600px; height: 350px; background: radial-gradient(ellipse at 60% 50%, rgba(201,150,122,0.12) 0%, transparent 70%); bottom: -60px; left: -100px; animation-delay: 0.6s; }
-  .streak-3 { width: 300px; height: 600px; background: linear-gradient(160deg, rgba(232,201,144,0.15) 0%, transparent 60%); top: 10%; right: 15%; animation-delay: 0.9s; }
-  @keyframes streakIn { to { opacity: 1; } }
-
-  .particle { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: var(--gold); opacity: 0; animation: floatParticle linear infinite; }
-  @keyframes floatParticle {
-    0% { transform: translateY(100vh) scale(0); opacity: 0; }
-    10% { opacity: 0.6; } 90% { opacity: 0.3; }
-    100% { transform: translateY(-20px) scale(1); opacity: 0; }
+  .hero-hair-figure {
+    position: absolute; right: 4.5%; top: 54%; width: min(42vw, 540px);
+    transform: translateY(-50%); z-index: 1; pointer-events: none;
+    opacity: 0; animation: hairFigureIn 1.2s ease 0.2s forwards;
   }
-
-  .hair-art { position: absolute; right: 6%; top: 50%; transform: translateY(-50%); width: 220px; opacity: 0; animation: fadeSlideIn 1.2s ease 0.5s forwards; }
-  @keyframes fadeSlideIn {
-    from { opacity: 0; transform: translateY(-45%) translateX(20px); }
-    to { opacity: 1; transform: translateY(-50%) translateX(0); }
+  .hero-hair-figure svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .hair-silhouette { filter: drop-shadow(0 28px 34px rgba(82,54,43,0.16)); }
+  .hair-mass {
+    transform-origin: 315px 162px;
+    animation: hairBreath 7s ease-in-out infinite;
   }
-
+  .hair-layer {
+    transform-origin: 315px 170px;
+    animation: hairWave 6.5s ease-in-out infinite;
+  }
+  .hair-layer.layer-2 { animation-delay: -1.2s; }
+  .hair-layer.layer-3 { animation-delay: -2.1s; }
+  .hair-highlight {
+    stroke-dasharray: 95 560; stroke-dashoffset: 620;
+    animation: highlightSweep 4.8s ease-in-out 1.4s infinite;
+  }
+  .hair-highlight.delay-1 { animation-delay: 2s; }
+  .hair-highlight.delay-2 { animation-delay: 2.6s; }
+  .hair-strand-line {
+    stroke-dasharray: 700; stroke-dashoffset: 700;
+    animation: strandDraw 2.1s ease forwards;
+  }
+  .hair-strand-line.delay-1 { animation-delay: 0.24s; }
+  .hair-strand-line.delay-2 { animation-delay: 0.42s; }
+  .hair-strand-line.delay-3 { animation-delay: 0.6s; }
+  @keyframes hairFigureIn {
+    from { opacity: 0; transform: translateY(-48%) translateX(28px) scale(0.98); }
+    to { opacity: 0.92; transform: translateY(-50%) translateX(0) scale(1); }
+  }
+  @keyframes hairBreath {
+    0%, 100% { transform: rotate(0deg) translateY(0); }
+    50% { transform: rotate(-1.2deg) translateY(-6px); }
+  }
+  @keyframes hairWave {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    50% { transform: translateX(7px) rotate(1.5deg); }
+  }
+  @keyframes highlightSweep {
+    0% { stroke-dashoffset: 620; opacity: 0; }
+    18%, 58% { opacity: 0.85; }
+    100% { stroke-dashoffset: -120; opacity: 0; }
+  }
+  @keyframes strandDraw { to { stroke-dashoffset: 0; } }
   .hero-content { position: relative; z-index: 2; padding: 0 5%; max-width: 660px; }
   .hero-eyebrow {
     font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.2rem; opacity: 0; animation: slideUp 0.8s ease 0.4s forwards;
+    color: var(--gold); margin-bottom: 1.2rem;
     display: flex; align-items: center; gap: 0.8rem;
   }
   .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
   .hero-h1 {
     font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 6vw, 4rem);
     font-weight: 300; line-height: 1.1; color: var(--charcoal); margin-bottom: 1.4rem;
-    opacity: 0; animation: slideUp 0.8s ease 0.6s forwards;
   }
   .hero-h1 em { font-style: italic; color: var(--rose-dark); }
   .hero-sub {
     font-size: 1rem; font-weight: 300; color: var(--mid); line-height: 1.7;
-    margin-bottom: 2.4rem; max-width: 460px; opacity: 0; animation: slideUp 0.8s ease 0.8s forwards;
+    margin-bottom: 2.4rem; max-width: 460px;
   }
-  .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; opacity: 0; animation: slideUp 0.8s ease 1s forwards; }
-  @keyframes slideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; }
 
   .btn-primary {
     display: inline-flex; align-items: center; gap: 0.5rem;
@@ -140,7 +166,7 @@
   .btn-wa:hover { border-color: #25d366; color: #1a7a40; background: rgba(37,211,102,0.06); }
   .wa-icon { color: #25d366; font-size: 1.1rem; }
 
-  .hero-trust { margin-top: 3rem; display: flex; align-items: center; gap: 1.2rem; opacity: 0; animation: slideUp 0.8s ease 1.2s forwards; }
+  .hero-trust { margin-top: 3rem; display: flex; align-items: center; gap: 1.2rem; }
   .trust-stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 2px; }
   .trust-text { font-size: 0.8rem; color: var(--light-mid); }
   .trust-text strong { color: var(--mid); }
@@ -310,7 +336,6 @@
   @media (max-width: 900px) {
     .nav-links { display: none; }
     .nav-hamburger { display: flex; }
-    .hair-art { display: none; }
     .services-grid { grid-template-columns: 1fr 1fr; }
     .dif-inner { grid-template-columns: 1fr; gap: 3rem; }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
@@ -320,6 +345,9 @@
     .contacto-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .dif-pillars { grid-template-columns: 1fr 1fr; }
+    .hero-hair-figure {
+      right: -8%; top: 56%; width: min(46vw, 380px); opacity: 0.52;
+    }
   }
 
   @media (max-width: 600px) {
@@ -332,6 +360,21 @@
     .dif-pillars { grid-template-columns: 1fr; }
     .hero-btns { flex-direction: column; }
     .btn-primary, .btn-wa { width: 100%; justify-content: center; }
+    #inicio { min-height: 92vh; align-items: flex-start; padding-top: 130px; }
+    .hero-content { max-width: none; }
+    .hero-hair-figure {
+      right: -44%; top: 39%; width: 108vw; opacity: 0.16;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-hair-figure,
+    .hero-hair-figure * {
+      animation: none !important;
+      transition: none !important;
+    }
+    .hero-hair-figure { opacity: 0.86; }
+    .hair-strand-line { stroke-dashoffset: 0; }
   }
 </style>
 </head>
@@ -362,47 +405,61 @@
 </div>
 
 <section id="inicio">
-  <div class="hero-bg">
-    <div class="streak streak-1"></div>
-    <div class="streak streak-2"></div>
-    <div class="streak streak-3"></div>
-    <div id="particles"></div>
-  </div>
+  <div class="hero-hair-figure" aria-hidden="true">
+    <svg viewBox="0 0 620 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="hairBase" x1="310" y1="86" x2="310" y2="650" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#2f2522"/>
+          <stop offset="36%" stop-color="#5f3f34"/>
+          <stop offset="64%" stop-color="#a8735a"/>
+          <stop offset="84%" stop-color="#d5ad6b"/>
+          <stop offset="100%" stop-color="#f2d696"/>
+        </linearGradient>
+        <linearGradient id="hairSideLeft" x1="176" y1="126" x2="268" y2="638" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#3b2a25"/>
+          <stop offset="52%" stop-color="#8a5a48"/>
+          <stop offset="100%" stop-color="#e4bd77"/>
+        </linearGradient>
+        <linearGradient id="hairSideRight" x1="446" y1="128" x2="370" y2="638" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#3a2a25"/>
+          <stop offset="52%" stop-color="#9b664e"/>
+          <stop offset="100%" stop-color="#edcf8a"/>
+        </linearGradient>
+        <linearGradient id="balayageStroke" x1="300" y1="220" x2="330" y2="640" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="rgba(255,248,232,0)"/>
+          <stop offset="48%" stop-color="#c9967a"/>
+          <stop offset="75%" stop-color="#e8c990"/>
+          <stop offset="100%" stop-color="#fff0bd"/>
+        </linearGradient>
+        <radialGradient id="crownShadow" cx="50%" cy="28%" r="64%">
+          <stop offset="0%" stop-color="#735042"/>
+          <stop offset="72%" stop-color="#3b2a25"/>
+          <stop offset="100%" stop-color="#2a2420"/>
+        </radialGradient>
+        <filter id="hairSoftShadow" x="-20%" y="-12%" width="140%" height="132%">
+          <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#6b4230" flood-opacity="0.18"/>
+        </filter>
+      </defs>
 
-  <svg class="hair-art" viewBox="0 0 200 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="hair1" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#c8a96e"/>
-        <stop offset="40%" stop-color="#d4956e"/>
-        <stop offset="100%" stop-color="#8b5a3a"/>
-      </linearGradient>
-      <linearGradient id="hair2" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#e8c890"/>
-        <stop offset="50%" stop-color="#c9967a"/>
-        <stop offset="100%" stop-color="#6b4230"/>
-      </linearGradient>
-      <linearGradient id="hair3" x1="0%" y1="0%" x2="80%" y2="100%">
-        <stop offset="0%" stop-color="#f0d8b0"/>
-        <stop offset="60%" stop-color="#b87850"/>
-        <stop offset="100%" stop-color="#5a3020"/>
-      </linearGradient>
-    </defs>
-    <path d="M100 0 C80 60, 60 120, 90 200 C120 280, 80 340, 110 500" stroke="url(#hair1)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7">
-      <animate attributeName="d" values="M100 0 C80 60, 60 120, 90 200 C120 280, 80 340, 110 500;M100 0 C90 60, 70 130, 95 210 C115 290, 75 350, 105 500;M100 0 C80 60, 60 120, 90 200 C120 280, 80 340, 110 500" dur="6s" repeatCount="indefinite"/>
-    </path>
-    <path d="M120 0 C140 80, 160 160, 130 250 C100 340, 140 400, 115 500" stroke="url(#hair2)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6">
-      <animate attributeName="d" values="M120 0 C140 80, 160 160, 130 250 C100 340, 140 400, 115 500;M120 0 C135 80, 155 170, 125 260 C100 350, 135 410, 110 500;M120 0 C140 80, 160 160, 130 250 C100 340, 140 400, 115 500" dur="8s" repeatCount="indefinite"/>
-    </path>
-    <path d="M80 0 C60 70, 40 150, 70 240 C100 330, 60 420, 95 500" stroke="url(#hair3)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5">
-      <animate attributeName="d" values="M80 0 C60 70, 40 150, 70 240 C100 330, 60 420, 95 500;M80 0 C65 70, 45 155, 75 245 C105 335, 65 425, 100 500;M80 0 C60 70, 40 150, 70 240 C100 330, 60 420, 95 500" dur="7s" repeatCount="indefinite"/>
-    </path>
-    <path d="M145 20 C155 100, 145 180, 160 280 C175 380, 150 430, 165 500" stroke="url(#hair1)" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.35">
-      <animate attributeName="d" values="M145 20 C155 100, 145 180, 160 280 C175 380, 150 430, 165 500;M145 20 C150 100, 140 185, 158 285 C175 385, 148 435, 162 500;M145 20 C155 100, 145 180, 160 280 C175 380, 150 430, 165 500" dur="9s" repeatCount="indefinite"/>
-    </path>
-    <path d="M60 30 C45 100, 55 190, 40 270 C25 350, 55 420, 45 500" stroke="url(#hair2)" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.3">
-      <animate attributeName="d" values="M60 30 C45 100, 55 190, 40 270 C25 350, 55 420, 45 500;M60 30 C50 100, 60 190, 44 275 C30 355, 58 425, 48 500;M60 30 C45 100, 55 190, 40 270 C25 350, 55 420, 45 500" dur="10s" repeatCount="indefinite"/>
-    </path>
-  </svg>
+      <g class="hair-silhouette" filter="url(#hairSoftShadow)">
+        <path class="hair-mass" d="M313 70 C229 73 165 139 145 235 C125 331 142 462 111 604 C172 637 250 643 314 627 C377 644 454 637 511 604 C480 459 498 331 475 235 C452 137 394 72 313 70Z" fill="url(#hairBase)"/>
+        <path class="hair-layer layer-1" d="M299 90 C214 141 184 228 187 332 C190 442 226 532 201 626 C156 624 126 615 111 604 C142 462 125 331 145 235 C164 146 221 86 299 90Z" fill="url(#hairSideLeft)" opacity="0.74"/>
+        <path class="hair-layer layer-2" d="M332 90 C417 141 445 229 441 334 C436 446 401 532 424 626 C468 624 496 615 511 604 C480 459 498 331 475 235 C454 145 398 86 332 90Z" fill="url(#hairSideRight)" opacity="0.76"/>
+        <path d="M245 116 C249 72 284 48 322 54 C363 61 392 94 389 137 C386 185 354 217 314 219 C270 220 241 171 245 116Z" fill="url(#crownShadow)" opacity="0.98"/>
+        <path d="M271 185 C284 209 299 222 315 223 C333 222 349 209 360 185 C356 237 342 285 315 314 C288 285 275 237 271 185Z" fill="rgba(250,246,241,0.28)"/>
+
+        <path class="hair-strand-line" d="M309 88 C275 187 274 303 296 413 C313 499 314 569 299 624" stroke="rgba(42,36,32,0.32)" stroke-width="3" stroke-linecap="round"/>
+        <path class="hair-strand-line delay-1" d="M252 133 C215 222 209 330 230 432 C247 513 251 579 233 630" stroke="rgba(66,44,37,0.24)" stroke-width="3" stroke-linecap="round"/>
+        <path class="hair-strand-line delay-2" d="M371 134 C412 225 416 333 389 438 C369 516 365 580 382 630" stroke="rgba(66,44,37,0.24)" stroke-width="3" stroke-linecap="round"/>
+        <path class="hair-strand-line delay-3" d="M191 241 C181 347 197 466 174 610" stroke="rgba(255,228,174,0.22)" stroke-width="2.4" stroke-linecap="round"/>
+        <path class="hair-strand-line delay-2" d="M447 241 C457 350 438 466 462 610" stroke="rgba(255,228,174,0.2)" stroke-width="2.4" stroke-linecap="round"/>
+
+        <path class="hair-highlight" d="M267 300 C276 392 302 492 284 612" stroke="url(#balayageStroke)" stroke-width="9" stroke-linecap="round"/>
+        <path class="hair-highlight delay-1" d="M350 292 C335 392 338 505 323 626" stroke="url(#balayageStroke)" stroke-width="8" stroke-linecap="round"/>
+        <path class="hair-highlight delay-2" d="M411 342 C400 438 384 531 398 616" stroke="url(#balayageStroke)" stroke-width="7" stroke-linecap="round"/>
+      </g>
+    </svg>
+  </div>
 
   <div class="hero-content">
     <div class="hero-eyebrow">Barcelona · Sagrada Família</div>
@@ -713,15 +770,6 @@
   const mobileMenu = document.getElementById('mobileMenu');
   hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
   function closeMobile() { mobileMenu.classList.remove('open'); }
-
-  const container = document.getElementById('particles');
-  for (let i = 0; i < 18; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size = Math.random() * 3 + 1.5;
-    p.style.cssText = `left:${Math.random()*100}%;width:${size}px;height:${size}px;animation-duration:${Math.random()*12+10}s;animation-delay:${Math.random()*10}s;`;
-    container.appendChild(p);
-  }
 
   document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', () => closeMobile()); });
 </script>
