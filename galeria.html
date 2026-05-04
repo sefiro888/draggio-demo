@@ -67,21 +67,53 @@
 
   /* Masonry-style grid */
   .gallery-masonry { columns: 4; column-gap: 8px; }
-  .gallery-masonry .g-item { break-inside: avoid; margin-bottom: 8px; position: relative; overflow: hidden; border-radius: 2px; cursor: pointer; border: 1px solid rgba(200,169,110,0.14); background: var(--warm-white); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
-  .g-placeholder { width: 100%; display: block; transition: transform 0.5s ease, filter 0.5s ease; }
+  .gallery-masonry .g-item { break-inside: avoid; margin-bottom: 8px; position: relative; overflow: hidden; border-radius: 2px; cursor: pointer; border: 1px solid rgba(200,169,110,0.14); background: var(--warm-white); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.25s ease; }
+  .gallery-masonry .g-item.is-hidden { display: none; }
+  .g-frame { position: relative; width: 100%; overflow: hidden; background: var(--blush); }
+  .g-img { width: 100%; display: block; transition: opacity 0.45s ease, transform 0.5s ease, filter 0.5s ease; }
+  .g-before { position: absolute; inset: 0; opacity: 0; }
+  .g-item[data-has-before="true"]:hover .g-before { opacity: 1; }
+  .g-item[data-has-before="true"]:hover .g-after { opacity: 0; }
+  .g-placeholder { width: 100%; display: block; }
   .g-item::before { content: ''; position: absolute; inset: 12px; border: 1px solid rgba(255,255,255,0.28); z-index: 1; pointer-events: none; }
   .g-item::after { content: ''; position: absolute; left: 16%; right: 16%; bottom: 22%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent); z-index: 1; opacity: 0.55; pointer-events: none; }
   .g-item:hover { transform: translateY(-4px); border-color: rgba(200,169,110,0.45); box-shadow: 0 18px 42px rgba(42,36,32,0.09); }
-  .g-item:hover .g-placeholder { transform: scale(1.045); filter: saturate(1.03); }
+  .g-item:hover .g-img { transform: scale(1.045); filter: saturate(1.03); }
   .gallery-note { margin-top: 1.2rem; font-size: 0.82rem; color: var(--light-mid); text-align: center; font-weight: 300; }
 
   .g-item svg { display: block; width: 100%; }
+  .compare-badge {
+    position: absolute; top: 14px; left: 14px; z-index: 3;
+    background: rgba(253,249,245,0.88); color: var(--rose-dark);
+    border: 1px solid rgba(200,169,110,0.34); padding: 0.38rem 0.62rem;
+    font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+    backdrop-filter: blur(10px);
+  }
 
   .g-overlay { position: absolute; inset: 0; background: rgba(42,36,32,0); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem; transition: background 0.3s; }
   .g-overlay span { color: #fff; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0; transition: opacity 0.3s; }
   .g-overlay .g-tag { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; opacity: 0; transition: opacity 0.3s 0.05s; }
   .g-item:hover .g-overlay { background: rgba(42,36,32,0.35); }
   .g-item:hover .g-overlay span, .g-item:hover .g-overlay .g-tag { opacity: 1; }
+
+  .compare-modal {
+    position: fixed; inset: 0; z-index: 2000; display: none; align-items: center; justify-content: center;
+    padding: 5vw; background: rgba(42,36,32,0.62); backdrop-filter: blur(12px);
+  }
+  .compare-modal.open { display: flex; }
+  .compare-dialog { width: min(920px, 100%); background: var(--warm-white); border: 1px solid rgba(200,169,110,0.28); box-shadow: 0 28px 80px rgba(42,36,32,0.25); position: relative; }
+  .compare-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 1.1rem; border-bottom: 1px solid var(--border); }
+  .compare-title { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--charcoal); font-weight: 400; }
+  .compare-close { width: 38px; height: 38px; border: 1px solid var(--border); background: transparent; color: var(--charcoal); cursor: pointer; font-size: 1.25rem; line-height: 1; }
+  .compare-slider { position: relative; overflow: hidden; background: var(--blush); touch-action: none; }
+  .compare-panel svg { width: 100%; height: auto; display: block; }
+  .compare-before { position: absolute; inset: 0; width: 100%; overflow: hidden; clip-path: inset(0 50% 0 0); }
+  .compare-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: rgba(253,249,245,0.92); box-shadow: 0 0 0 1px rgba(200,169,110,0.45), 0 0 20px rgba(42,36,32,0.2); transform: translateX(-50%); pointer-events: none; }
+  .compare-handle::after { content: '↔'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 42px; height: 42px; border-radius: 50%; background: var(--warm-white); border: 1px solid rgba(200,169,110,0.55); color: var(--rose-dark); display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+  .compare-range { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; }
+  .compare-label { position: absolute; top: 16px; z-index: 3; padding: 0.38rem 0.62rem; background: rgba(42,36,32,0.58); color: #fff; font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; }
+  .compare-label.before { left: 16px; }
+  .compare-label.after { right: 16px; }
 
   /* Filter tabs */
   .gallery-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
@@ -152,6 +184,10 @@
     nav { padding: 0 4%; }
     .gallery-section, #opiniones { padding: 70px 4%; }
     .gallery-masonry { columns: 2; }
+    .compare-modal { padding: 4vw; }
+    .compare-head { padding: 0.85rem; }
+    .compare-title { font-size: 1.15rem; }
+    .compare-badge { top: 10px; left: 10px; font-size: 0.55rem; padding: 0.32rem 0.48rem; }
     .reviews-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; text-align: center; }
@@ -209,99 +245,98 @@
   </div>
 
   <div class="gallery-filters">
-    <button class="filter-btn active">Todo</button>
-    <button class="filter-btn">Balayage</button>
-    <button class="filter-btn">Mechas</button>
-    <button class="filter-btn">Color</button>
-    <button class="filter-btn">Keratina</button>
-    <button class="filter-btn">Corte</button>
+    <button class="filter-btn active" data-filter="todo">Todo</button>
+    <button class="filter-btn" data-filter="balayage">Balayage</button>
+    <button class="filter-btn" data-filter="mechas">Mechas</button>
+    <button class="filter-btn" data-filter="color">Color</button>
+    <button class="filter-btn" data-filter="keratina">Keratina</button>
+    <button class="filter-btn" data-filter="corte">Corte</button>
   </div>
 
   <div class="gallery-masonry">
-    <!-- Item 1 – tall -->
-    <div class="g-item">
-      <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e8cdb4"/><stop offset="100%" stop-color="#c9967a"/></linearGradient></defs>
-        <rect width="300" height="400" fill="url(#g1)"/>
-        <text x="150" y="185" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="rgba(255,255,255,0.4)" font-style="italic">Balayage</text>
-        <text x="150" y="218" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.3)">californiano</text>
-      </svg>
-      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Balayage californiano</span></div>
+    <div class="g-item" data-category="balayage" data-title="Balayage californiano" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Balayage californiano">
+      <span class="compare-badge">Ver transformación</span>
+      <div class="g-frame">
+        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f2d6aa"/><stop offset="55%" stop-color="#d7a365"/><stop offset="100%" stop-color="#8a5638"/></linearGradient></defs><rect width="300" height="400" fill="url(#after1)"/><path d="M74 65 C146 132 151 256 92 352" stroke="rgba(255,245,218,0.36)" stroke-width="10" fill="none"/><text x="150" y="186" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="rgba(255,255,255,0.52)" font-style="italic">Después</text><text x="150" y="218" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.38)">balayage californiano</text></svg></div>
+        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7a5948"/><stop offset="100%" stop-color="#3f2f29"/></linearGradient></defs><rect width="300" height="400" fill="url(#before1)"/><path d="M86 70 C125 150 126 260 94 344" stroke="rgba(255,235,198,0.14)" stroke-width="8" fill="none"/><text x="150" y="186" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="rgba(255,255,255,0.34)" font-style="italic">Antes</text><text x="150" y="218" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.24)">base natural</text></svg></div>
+      </div>
+      <div class="g-overlay"><span>Antes / Después</span><span class="g-tag">Balayage californiano</span></div>
     </div>
-    <!-- Item 2 – square -->
-    <div class="g-item">
-      <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f0ddd0"/><stop offset="100%" stop-color="#d4a880"/></linearGradient></defs>
-        <rect width="300" height="280" fill="url(#g2)"/>
-        <text x="150" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(100,60,40,0.4)" font-style="italic">Mechas</text>
-        <text x="150" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(100,60,40,0.3)">babylights</text>
-      </svg>
-      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Mechas babylights</span></div>
+    <div class="g-item" data-category="mechas" data-title="Mechas babylights" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Mechas babylights">
+      <span class="compare-badge">Antes / Después</span>
+      <div class="g-frame">
+        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f4e1cf"/><stop offset="100%" stop-color="#d0a072"/></linearGradient></defs><rect width="300" height="280" fill="url(#after2)"/><path d="M58 42 C128 93 174 190 238 246" stroke="rgba(255,255,245,0.35)" stroke-width="7" fill="none"/><text x="150" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(100,60,40,0.45)" font-style="italic">Después</text><text x="150" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(100,60,40,0.34)">babylights</text></svg></div>
+        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#aa856d"/><stop offset="100%" stop-color="#624838"/></linearGradient></defs><rect width="300" height="280" fill="url(#before2)"/><text x="150" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.34)" font-style="italic">Antes</text><text x="150" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.24)">tono apagado</text></svg></div>
+      </div>
+      <div class="g-overlay"><span>Antes / Después</span><span class="g-tag">Mechas babylights</span></div>
     </div>
-    <!-- Item 3 -->
-    <div class="g-item">
-      <svg viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d4b89a"/><stop offset="100%" stop-color="#8b5a3a"/></linearGradient></defs>
-        <rect width="300" height="350" fill="url(#g3)"/>
-        <text x="150" y="165" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.45)" font-style="italic">Balayage</text>
-        <text x="150" y="192" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.3)">oscuro</text>
-      </svg>
-      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Balayage oscuro</span></div>
+    <div class="g-item" data-category="balayage" data-title="Balayage oscuro" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Balayage oscuro">
+      <span class="compare-badge">Ver transformación</span>
+      <div class="g-frame">
+        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d7b796"/><stop offset="65%" stop-color="#9e6747"/><stop offset="100%" stop-color="#4b3028"/></linearGradient></defs><rect width="300" height="350" fill="url(#after3)"/><path d="M238 40 C182 126 181 232 216 316" stroke="rgba(255,232,174,0.28)" stroke-width="9" fill="none"/><text x="150" y="165" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.48)" font-style="italic">Después</text><text x="150" y="192" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.32)">morena iluminada</text></svg></div>
+        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#725343"/><stop offset="100%" stop-color="#2f2522"/></linearGradient></defs><rect width="300" height="350" fill="url(#before3)"/><text x="150" y="165" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.32)" font-style="italic">Antes</text><text x="150" y="192" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.22)">base oscura</text></svg></div>
+      </div>
+      <div class="g-overlay"><span>Antes / Después</span><span class="g-tag">Balayage oscuro</span></div>
     </div>
-    <!-- Item 4 -->
-    <div class="g-item">
-      <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e8c89a"/><stop offset="100%" stop-color="#c9967a"/></linearGradient></defs>
-        <rect width="300" height="300" fill="url(#g4)"/>
-        <text x="150" y="140" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.45)" font-style="italic">Keratina</text>
-        <text x="150" y="165" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.3)">brasileña</text>
-      </svg>
-      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Keratina / alisado</span></div>
+    <div class="g-item" data-category="keratina" data-title="Keratina / alisado" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Keratina o alisado">
+      <span class="compare-badge">Antes / Después</span>
+      <div class="g-frame">
+        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#eed0a4"/><stop offset="100%" stop-color="#b97b52"/></linearGradient></defs><rect width="300" height="300" fill="url(#after4)"/><path d="M58 46 C132 112 176 204 238 254" stroke="rgba(255,249,232,0.34)" stroke-width="8" fill="none"/><text x="150" y="140" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.48)" font-style="italic">Después</text><text x="150" y="165" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.34)">keratina</text></svg></div>
+        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#b08a70"/><stop offset="100%" stop-color="#6b4b3d"/></linearGradient></defs><rect width="300" height="300" fill="url(#before4)"/><path d="M62 52 C120 104 110 195 234 250" stroke="rgba(255,255,255,0.18)" stroke-width="6" fill="none" stroke-dasharray="8 10"/><text x="150" y="140" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.34)" font-style="italic">Antes</text><text x="150" y="165" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.24)">frizz</text></svg></div>
+      </div>
+      <div class="g-overlay"><span>Antes / Después</span><span class="g-tag">Keratina / alisado</span></div>
     </div>
-    <!-- Item 5 – tall -->
-    <div class="g-item">
-      <svg viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="g5" x1="0%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#f0e4d4"/><stop offset="100%" stop-color="#b87850"/></linearGradient></defs>
-        <rect width="300" height="420" fill="url(#g5)"/>
-        <text x="150" y="198" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(100,50,30,0.4)" font-style="italic">Color</text>
-        <text x="150" y="225" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(100,50,30,0.3)">personalizado</text>
-      </svg>
-      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Coloración personalizada</span></div>
+    <div class="g-item" data-category="color" data-title="Coloración personalizada" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Coloración personalizada">
+      <span class="compare-badge">Ver transformación</span>
+      <div class="g-frame">
+        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after5" x1="0%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#f0e4d4"/><stop offset="58%" stop-color="#ca8b63"/><stop offset="100%" stop-color="#7f4a34"/></linearGradient></defs><rect width="300" height="420" fill="url(#after5)"/><circle cx="220" cy="96" r="72" fill="rgba(255,239,198,0.14)"/><text x="150" y="198" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(100,50,30,0.42)" font-style="italic">Después</text><text x="150" y="225" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(100,50,30,0.32)">color personalizado</text></svg></div>
+        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before5" x1="0%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#c9ad98"/><stop offset="100%" stop-color="#6d5244"/></linearGradient></defs><rect width="300" height="420" fill="url(#before5)"/><text x="150" y="198" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.32)" font-style="italic">Antes</text><text x="150" y="225" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.24)">tono irregular</text></svg></div>
+      </div>
+      <div class="g-overlay"><span>Antes / Después</span><span class="g-tag">Coloración personalizada</span></div>
     </div>
-    <!-- Item 6 -->
-    <div class="g-item">
-      <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="g6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e0ceb8"/><stop offset="100%" stop-color="#a8835a"/></linearGradient></defs>
-        <rect width="300" height="260" fill="url(#g6)"/>
-        <text x="150" y="120" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.45)" font-style="italic">Corte</text>
-        <text x="150" y="146" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.3)">& estilo</text>
-      </svg>
+    <div class="g-item" data-category="corte" data-title="Corte & estilo" data-has-before="false" tabindex="0" role="button" aria-label="Abrir imagen de Corte y estilo">
+      <span class="compare-badge">Ver resultado</span>
+      <div class="g-frame">
+        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e0ceb8"/><stop offset="100%" stop-color="#a8835a"/></linearGradient></defs><rect width="300" height="260" fill="url(#after6)"/><path d="M70 52 C132 112 178 188 236 222" stroke="rgba(255,255,255,0.28)" stroke-width="7" fill="none"/><text x="150" y="120" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.48)" font-style="italic">Después</text><text x="150" y="146" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.34)">& estilo</text></svg></div>
+      </div>
       <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Corte & estilo</span></div>
     </div>
-    <!-- Item 7 -->
-    <div class="g-item">
-      <svg viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="g7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f5e8d8"/><stop offset="100%" stop-color="#c09060"/></linearGradient></defs>
-        <rect width="300" height="340" fill="url(#g7)"/>
-        <text x="150" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(100,60,30,0.4)" font-style="italic">Tinte</text>
-        <text x="150" y="183" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(100,60,30,0.3)">global</text>
-      </svg>
-      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Tinte global</span></div>
+    <div class="g-item" data-category="color" data-title="Tinte global" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Tinte global">
+      <span class="compare-badge">Antes / Después</span>
+      <div class="g-frame">
+        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f5e8d8"/><stop offset="100%" stop-color="#c09060"/></linearGradient></defs><rect width="300" height="340" fill="url(#after7)"/><text x="150" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(100,60,30,0.42)" font-style="italic">Después</text><text x="150" y="183" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(100,60,30,0.32)">tinte global</text></svg></div>
+        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c4aa94"/><stop offset="100%" stop-color="#735342"/></linearGradient></defs><rect width="300" height="340" fill="url(#before7)"/><text x="150" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.32)" font-style="italic">Antes</text><text x="150" y="183" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.24)">raíz marcada</text></svg></div>
+      </div>
+      <div class="g-overlay"><span>Antes / Después</span><span class="g-tag">Tinte global</span></div>
     </div>
-    <!-- Item 8 -->
-    <div class="g-item">
-      <svg viewBox="0 0 300 290" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="g8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d8c4a8"/><stop offset="100%" stop-color="#8a6845"/></linearGradient></defs>
-        <rect width="300" height="290" fill="url(#g8)"/>
-        <text x="150" y="133" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.45)" font-style="italic">Hidratación</text>
-        <text x="150" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.3)">profunda</text>
-      </svg>
+    <div class="g-item" data-category="keratina" data-title="Hidratación profunda" data-has-before="false" tabindex="0" role="button" aria-label="Abrir imagen de Hidratación profunda">
+      <span class="compare-badge">Ver resultado</span>
+      <div class="g-frame">
+        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d8c4a8"/><stop offset="100%" stop-color="#8a6845"/></linearGradient></defs><rect width="300" height="290" fill="url(#after8)"/><path d="M66 58 C132 118 174 200 238 244" stroke="rgba(255,255,255,0.26)" stroke-width="7" fill="none"/><text x="150" y="133" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.48)" font-style="italic">Después</text><text x="150" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.34)">hidratación profunda</text></svg></div>
+      </div>
       <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Hidratación profunda</span></div>
     </div>
   </div>
 
   <div style="text-align:center; margin-top: 2.5rem;">
     <a href="https://www.instagram.com/dianaraggioestilistas/" target="_blank" rel="noopener" class="btn-ig">Ver más trabajos en Instagram →</a>
+  </div>
+</div>
+
+<div class="compare-modal" id="compareModal" aria-hidden="true">
+  <div class="compare-dialog" role="dialog" aria-modal="true" aria-labelledby="compareTitle">
+    <div class="compare-head">
+      <div class="compare-title" id="compareTitle">Comparador</div>
+      <button class="compare-close" type="button" aria-label="Cerrar comparador">×</button>
+    </div>
+    <div class="compare-slider" id="compareSlider">
+      <div class="compare-panel compare-after" id="compareAfter"></div>
+      <div class="compare-panel compare-before" id="compareBefore"></div>
+      <span class="compare-label before">Antes</span>
+      <span class="compare-label after">Después</span>
+      <span class="compare-handle" id="compareHandle"></span>
+      <input class="compare-range" id="compareRange" type="range" min="0" max="100" value="50" aria-label="Comparar antes y después">
+    </div>
   </div>
 </div>
 
@@ -431,12 +466,73 @@
   const mobileMenu = document.getElementById('mobileMenu');
   hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
 
-  // Filter tabs (visual only)
+  const galleryItems = document.querySelectorAll('.g-item');
+  const compareModal = document.getElementById('compareModal');
+  const compareTitle = document.getElementById('compareTitle');
+  const compareBefore = document.getElementById('compareBefore');
+  const compareAfter = document.getElementById('compareAfter');
+  const compareRange = document.getElementById('compareRange');
+  const compareHandle = document.getElementById('compareHandle');
+  const compareClose = document.querySelector('.compare-close');
+
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      const filter = btn.dataset.filter || btn.textContent.trim().toLowerCase();
+      galleryItems.forEach(item => {
+        const category = item.dataset.category || '';
+        item.classList.toggle('is-hidden', filter !== 'todo' && category !== filter);
+      });
     });
+  });
+
+  function setComparePosition(value) {
+    compareBefore.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+    compareHandle.style.left = `${value}%`;
+  }
+
+  function openCompare(item) {
+    const after = item.querySelector('.g-after');
+    const before = item.querySelector('.g-before');
+    compareTitle.textContent = item.dataset.title || 'Comparador';
+    compareAfter.innerHTML = after ? after.innerHTML : '';
+    compareBefore.innerHTML = before ? before.innerHTML : (after ? after.innerHTML : '');
+    const hasBefore = item.dataset.hasBefore === 'true' && before;
+    compareBefore.style.display = hasBefore ? 'block' : 'none';
+    compareRange.style.display = hasBefore ? 'block' : 'none';
+    compareHandle.style.display = hasBefore ? 'block' : 'none';
+    document.querySelector('.compare-label.before').style.display = hasBefore ? 'block' : 'none';
+    document.querySelector('.compare-label.after').textContent = hasBefore ? 'Después' : 'Resultado';
+    compareRange.value = 50;
+    setComparePosition(50);
+    compareModal.classList.add('open');
+    compareModal.setAttribute('aria-hidden', 'false');
+    compareClose.focus();
+  }
+
+  function closeCompare() {
+    compareModal.classList.remove('open');
+    compareModal.setAttribute('aria-hidden', 'true');
+  }
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => openCompare(item));
+    item.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openCompare(item);
+      }
+    });
+  });
+
+  compareRange.addEventListener('input', event => setComparePosition(Number(event.target.value)));
+  compareClose.addEventListener('click', closeCompare);
+  compareModal.addEventListener('click', event => {
+    if (event.target === compareModal) closeCompare();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && compareModal.classList.contains('open')) closeCompare();
   });
 </script>
 </body>
