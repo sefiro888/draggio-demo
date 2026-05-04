@@ -202,6 +202,35 @@
       scroll-behavior: auto !important;
     }
   }
+.appointment-assistant { position: fixed; right: 24px; bottom: 24px; z-index: 1500; font-family: 'DM Sans', sans-serif; }
+.assistant-toggle { width: 58px; height: 58px; border: 0; border-radius: 50%; background: var(--charcoal); color: var(--cream); box-shadow: 0 14px 34px rgba(42,36,32,0.22); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; transition: transform 0.22s ease, background 0.22s ease; }
+.assistant-toggle:hover { transform: translateY(-2px); background: var(--rose-dark); }
+.assistant-panel { position: fixed; right: 24px; bottom: 96px; width: min(380px, calc(100vw - 48px)); max-height: 520px; background: rgba(253,249,245,0.98); border: 1px solid rgba(200,169,110,0.28); border-radius: 14px; box-shadow: 0 24px 70px rgba(42,36,32,0.2); overflow: hidden; opacity: 0; transform: translateY(12px) scale(0.98); pointer-events: none; transition: opacity 0.22s ease, transform 0.22s ease; }
+.appointment-assistant.open .assistant-panel { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+.assistant-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; padding: 1rem 1.1rem; background: linear-gradient(135deg, var(--charcoal), #4a3930); color: var(--cream); }
+.assistant-head strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; }
+.assistant-head small { color: rgba(250,246,241,0.62); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.assistant-close { width: 34px; height: 34px; border: 1px solid rgba(250,246,241,0.22); background: transparent; color: var(--cream); border-radius: 50%; cursor: pointer; font-size: 1.15rem; line-height: 1; }
+.assistant-body { padding: 1.1rem; max-height: 390px; overflow-y: auto; }
+.assistant-body p { color: var(--mid); font-size: 0.9rem; line-height: 1.55; margin-bottom: 1rem; }
+.assistant-actions { display: grid; gap: 0.55rem; }
+.assistant-actions a { display: flex; align-items: center; justify-content: space-between; min-height: 46px; padding: 0.78rem 0.9rem; background: var(--warm-white); border: 1px solid var(--border); border-radius: 8px; color: var(--charcoal); text-decoration: none; font-size: 0.84rem; transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
+.assistant-actions a:hover { transform: translateY(-2px); border-color: rgba(200,169,110,0.5); box-shadow: 0 12px 28px rgba(42,36,32,0.08); }
+.assistant-actions a::after { content: '→'; color: var(--gold); }
+.wa-float { bottom: 96px !important; }
+@media (max-width: 768px) {
+  .appointment-assistant { right: 12px; bottom: 14px; }
+  .assistant-toggle { width: 54px; height: 54px; font-size: 1.12rem; }
+  .assistant-panel { left: 12px; right: 12px; bottom: 146px; width: auto; max-height: min(75vh, calc(100vh - 170px)); border-radius: 12px; }
+  .assistant-body { max-height: min(calc(75vh - 78px), calc(100vh - 248px)); }
+  .assistant-actions a { min-height: 50px; font-size: 0.9rem; }
+  .wa-float { right: 12px !important; bottom: 82px !important; }
+}
+@media (max-width: 480px) {
+  .assistant-panel { bottom: 130px; max-height: min(75vh, calc(100vh - 150px)); }
+  .assistant-head { padding: 0.9rem 1rem; }
+  .assistant-body { padding: 1rem; }
+}
 </style>
 </head>
 <body>
@@ -294,12 +323,13 @@
       </div>
       <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Coloración personalizada</span></div>
     </div>
-    <div class="g-item" data-category="corte" data-title="Corte & estilo" data-has-before="false" tabindex="0" role="button" aria-label="Abrir imagen de Corte y estilo">
-      <span class="compare-badge">Ver resultado</span>
+    <div class="g-item" data-category="corte" data-title="Corte & estilo" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Corte y estilo">
+      <span class="compare-badge">Ver transformación</span>
       <div class="g-frame">
         <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e0ceb8"/><stop offset="100%" stop-color="#a8835a"/></linearGradient></defs><rect width="300" height="260" fill="url(#after6)"/><path d="M70 52 C132 112 178 188 236 222" stroke="rgba(255,255,255,0.28)" stroke-width="7" fill="none"/><text x="150" y="132" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="rgba(255,255,255,0.5)" font-style="italic">Resultado corte &amp; estilo</text></svg></div>
+        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c8b29c"/><stop offset="100%" stop-color="#735545"/></linearGradient></defs><rect width="300" height="260" fill="url(#before6)"/><path d="M70 58 C120 110 160 184 232 224" stroke="rgba(255,255,255,0.16)" stroke-width="6" fill="none" stroke-dasharray="9 9"/><text x="150" y="120" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.34)" font-style="italic">Antes</text><text x="150" y="146" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.24)">forma inicial</text></svg></div>
       </div>
-      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Corte & estilo</span></div>
+      <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Corte & estilo</span></div>
     </div>
     <div class="g-item" data-category="color" data-title="Tinte global" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Tinte global">
       <span class="compare-badge">Ver transformación</span>
@@ -309,12 +339,13 @@
       </div>
       <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Tinte global</span></div>
     </div>
-    <div class="g-item" data-category="keratina" data-title="Hidratación profunda" data-has-before="false" tabindex="0" role="button" aria-label="Abrir imagen de Hidratación profunda">
-      <span class="compare-badge">Ver resultado</span>
+    <div class="g-item" data-category="keratina" data-title="Hidratación profunda" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Hidratación profunda">
+      <span class="compare-badge">Ver transformación</span>
       <div class="g-frame">
         <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d8c4a8"/><stop offset="100%" stop-color="#8a6845"/></linearGradient></defs><rect width="300" height="290" fill="url(#after8)"/><path d="M66 58 C132 118 174 200 238 244" stroke="rgba(255,255,255,0.26)" stroke-width="7" fill="none"/><text x="150" y="133" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.48)" font-style="italic">Después</text><text x="150" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.34)">hidratación profunda</text></svg></div>
+        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#bca58f"/><stop offset="100%" stop-color="#6f5142"/></linearGradient></defs><rect width="300" height="290" fill="url(#before8)"/><path d="M68 64 C124 118 154 190 236 246" stroke="rgba(255,255,255,0.15)" stroke-width="6" fill="none" stroke-dasharray="8 10"/><text x="150" y="133" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.34)" font-style="italic">Antes</text><text x="150" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.24)">textura apagada</text></svg></div>
       </div>
-      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Hidratación profunda</span></div>
+      <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Hidratación profunda</span></div>
     </div>
   </div>
 
@@ -457,6 +488,25 @@
   </div>
 </footer>
 
+<div class="appointment-assistant" id="appointmentAssistant">
+  <div class="assistant-panel" id="assistantPanel" aria-hidden="true">
+    <div class="assistant-head">
+      <div><strong>Asistente de cita</strong><small>D'Raggio Estilistas</small></div>
+      <button class="assistant-close" type="button" aria-label="Cerrar asistente">×</button>
+    </div>
+    <div class="assistant-body">
+      <p>Hola, soy el asistente virtual de D'Raggio Estilistas. ¿En qué podemos ayudarte?</p>
+      <div class="assistant-actions">
+        <a href="reserva.html">Reservar cita</a>
+        <a href="servicios.html#color-balayage">Balayage y color</a>
+        <a href="servicios.html#tratamientos">Tratamientos capilares</a>
+        <a href="contacto.html">Ubicación</a>
+        <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20D%27Raggio%20Estilistas." target="_blank" rel="noopener">Hablar por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+  <button class="assistant-toggle" type="button" aria-label="Abrir asistente" aria-expanded="false">✦</button>
+</div>
 <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20D%27Raggio%20Estilistas." target="_blank" class="wa-float" rel="noopener">💬</a>
 
 <script>
@@ -534,6 +584,18 @@
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && compareModal.classList.contains('open')) closeCompare();
   });
+  const appointmentAssistant = document.getElementById('appointmentAssistant');
+  const assistantToggle = appointmentAssistant?.querySelector('.assistant-toggle');
+  const assistantClose = appointmentAssistant?.querySelector('.assistant-close');
+  const assistantPanel = document.getElementById('assistantPanel');
+  function setAssistant(open) {
+    appointmentAssistant?.classList.toggle('open', open);
+    assistantToggle?.setAttribute('aria-expanded', String(open));
+    assistantPanel?.setAttribute('aria-hidden', String(!open));
+  }
+  assistantToggle?.addEventListener('click', () => setAssistant(!appointmentAssistant.classList.contains('open')));
+  assistantClose?.addEventListener('click', () => setAssistant(false));
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') setAssistant(false); });
 </script>
 </body>
 </html>
