@@ -205,7 +205,6 @@
   .trust-stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 2px; }
   .trust-text { font-size: 0.8rem; color: var(--light-mid); }
   .trust-text strong { color: var(--mid); }
-
   /* SECTIONS */
   section { padding: 90px 5%; }
   .section-label {
@@ -257,36 +256,34 @@
   /* GALERÍA */
   #galeria { background: var(--cream); }
   .gallery-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
-  .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-  .gallery-item { position: relative; overflow: hidden; border-radius: 2px; background: var(--blush); cursor: pointer; }
-  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: 1; }
-  .gallery-item:nth-child(2) { aspect-ratio: 0.85; }
-  .gallery-item:nth-child(3) { aspect-ratio: 0.85; }
-  .gallery-item:nth-child(4) { aspect-ratio: 0.85; }
-  .gallery-item:nth-child(5) { aspect-ratio: 0.85; }
-  .gallery-item:nth-child(6) { grid-column: span 2; aspect-ratio: 2; }
-  .gallery-placeholder {
-    width: 100%; height: 100%; min-height: 160px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, var(--blush), #e8d0bc);
-    transition: transform 0.5s ease; position: relative; border: 1px solid rgba(200,169,110,0.16);
-  }
-  .gallery-placeholder::before { content: ''; position: absolute; inset: 14px; border: 1px solid rgba(255,255,255,0.28); box-shadow: inset 0 0 0 1px rgba(200,169,110,0.08); pointer-events: none; }
-  .gallery-placeholder::after { content: ''; position: absolute; width: 68%; height: 1px; bottom: 28%; left: 16%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent); opacity: 0.55; }
-  .gallery-item:nth-child(1) .gallery-placeholder { background: linear-gradient(135deg, #e8cdb4, #c9967a40); }
-  .gallery-item:nth-child(2) .gallery-placeholder { background: linear-gradient(145deg, #f0ddd0, #e0c4a8); }
-  .gallery-item:nth-child(3) .gallery-placeholder { background: linear-gradient(160deg, #d4b89a, #f0e0cc); }
-  .gallery-item:nth-child(4) .gallery-placeholder { background: linear-gradient(120deg, #e8c89a, #d4a878); }
-  .gallery-item:nth-child(5) .gallery-placeholder { background: linear-gradient(140deg, #c8a87060, #e8d4bc); }
-  .gallery-item:nth-child(6) .gallery-placeholder { background: linear-gradient(135deg, #f0e4d4, #d8b898); }
-  .gallery-item:hover .gallery-placeholder { transform: scale(1.06); }
-  .gallery-label { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; color: var(--charcoal); opacity: 0.72; text-align: center; position: relative; z-index: 1; }
-  .gallery-icon { font-size: 1.45rem; opacity: 0.34; margin-bottom: 0.55rem; position: relative; z-index: 1; }
-  .gallery-note { margin-top: 1.2rem; font-size: 0.82rem; color: var(--light-mid); text-align: center; font-weight: 300; }
-  .gallery-overlay { position: absolute; inset: 0; background: rgba(42,36,32,0); display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
-  .gallery-overlay span { color: #fff; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0; transition: opacity 0.3s; }
-  .gallery-item:hover .gallery-overlay { background: rgba(42,36,32,0.3); }
-  .gallery-item:hover .gallery-overlay span { opacity: 1; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .gallery-item { position: relative; overflow: hidden; border: 0; border-radius: 2px; background: var(--blush); cursor: pointer; aspect-ratio: 1 / 1.08; padding: 0; font: inherit; text-align: left; box-shadow: 0 16px 40px rgba(42,36,32,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .gallery-item:hover { transform: translateY(-4px); box-shadow: 0 22px 48px rgba(42,36,32,0.11); }
+  .gallery-result { position: absolute; inset: 0; background: linear-gradient(135deg, var(--blush), #e8d0bc); transition: transform 0.55s ease, filter 0.55s ease; }
+  .gallery-result::before { content: ''; position: absolute; inset: 12px; border: 1px solid rgba(255,255,255,0.3); box-shadow: inset 0 0 0 1px rgba(200,169,110,0.08); pointer-events: none; z-index: 1; }
+  .gallery-result::after { content: ''; position: absolute; left: -18%; right: -18%; bottom: 12%; height: 42%; opacity: 0.55; background: repeating-linear-gradient(100deg, transparent 0 16px, rgba(255,255,255,0.24) 17px 18px), linear-gradient(90deg, transparent, rgba(255,255,255,0.38), transparent); transform: rotate(-4deg); }
+  .gallery-item:hover .gallery-result { transform: scale(1.045); filter: saturate(1.04); }
+  .gallery-result.balayage { background: radial-gradient(circle at 72% 20%, rgba(255,255,255,0.42), transparent 22%), linear-gradient(145deg, #8c5d42 0%, #c9915d 45%, #e8c58b 100%); }
+  .gallery-result.babylights { background: radial-gradient(circle at 28% 18%, rgba(255,255,255,0.45), transparent 20%), linear-gradient(150deg, #7b594b 0%, #caa276 48%, #f0d6a4 100%); }
+  .gallery-result.color { background: radial-gradient(circle at 70% 24%, rgba(255,255,255,0.35), transparent 21%), linear-gradient(135deg, #5a332c 0%, #9e5547 46%, #d79a76 100%); }
+  .gallery-result.corte { background: radial-gradient(circle at 38% 22%, rgba(255,255,255,0.36), transparent 20%), linear-gradient(140deg, #4d3830 0%, #8f6855 48%, #d8b190 100%); }
+  .gallery-result.keratina { background: radial-gradient(circle at 66% 20%, rgba(255,255,255,0.5), transparent 18%), linear-gradient(155deg, #5b463b 0%, #b18662 52%, #ead0a4 100%); }
+  .gallery-result.hidratante { background: radial-gradient(circle at 34% 22%, rgba(255,255,255,0.42), transparent 19%), linear-gradient(145deg, #6c4d3f 0%, #b98967 50%, #e6c09a 100%); }
+  .gallery-copy { position: absolute; left: 1rem; right: 1rem; bottom: 1rem; z-index: 2; display: flex; flex-direction: column; gap: 0.35rem; color: #fff; }
+  .gallery-label { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-style: italic; font-weight: 300; line-height: 1.1; text-shadow: 0 2px 14px rgba(42,36,32,0.32); }
+  .gallery-kicker { width: fit-content; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.86); border: 1px solid rgba(255,255,255,0.34); padding: 0.26rem 0.5rem; background: rgba(42,36,32,0.18); backdrop-filter: blur(8px); }
+  .gallery-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(42,36,32,0.02) 35%, rgba(42,36,32,0.58) 100%); transition: background 0.3s; }
+  .gallery-item:hover .gallery-overlay { background: linear-gradient(180deg, rgba(42,36,32,0.08) 25%, rgba(42,36,32,0.68) 100%); }
+  .gallery-cta { display: flex; justify-content: center; margin-top: 2rem; }
+  .gallery-modal { position: fixed; inset: 0; z-index: 2200; display: none; align-items: center; justify-content: center; padding: 5vw; background: rgba(42,36,32,0.64); backdrop-filter: blur(12px); }
+  .gallery-modal.open { display: flex; }
+  .gallery-dialog { width: min(860px, 100%); background: var(--warm-white); border: 1px solid rgba(200,169,110,0.28); box-shadow: 0 28px 80px rgba(42,36,32,0.28); }
+  .gallery-modal-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.1rem; border-bottom: 1px solid var(--border); }
+  .gallery-modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--charcoal); }
+  .gallery-close { width: 36px; height: 36px; border: 1px solid var(--border); background: var(--cream); color: var(--charcoal); cursor: pointer; font-size: 1.25rem; }
+  .gallery-modal-visual { height: min(62vh, 560px); min-height: 320px; position: relative; overflow: hidden; }
+  .gallery-modal-visual .gallery-result { inset: 0; transform: none; }
+  .gallery-modal-actions { display: flex; justify-content: center; padding: 1rem; border-top: 1px solid var(--border); }
 
   /* TESTIMONIOS */
   #opiniones { background: var(--blush); }
@@ -359,6 +356,7 @@
   footer { background: var(--charcoal); color: rgba(250,246,241,0.7); padding: 60px 5% 30px; }
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(200,169,110,0.15); }
   .footer-brand .nav-logo { font-size: 1.5rem; display: block; margin-bottom: 1rem; color: var(--cream); }
+  .footer-brand .nav-logo span { color: var(--gold); }
   .footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 280px; font-weight: 300; }
   .footer-social { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
   .social-btn { width: 38px; height: 38px; border: 1px solid rgba(200,169,110,0.2); border-radius: 2px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1rem; transition: all 0.2s; color: rgba(250,246,241,0.6); }
@@ -384,9 +382,7 @@
     .nav-hamburger { display: flex; }
     .services-grid { grid-template-columns: 1fr 1fr; }
     .dif-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    .gallery-item:nth-child(1) { grid-column: span 2; }
-    .gallery-item:nth-child(6) { grid-column: span 2; }
+    .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .reviews-grid { grid-template-columns: 1fr 1fr; }
     .contacto-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -400,6 +396,11 @@
     nav { padding: 0 4%; }
     section { padding: 70px 4%; }
     .services-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item { aspect-ratio: 1 / 0.86; }
+    .gallery-header { align-items: flex-start; }
+    .gallery-modal { padding: 4vw; }
+    .gallery-modal-visual { height: 54vh; min-height: 260px; }
     .reviews-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
     .footer-bottom { flex-direction: column; text-align: center; }
@@ -732,32 +733,54 @@
     <a href="https://www.instagram.com/dianaraggioestilistas/" target="_blank" rel="noopener" class="btn-wa">Ver en Instagram →</a>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item">
-      <div class="gallery-placeholder"><span class="gallery-icon">✦</span><span class="gallery-label">Balayage californiano</span></div>
-      <div class="gallery-overlay"><span>Ver detalle</span></div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-placeholder"><span class="gallery-icon">✨</span><span class="gallery-label">Mechas babylights</span></div>
-      <div class="gallery-overlay"><span>Ver detalle</span></div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-placeholder"><span class="gallery-icon">🎨</span><span class="gallery-label">Coloración personalizada</span></div>
-      <div class="gallery-overlay"><span>Ver detalle</span></div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-placeholder"><span class="gallery-icon">✂️</span><span class="gallery-label">Corte & Peinado</span></div>
-      <div class="gallery-overlay"><span>Ver detalle</span></div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-placeholder"><span class="gallery-icon">🌿</span><span class="gallery-label">Keratina / alisado</span></div>
-      <div class="gallery-overlay"><span>Ver detalle</span></div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-placeholder"><span class="gallery-icon">💧</span><span class="gallery-label">Tratamiento hidratante</span></div>
-      <div class="gallery-overlay"><span>Ver detalle</span></div>
-    </div>
+    <button class="gallery-item" type="button" data-title="Balayage californiano" data-visual="balayage">
+      <span class="gallery-result balayage" aria-hidden="true"></span>
+      <span class="gallery-overlay" aria-hidden="true"></span>
+      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Balayage californiano</span></span>
+    </button>
+    <button class="gallery-item" type="button" data-title="Mechas babylights" data-visual="babylights">
+      <span class="gallery-result babylights" aria-hidden="true"></span>
+      <span class="gallery-overlay" aria-hidden="true"></span>
+      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Mechas babylights</span></span>
+    </button>
+    <button class="gallery-item" type="button" data-title="Coloración personalizada" data-visual="color">
+      <span class="gallery-result color" aria-hidden="true"></span>
+      <span class="gallery-overlay" aria-hidden="true"></span>
+      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Coloración personalizada</span></span>
+    </button>
+    <button class="gallery-item" type="button" data-title="Corte & Peinado" data-visual="corte">
+      <span class="gallery-result corte" aria-hidden="true"></span>
+      <span class="gallery-overlay" aria-hidden="true"></span>
+      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Corte & Peinado</span></span>
+    </button>
+    <button class="gallery-item" type="button" data-title="Keratina / alisado" data-visual="keratina">
+      <span class="gallery-result keratina" aria-hidden="true"></span>
+      <span class="gallery-overlay" aria-hidden="true"></span>
+      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Keratina / alisado</span></span>
+    </button>
+    <button class="gallery-item" type="button" data-title="Tratamiento hidratante" data-visual="hidratante">
+      <span class="gallery-result hidratante" aria-hidden="true"></span>
+      <span class="gallery-overlay" aria-hidden="true"></span>
+      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Tratamiento hidratante</span></span>
+    </button>
+  </div>
+  <div class="gallery-cta">
+    <a href="galeria.html" class="btn-primary">Ver galería completa</a>
   </div>
 </section>
+
+<div class="gallery-modal" id="homeGalleryModal" aria-hidden="true">
+  <div class="gallery-dialog" role="dialog" aria-modal="true" aria-labelledby="homeGalleryTitle">
+    <div class="gallery-modal-head">
+      <h3 class="gallery-modal-title" id="homeGalleryTitle">Resultado</h3>
+      <button class="gallery-close" type="button" aria-label="Cerrar">×</button>
+    </div>
+    <div class="gallery-modal-visual" id="homeGalleryVisual"></div>
+    <div class="gallery-modal-actions">
+      <a href="galeria.html" class="btn-primary">Ver transformación</a>
+    </div>
+  </div>
+</div>
 
 <section id="opiniones">
   <div class="section-label">Opiniones</div>
@@ -932,6 +955,30 @@
   function closeMobile() { mobileMenu.classList.remove('open'); }
 
   document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', () => closeMobile()); });
+  const homeGalleryModal = document.getElementById('homeGalleryModal');
+  const homeGalleryTitle = document.getElementById('homeGalleryTitle');
+  const homeGalleryVisual = document.getElementById('homeGalleryVisual');
+  const homeGalleryClose = homeGalleryModal?.querySelector('.gallery-close');
+  function openHomeGallery(card) {
+    const title = card.dataset.title || 'Resultado';
+    const visual = card.dataset.visual || 'balayage';
+    homeGalleryTitle.textContent = title;
+    homeGalleryVisual.innerHTML = `<span class="gallery-result ${visual}" aria-hidden="true"></span>`;
+    homeGalleryModal.classList.add('open');
+    homeGalleryModal.setAttribute('aria-hidden', 'false');
+    homeGalleryClose?.focus();
+  }
+  function closeHomeGallery() {
+    homeGalleryModal?.classList.remove('open');
+    homeGalleryModal?.setAttribute('aria-hidden', 'true');
+  }
+  document.querySelectorAll('.gallery-item').forEach(card => {
+    card.addEventListener('click', () => openHomeGallery(card));
+  });
+  homeGalleryClose?.addEventListener('click', closeHomeGallery);
+  homeGalleryModal?.addEventListener('click', event => {
+    if (event.target === homeGalleryModal) closeHomeGallery();
+  });
   const appointmentAssistant = document.getElementById('appointmentAssistant');
   const assistantToggle = appointmentAssistant?.querySelector('.assistant-toggle');
   const assistantClose = appointmentAssistant?.querySelector('.assistant-close');
@@ -943,7 +990,12 @@
   }
   assistantToggle?.addEventListener('click', () => setAssistant(!appointmentAssistant.classList.contains('open')));
   assistantClose?.addEventListener('click', () => setAssistant(false));
-  document.addEventListener('keydown', event => { if (event.key === 'Escape') setAssistant(false); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      closeHomeGallery();
+      setAssistant(false);
+    }
+  });
 </script>
 </body>
 </html>
