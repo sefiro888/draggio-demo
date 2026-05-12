@@ -72,12 +72,13 @@
 
   /* Masonry-style grid */
   .gallery-masonry { columns: 4; column-gap: 8px; }
-  .reels-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 360px)); gap: 1rem; align-items: start; }
+  .reels-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 340px)); gap: 1rem; align-items: start; justify-content: center; }
   .gallery-masonry .g-item { display: block; break-inside: avoid; margin-bottom: 8px; position: relative; overflow: hidden; border-radius: 2px; cursor: pointer; border: 1px solid rgba(200,169,110,0.14); background: var(--warm-white); color: inherit; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.25s ease; }
   .gallery-masonry .g-item.is-hidden { display: none; }
   .g-frame { position: relative; width: 100%; overflow: hidden; background: var(--blush); }
   .g-img { width: 100%; display: block; transition: opacity 0.45s ease, transform 0.5s ease, filter 0.5s ease; }
-  .g-photo { width: 100%; aspect-ratio: 3 / 4; display: block; object-fit: cover; object-position: center; }
+  .g-img picture { display: block; width: 100%; }
+  .g-photo { width: 100%; height: auto; aspect-ratio: 3 / 4; display: block; object-fit: cover; object-position: center; }
   .g-before { position: absolute; inset: 0; opacity: 0; }
   .g-item[data-has-before="true"]:hover .g-before { opacity: 1; }
   .g-item[data-has-before="true"]:hover .g-after { opacity: 0; }
@@ -225,6 +226,7 @@
     .nav-links { display: none; }
     .nav-hamburger { display: flex; }
     .gallery-masonry { columns: 2; }
+    .reels-grid { grid-template-columns: repeat(2, minmax(0, 340px)); }
     .reviews-grid { grid-template-columns: 1fr 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .reviews-intro { flex-direction: column; align-items: flex-start; }
@@ -421,8 +423,8 @@
     <div class="g-item" data-category="balayage" data-title="Balayage" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Balayage">
       <span class="compare-badge">Ver transformación</span>
       <div class="g-frame">
-        <div class="g-img g-after"><img class="g-photo" src="assets/img/balayage-despues1.png" alt="Después de balayage en D'Raggio Estilistas Barcelona"></div>
-        <div class="g-img g-before"><img class="g-photo" src="assets/img/balayage-antes.png" alt="Antes de balayage en D'Raggio Estilistas Barcelona"></div>
+        <div class="g-img g-after"><picture><source type="image/avif" srcset="assets/img/balayage-despues1-800.avif 800w, assets/img/balayage-despues1-1600.avif 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><source type="image/webp" srcset="assets/img/balayage-despues1-800.webp 800w, assets/img/balayage-despues1-1600.webp 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><img class="g-photo" src="assets/img/balayage-despues1-800.webp" width="1267" height="1269" loading="lazy" decoding="async" alt="Después de balayage en D'Raggio Estilistas Barcelona"></picture></div>
+        <div class="g-img g-before"><picture><source type="image/avif" srcset="assets/img/balayage-antes-800.avif 800w, assets/img/balayage-antes-1600.avif 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><source type="image/webp" srcset="assets/img/balayage-antes-800.webp 800w, assets/img/balayage-antes-1600.webp 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><img class="g-photo" src="assets/img/balayage-antes-800.webp" width="1128" height="1239" loading="lazy" decoding="async" alt="Antes de balayage en D'Raggio Estilistas Barcelona"></picture></div>
       </div>
       <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Balayage</span><span class="g-desc">Resultado luminoso y natural.</span></div>
     </div>
@@ -437,34 +439,32 @@
     <div class="g-item" data-category="balayage" data-title="Balayage moreno" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Balayage moreno">
       <span class="compare-badge">Ver transformación</span>
       <div class="g-frame">
-        <div class="g-img g-after"><img class="g-photo" src="assets/img/balayagemoreno-despues.png" alt="Después de balayage moreno en D'Raggio Estilistas Barcelona"></div>
-        <div class="g-img g-before"><img class="g-photo" src="assets/img/balayagemoreno-antes.png" alt="Antes de balayage moreno en D'Raggio Estilistas Barcelona"></div>
+        <div class="g-img g-after"><picture><source type="image/avif" srcset="assets/img/balayagemoreno-despues-800.avif 800w, assets/img/balayagemoreno-despues-1600.avif 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><source type="image/webp" srcset="assets/img/balayagemoreno-despues-800.webp 800w, assets/img/balayagemoreno-despues-1600.webp 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><img class="g-photo" src="assets/img/balayagemoreno-despues-800.webp" width="948" height="1236" loading="lazy" decoding="async" alt="Después de balayage moreno en D'Raggio Estilistas Barcelona"></picture></div>
+        <div class="g-img g-before"><picture><source type="image/avif" srcset="assets/img/balayagemoreno-antes-800.avif 800w, assets/img/balayagemoreno-antes-1600.avif 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><source type="image/webp" srcset="assets/img/balayagemoreno-antes-800.webp 800w, assets/img/balayagemoreno-antes-1600.webp 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><img class="g-photo" src="assets/img/balayagemoreno-antes-800.webp" width="931" height="1180" loading="lazy" decoding="async" alt="Antes de balayage moreno en D'Raggio Estilistas Barcelona"></picture></div>
       </div>
       <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Balayage moreno</span><span class="g-desc">Morena iluminada con reflejos suaves.</span></div>
     </div>
     <div class="g-item" data-category="keratina" data-title="Bioplastia capilar" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Bioplastia capilar">
       <span class="compare-badge">Ver transformación</span>
       <div class="g-frame">
-        <div class="g-img g-after"><img class="g-photo" src="assets/img/bioplastia capilar-despues.png" alt="Después de bioplastia capilar en D'Raggio Estilistas Barcelona"></div>
-        <div class="g-img g-before"><img class="g-photo" src="assets/img/bioplastia capilar-antes.png" alt="Antes de bioplastia capilar en D'Raggio Estilistas Barcelona"></div>
+        <div class="g-img g-after"><picture><source type="image/avif" srcset="assets/img/bioplastia-capilar-despues-800.avif 800w, assets/img/bioplastia-capilar-despues-1600.avif 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><source type="image/webp" srcset="assets/img/bioplastia-capilar-despues-800.webp 800w, assets/img/bioplastia-capilar-despues-1600.webp 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><img class="g-photo" src="assets/img/bioplastia-capilar-despues-800.webp" width="841" height="1237" loading="lazy" decoding="async" alt="Después de bioplastia capilar en D'Raggio Estilistas Barcelona"></picture></div>
+        <div class="g-img g-before"><picture><source type="image/avif" srcset="assets/img/bioplastia-capilar-antes-800.avif 800w, assets/img/bioplastia-capilar-antes-1600.avif 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><source type="image/webp" srcset="assets/img/bioplastia-capilar-antes-800.webp 800w, assets/img/bioplastia-capilar-antes-1600.webp 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><img class="g-photo" src="assets/img/bioplastia-capilar-antes-800.webp" width="844" height="1230" loading="lazy" decoding="async" alt="Antes de bioplastia capilar en D'Raggio Estilistas Barcelona"></picture></div>
       </div>
       <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Bioplastia capilar</span><span class="g-desc">Cabello más pulido, brillante y controlado.</span></div>
     </div>
-    <div class="g-item" data-category="color" data-title="Coloración personalizada" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Coloración personalizada">
-      <span class="compare-badge">Ver transformación</span>
+    <div class="g-item" data-category="color" data-title="Color y brillo" tabindex="0" role="button" aria-label="Ampliar foto de Color y brillo">
+      <span class="compare-badge">Ver resultado</span>
       <div class="g-frame">
-        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after5" x1="0%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#f0e4d4"/><stop offset="58%" stop-color="#ca8b63"/><stop offset="100%" stop-color="#7f4a34"/></linearGradient></defs><rect width="300" height="420" fill="url(#after5)"/><circle cx="220" cy="96" r="72" fill="rgba(255,239,198,0.14)"/><text x="150" y="198" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(100,50,30,0.42)" font-style="italic">Después</text><text x="150" y="225" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(100,50,30,0.32)">color personalizado</text></svg></div>
-        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before5" x1="0%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#c9ad98"/><stop offset="100%" stop-color="#6d5244"/></linearGradient></defs><rect width="300" height="420" fill="url(#before5)"/><text x="150" y="198" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.32)" font-style="italic">Antes</text><text x="150" y="225" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.24)">tono irregular</text></svg></div>
+        <div class="g-img g-after"><picture><source type="image/avif" srcset="assets/img/color-brillo-800.avif 800w, assets/img/color-brillo-1600.avif 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><source type="image/webp" srcset="assets/img/color-brillo-800.webp 800w, assets/img/color-brillo-1600.webp 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><img class="g-photo" src="assets/img/color-brillo-800.webp" width="1135" height="1228" loading="lazy" decoding="async" alt="Resultado de color y brillo en D'Raggio Estilistas Barcelona"></picture></div>
       </div>
-      <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Coloración personalizada</span></div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Color y brillo</span><span class="g-desc">Tonos personalizados con acabado luminoso.</span></div>
     </div>
-    <div class="g-item" data-category="corte" data-title="Corte & estilo" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Corte y estilo">
-      <span class="compare-badge">Ver transformación</span>
+    <div class="g-item" data-category="corte" data-title="Corte y peinado" tabindex="0" role="button" aria-label="Ampliar foto de Corte y peinado">
+      <span class="compare-badge">Ver resultado</span>
       <div class="g-frame">
-        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e0ceb8"/><stop offset="100%" stop-color="#a8835a"/></linearGradient></defs><rect width="300" height="260" fill="url(#after6)"/><path d="M70 52 C132 112 178 188 236 222" stroke="rgba(255,255,255,0.28)" stroke-width="7" fill="none"/><text x="150" y="132" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="rgba(255,255,255,0.5)" font-style="italic">Resultado corte &amp; estilo</text></svg></div>
-        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c8b29c"/><stop offset="100%" stop-color="#735545"/></linearGradient></defs><rect width="300" height="260" fill="url(#before6)"/><path d="M70 58 C120 110 160 184 232 224" stroke="rgba(255,255,255,0.16)" stroke-width="6" fill="none" stroke-dasharray="9 9"/><text x="150" y="120" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.34)" font-style="italic">Antes</text><text x="150" y="146" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.24)">forma inicial</text></svg></div>
+        <div class="g-img g-after"><picture><source type="image/avif" srcset="assets/img/corte-peinado-800.avif 800w, assets/img/corte-peinado-1600.avif 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><source type="image/webp" srcset="assets/img/corte-peinado-800.webp 800w, assets/img/corte-peinado-1600.webp 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><img class="g-photo" src="assets/img/corte-peinado-800.webp" width="1008" height="1261" loading="lazy" decoding="async" alt="Recogido de novia en D'Raggio Estilistas Barcelona"></picture></div>
       </div>
-      <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Corte & estilo</span></div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Corte y peinado</span><span class="g-desc">Recogidos y peinados para eventos y bodas.</span></div>
     </div>
     <div class="g-item" data-category="color" data-title="Tinte global" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Tinte global">
       <span class="compare-badge">Ver transformación</span>
@@ -474,13 +474,12 @@
       </div>
       <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Tinte global</span></div>
     </div>
-    <div class="g-item" data-category="keratina" data-title="Hidratación profunda" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Hidratación profunda">
-      <span class="compare-badge">Ver transformación</span>
+    <div class="g-item" data-category="keratina" data-title="Tratamiento capilar" tabindex="0" role="button" aria-label="Ampliar foto de Tratamiento capilar">
+      <span class="compare-badge">Ver resultado</span>
       <div class="g-frame">
-        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d8c4a8"/><stop offset="100%" stop-color="#8a6845"/></linearGradient></defs><rect width="300" height="290" fill="url(#after8)"/><path d="M66 58 C132 118 174 200 238 244" stroke="rgba(255,255,255,0.26)" stroke-width="7" fill="none"/><text x="150" y="133" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.48)" font-style="italic">Después</text><text x="150" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.34)">hidratación profunda</text></svg></div>
-        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#bca58f"/><stop offset="100%" stop-color="#6f5142"/></linearGradient></defs><rect width="300" height="290" fill="url(#before8)"/><path d="M68 64 C124 118 154 190 236 246" stroke="rgba(255,255,255,0.15)" stroke-width="6" fill="none" stroke-dasharray="8 10"/><text x="150" y="133" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.34)" font-style="italic">Antes</text><text x="150" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.24)">textura apagada</text></svg></div>
+        <div class="g-img g-after"><picture><source type="image/avif" srcset="assets/img/tratamiento-capilar-800.avif 800w, assets/img/tratamiento-capilar-1600.avif 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><source type="image/webp" srcset="assets/img/tratamiento-capilar-800.webp 800w, assets/img/tratamiento-capilar-1600.webp 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><img class="g-photo" src="assets/img/tratamiento-capilar-800.webp" width="495" height="742" loading="lazy" decoding="async" alt="Resultado de tratamiento capilar en D'Raggio Estilistas Barcelona"></picture></div>
       </div>
-      <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Hidratación profunda</span></div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Tratamiento capilar</span><span class="g-desc">Cabello hidratado, suave y con brillo.</span></div>
     </div>
     </div>
   </div>
@@ -494,7 +493,7 @@
       <div class="g-item g-reel-card" data-category="balayage" data-type="reel">
         <span class="compare-badge">Ver Reel</span>
         <div class="reel-card-inner">
-          <iframe class="reel-embed" src="https://www.instagram.com/p/DUGR7AICEeJ/embed" title="Reel Full Blonde en Instagram" loading="lazy" allowtransparency="true"></iframe>
+          <iframe class="reel-embed" src="https://www.instagram.com/p/DUGR7AICEeJ/embed/captioned/" title="Reel Full Blonde en Instagram" loading="lazy" allowtransparency="true" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
         </div>
         <div class="reel-caption">
           <h3>Full Blonde</h3>
@@ -504,11 +503,21 @@
       <div class="g-item g-reel-card" data-category="balayage" data-type="reel">
         <span class="compare-badge">Ver Reel</span>
         <div class="reel-card-inner">
-          <iframe class="reel-embed" src="https://www.instagram.com/p/DM99WahI9q5/embed" title="Reel Balayage en Instagram" loading="lazy" allowtransparency="true" allowfullscreen></iframe>
+          <iframe class="reel-embed" src="https://www.instagram.com/p/DM99WahI9q5/embed/captioned/" title="Reel Balayage en Instagram" loading="lazy" allowtransparency="true" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
         </div>
         <div class="reel-caption">
           <h3>Balayage</h3>
           <p>Transformaci&oacute;n real en Instagram.</p>
+        </div>
+      </div>
+      <div class="g-item g-reel-card" data-category="color" data-type="reel">
+        <span class="compare-badge">Ver Reel</span>
+        <div class="reel-card-inner">
+          <iframe class="reel-embed" src="https://www.instagram.com/reel/DBbmOM2oqh7/embed/captioned/" title="Reel D'Raggio Estilistas en Instagram" loading="lazy" allowtransparency="true" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
+        </div>
+        <div class="reel-caption">
+          <h3>Cambio de look</h3>
+          <p>Otro resultado real grabado en el sal&oacute;n y publicado en Instagram.</p>
         </div>
       </div>
     </div>
