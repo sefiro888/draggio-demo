@@ -80,8 +80,24 @@
   #inicio {
     min-height: 100vh; display: flex; align-items: center;
     position: relative; overflow: hidden;
-    background: linear-gradient(135deg, #fdf8f2 0%, #f5e8d8 40%, #f0dcc8 100%);
+    background: #2a2420;
     padding-top: 68px;
+  }
+  .hero-bg-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: 68% 42%;
+    z-index: 0; filter: saturate(0.96) contrast(0.98);
+  }
+  #inicio::before {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(42,36,32,0.78) 0%, rgba(42,36,32,0.54) 36%, rgba(42,36,32,0.18) 68%, rgba(42,36,32,0.08) 100%),
+      linear-gradient(180deg, rgba(42,36,32,0.22) 0%, rgba(42,36,32,0.04) 42%, rgba(42,36,32,0.35) 100%);
+  }
+  #inicio::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: radial-gradient(circle at 22% 48%, rgba(200,169,110,0.18), transparent 34%);
+    mix-blend-mode: soft-light;
   }
   .hero-hair-figure {
     position: absolute; right: 4.5%; top: 54%; width: min(42vw, 540px);
@@ -161,17 +177,17 @@
   .hero-content { position: relative; z-index: 2; padding: 0 5%; max-width: 660px; }
   .hero-eyebrow {
     font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.2rem;
+    color: var(--gold-light); margin-bottom: 1.2rem;
     display: flex; align-items: center; gap: 0.8rem;
   }
-  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold-light); }
   .hero-h1 {
     font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 6vw, 4rem);
-    font-weight: 300; line-height: 1.1; color: var(--charcoal); margin-bottom: 1.4rem;
+    font-weight: 300; line-height: 1.1; color: var(--cream); margin-bottom: 1.4rem;
   }
-  .hero-h1 em { font-style: italic; color: var(--rose-dark); }
+  .hero-h1 em { font-style: italic; color: var(--gold-light); }
   .hero-sub {
-    font-size: 1rem; font-weight: 300; color: var(--mid); line-height: 1.7;
+    font-size: 1rem; font-weight: 300; color: rgba(250,246,241,0.82); line-height: 1.7;
     margin-bottom: 2.4rem; max-width: 460px;
   }
   .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; }
@@ -193,18 +209,46 @@
   .btn-primary:hover::before, .btn-wa:hover::before, .btn-booksy:hover::before, .btn-wa-big:hover::before { left: 130%; }
   .btn-wa {
     display: inline-flex; align-items: center; gap: 0.6rem;
-    background: transparent; color: var(--charcoal);
-    padding: 1rem 1.8rem; border-radius: 2px; border: 1px solid rgba(42,36,32,0.25);
+    background: rgba(250,246,241,0.08); color: var(--cream);
+    padding: 1rem 1.8rem; border-radius: 2px; border: 1px solid rgba(250,246,241,0.46);
     font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-decoration: none; transition: all 0.25s;
     position: relative; overflow: hidden; isolation: isolate;
   }
-  .btn-wa:hover { border-color: rgba(200,169,110,0.55); color: var(--rose-dark); background: rgba(255,255,255,0.45); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(42,36,32,0.07); }
+  .btn-wa:hover { border-color: rgba(200,169,110,0.72); color: var(--cream); background: rgba(255,255,255,0.18); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(42,36,32,0.16); }
   .wa-icon { color: #25d366; font-size: 1.1rem; }
 
   .hero-trust { margin-top: 3rem; display: flex; align-items: center; gap: 1.2rem; }
   .trust-stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 2px; }
   .trust-text { font-size: 0.8rem; color: var(--light-mid); }
   .trust-text strong { color: var(--mid); }
+
+  @media (min-width: 901px) {
+    #inicio {
+      background:
+        linear-gradient(115deg, #2a2420 0%, #3a3029 48%, #6f5546 100%);
+    }
+    .hero-bg-img {
+      left: 49%;
+      width: 51%;
+      object-position: 54% 42%;
+      filter: saturate(0.98) contrast(1.02);
+    }
+    #inicio::before {
+      background:
+        linear-gradient(90deg, rgba(42,36,32,0.9) 0%, rgba(42,36,32,0.78) 42%, rgba(42,36,32,0.34) 58%, rgba(42,36,32,0.08) 100%),
+        linear-gradient(180deg, rgba(42,36,32,0.16) 0%, rgba(42,36,32,0.02) 46%, rgba(42,36,32,0.34) 100%);
+    }
+    #inicio::after {
+      background:
+        radial-gradient(circle at 22% 48%, rgba(200,169,110,0.2), transparent 31%),
+        linear-gradient(90deg, transparent 0%, transparent 46%, rgba(232,201,144,0.22) 49%, transparent 52%);
+      mix-blend-mode: soft-light;
+    }
+    .hero-content {
+      max-width: 610px;
+      padding-right: 2rem;
+    }
+  }
   /* SECTIONS */
   section { padding: 90px 5%; }
   .section-label {
@@ -259,6 +303,7 @@
   .gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
   .gallery-item { position: relative; overflow: hidden; border: 0; border-radius: 2px; background: var(--blush); cursor: pointer; aspect-ratio: 1 / 1.08; padding: 0; font: inherit; text-align: left; box-shadow: 0 16px 40px rgba(42,36,32,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease; }
   .gallery-item:hover { transform: translateY(-4px); box-shadow: 0 22px 48px rgba(42,36,32,0.11); }
+  .gallery-item.is-prepared { cursor: default; }
   .gallery-result { position: absolute; inset: 0; background: linear-gradient(135deg, var(--blush), #e8d0bc); transition: transform 0.55s ease, filter 0.55s ease; }
   .gallery-result::before { content: ''; position: absolute; inset: 12px; border: 1px solid rgba(255,255,255,0.3); box-shadow: inset 0 0 0 1px rgba(200,169,110,0.08); pointer-events: none; z-index: 1; }
   .gallery-result::after { content: ''; position: absolute; left: -18%; right: -18%; bottom: 12%; height: 42%; opacity: 0.55; background: repeating-linear-gradient(100deg, transparent 0 16px, rgba(255,255,255,0.24) 17px 18px), linear-gradient(90deg, transparent, rgba(255,255,255,0.38), transparent); transform: rotate(-4deg); }
@@ -269,9 +314,15 @@
   .gallery-result.corte { background: radial-gradient(circle at 38% 22%, rgba(255,255,255,0.36), transparent 20%), linear-gradient(140deg, #4d3830 0%, #8f6855 48%, #d8b190 100%); }
   .gallery-result.keratina { background: radial-gradient(circle at 66% 20%, rgba(255,255,255,0.5), transparent 18%), linear-gradient(155deg, #5b463b 0%, #b18662 52%, #ead0a4 100%); }
   .gallery-result.hidratante { background: radial-gradient(circle at 34% 22%, rgba(255,255,255,0.42), transparent 19%), linear-gradient(145deg, #6c4d3f 0%, #b98967 50%, #e6c09a 100%); }
+  .gallery-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.55s ease, filter 0.55s ease; }
+  .gallery-item:hover .gallery-photo { transform: scale(1.045); filter: saturate(1.04); }
+  .gallery-prepared { position: absolute; inset: 0; background: radial-gradient(circle at 70% 20%, rgba(255,255,255,0.36), transparent 20%), linear-gradient(145deg, #efe2d4 0%, #d6b898 52%, #8f6954 100%); }
+  .gallery-prepared::before { content: ''; position: absolute; inset: 12px; border: 1px solid rgba(255,255,255,0.34); }
+  .gallery-prepared::after { content: ''; position: absolute; width: 42%; height: 1px; left: 29%; top: 50%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent); transform: rotate(-18deg); }
   .gallery-copy { position: absolute; left: 1rem; right: 1rem; bottom: 1rem; z-index: 2; display: flex; flex-direction: column; gap: 0.35rem; color: #fff; }
   .gallery-label { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-style: italic; font-weight: 300; line-height: 1.1; text-shadow: 0 2px 14px rgba(42,36,32,0.32); }
   .gallery-kicker { width: fit-content; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.86); border: 1px solid rgba(255,255,255,0.34); padding: 0.26rem 0.5rem; background: rgba(42,36,32,0.18); backdrop-filter: blur(8px); }
+  .gallery-desc { max-width: 92%; font-size: 0.78rem; line-height: 1.45; color: rgba(255,255,255,0.82); text-shadow: 0 2px 12px rgba(42,36,32,0.35); }
   .gallery-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(42,36,32,0.02) 35%, rgba(42,36,32,0.58) 100%); transition: background 0.3s; }
   .gallery-item:hover .gallery-overlay { background: linear-gradient(180deg, rgba(42,36,32,0.08) 25%, rgba(42,36,32,0.68) 100%); }
   .gallery-cta { display: flex; justify-content: center; margin-top: 2rem; }
@@ -283,6 +334,7 @@
   .gallery-close { width: 36px; height: 36px; border: 1px solid var(--border); background: var(--cream); color: var(--charcoal); cursor: pointer; font-size: 1.25rem; }
   .gallery-modal-visual { height: min(62vh, 560px); min-height: 320px; position: relative; overflow: hidden; }
   .gallery-modal-visual .gallery-result { inset: 0; transform: none; }
+  .gallery-modal-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
   .gallery-modal-actions { display: flex; justify-content: center; padding: 1rem; border-top: 1px solid var(--border); }
 
   /* TESTIMONIOS */
@@ -390,6 +442,7 @@
     .hero-hair-figure {
       right: -10%; top: 55%; width: min(48vw, 390px);
     }
+    .hero-bg-img { object-position: 62% 44%; }
   }
 
   @media (max-width: 600px) {
@@ -426,9 +479,10 @@
       position: absolute;
       inset: -18px -10px;
       z-index: -1;
-      background: linear-gradient(90deg, rgba(253,248,242,0.92) 0%, rgba(253,248,242,0.78) 58%, rgba(253,248,242,0.12) 100%);
+      background: linear-gradient(90deg, rgba(42,36,32,0.78) 0%, rgba(42,36,32,0.62) 64%, rgba(42,36,32,0.2) 100%);
       border-radius: 2px;
     }
+    .hero-bg-img { object-position: 57% 22%; }
     .hero-eyebrow,
     .hero-h1,
     .hero-sub,
@@ -614,76 +668,17 @@
 </div>
 
 <section id="inicio">
-  <div class="hero-hair-figure" aria-hidden="true">
-    <svg viewBox="0 0 620 760" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="hairBase" x1="310" y1="86" x2="310" y2="724" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#2f2522"/>
-          <stop offset="36%" stop-color="#5f3f34"/>
-          <stop offset="64%" stop-color="#a8735a"/>
-          <stop offset="84%" stop-color="#d5ad6b"/>
-          <stop offset="100%" stop-color="#f2d696"/>
-        </linearGradient>
-        <linearGradient id="hairSideLeft" x1="176" y1="126" x2="248" y2="722" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#3b2a25"/>
-          <stop offset="52%" stop-color="#8a5a48"/>
-          <stop offset="100%" stop-color="#e4bd77"/>
-        </linearGradient>
-        <linearGradient id="hairSideRight" x1="446" y1="128" x2="388" y2="722" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#3a2a25"/>
-          <stop offset="52%" stop-color="#9b664e"/>
-          <stop offset="100%" stop-color="#edcf8a"/>
-        </linearGradient>
-        <linearGradient id="balayageStroke" x1="300" y1="220" x2="330" y2="720" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="rgba(255,248,232,0)"/>
-          <stop offset="48%" stop-color="#c9967a"/>
-          <stop offset="75%" stop-color="#e8c990"/>
-          <stop offset="100%" stop-color="#fff0bd"/>
-        </linearGradient>
-        <radialGradient id="crownShadow" cx="50%" cy="28%" r="64%">
-          <stop offset="0%" stop-color="#735042"/>
-          <stop offset="72%" stop-color="#3b2a25"/>
-          <stop offset="100%" stop-color="#2a2420"/>
-        </radialGradient>
-        <filter id="hairSoftShadow" x="-22%" y="-12%" width="144%" height="140%">
-          <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#6b4230" flood-opacity="0.18"/>
-        </filter>
-      </defs>
-
-      <g class="hair-silhouette" filter="url(#hairSoftShadow)">
-        <path class="hair-mass" d="M313 70 C226 73 165 139 145 235 C121 333 145 464 103 681 C162 716 246 730 315 702 C384 731 464 716 523 681 C482 463 502 333 475 235 C449 136 394 72 313 70Z" fill="url(#hairBase)"/>
-        <path class="hair-layer layer-1" d="M299 90 C212 141 181 226 184 331 C187 444 231 544 193 707 C145 704 116 692 103 681 C145 464 121 333 145 235 C164 146 221 86 299 90Z" fill="url(#hairSideLeft)" opacity="0.74"/>
-        <path class="hair-layer layer-2" d="M332 90 C418 141 447 228 444 335 C440 449 393 548 431 707 C478 703 509 692 523 681 C482 463 502 333 475 235 C454 145 398 86 332 90Z" fill="url(#hairSideRight)" opacity="0.76"/>
-        <path d="M245 116 C249 72 284 48 322 54 C363 61 392 94 389 137 C386 185 354 217 314 219 C270 220 241 171 245 116Z" fill="url(#crownShadow)" opacity="0.98"/>
-        <path d="M271 185 C284 209 299 222 315 223 C333 222 349 209 360 185 C356 237 342 285 315 314 C288 285 275 237 271 185Z" fill="rgba(250,246,241,0.28)"/>
-
-        <path class="hair-strand-line" d="M309 88 C272 190 286 293 300 402 C314 510 320 618 300 702" stroke="rgba(42,36,32,0.32)" stroke-width="3" stroke-linecap="round"/>
-        <path class="hair-strand-line delay-1" d="M252 133 C208 223 222 324 239 424 C258 534 250 621 229 710" stroke="rgba(66,44,37,0.24)" stroke-width="3" stroke-linecap="round"/>
-        <path class="hair-strand-line delay-2" d="M371 134 C417 226 401 330 382 434 C363 536 374 623 397 710" stroke="rgba(66,44,37,0.24)" stroke-width="3" stroke-linecap="round"/>
-        <path class="hair-strand-line delay-3" d="M191 241 C174 348 204 468 168 692" stroke="rgba(255,228,174,0.22)" stroke-width="2.4" stroke-linecap="round"/>
-        <path class="hair-strand-line delay-2" d="M447 241 C468 352 429 471 468 692" stroke="rgba(255,228,174,0.2)" stroke-width="2.4" stroke-linecap="round"/>
-        <path class="hair-free-strand" d="M151 282 C115 374 153 468 132 562 C121 613 95 650 91 710" stroke="rgba(91,57,43,0.24)" stroke-width="2.5" stroke-linecap="round"/>
-        <path class="hair-free-strand delay-1" d="M214 198 C181 296 231 406 205 514 C191 573 170 636 179 720" stroke="rgba(255,226,174,0.24)" stroke-width="2.6" stroke-linecap="round"/>
-        <path class="hair-free-strand delay-2" d="M425 198 C458 294 407 409 433 515 C448 575 470 638 459 720" stroke="rgba(255,226,174,0.22)" stroke-width="2.6" stroke-linecap="round"/>
-        <path class="hair-free-strand delay-3" d="M486 280 C522 374 484 470 506 562 C519 614 545 652 548 710" stroke="rgba(91,57,43,0.22)" stroke-width="2.5" stroke-linecap="round"/>
-
-        <path class="hair-highlight" d="M267 300 C284 396 306 514 282 704" stroke="url(#balayageStroke)" stroke-width="9" stroke-linecap="round"/>
-        <path class="hair-highlight delay-1" d="M350 292 C328 398 345 526 321 716" stroke="url(#balayageStroke)" stroke-width="8" stroke-linecap="round"/>
-        <path class="hair-highlight delay-2" d="M411 342 C394 444 376 542 404 700" stroke="url(#balayageStroke)" stroke-width="7" stroke-linecap="round"/>
-      </g>
-    </svg>
-  </div>
+  <img class="hero-bg-img" src="assets/img/hero/draggio-hero-principal.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
 
   <div class="hero-content">
     <div class="hero-eyebrow">Barcelona · Sagrada Família</div>
-    <h1 class="hero-h1">Especialistas en balayage, colorimetría y cortes de tendencia en Barcelona</h1>
-    <p class="hero-sub">D'Raggio Estilistas es un salón cerca de Sagrada Família especializado en color, balayage, tratamientos capilares y cortes personalizados. Reserva online o escríbenos por WhatsApp.</p>
+    <h1 class="hero-h1">Especialistas en balayage, color y cambios de look en Barcelona</h1>
+    <p class="hero-sub">En D’Raggio Estilistas cuidamos tu cabello con diagnóstico personalizado, técnicas de colorimetría y tratamientos adaptados a tu melena.</p>
     <div class="hero-btns">
       <a href="reserva.html" class="btn-primary">✦ Reservar cita</a>
       <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20D%27Raggio%20Estilistas." target="_blank" class="btn-wa" rel="noopener noreferrer">
         <span class="wa-icon">💬</span> Escribir por WhatsApp
       </a>
-      <a href="servicios.html" class="btn-wa">Ver servicios</a>
     </div>
     <div class="hero-trust">
       <span class="trust-stars">★★★★★</span>
@@ -806,41 +801,42 @@
   <div class="gallery-header">
     <div>
       <div class="section-label">Nuestro trabajo</div>
-      <h2 class="section-title">Resultados que <em>hablan</em></h2>
+      <h2 class="section-title">Trabajos <em>destacados</em></h2>
+      <p class="section-sub">Resultados reales de balayage, color y tratamientos capilares realizados en D'Raggio Estilistas.</p>
     </div>
     <a href="https://www.instagram.com/dianaraggioestilistas/" target="_blank" rel="noopener noreferrer" class="btn-wa">Ver en Instagram →</a>
   </div>
   <div class="gallery-grid">
-    <button class="gallery-item" type="button" data-title="Balayage californiano" data-visual="balayage">
-      <span class="gallery-result balayage" aria-hidden="true"></span>
+    <button class="gallery-item" type="button" data-title="Balayage luminoso" data-img="assets/img/balayage-despues1.png">
+      <img class="gallery-photo" src="assets/img/balayage-despues1.png" alt="Resultado final de balayage luminoso en D'Raggio Estilistas Barcelona" loading="lazy">
       <span class="gallery-overlay" aria-hidden="true"></span>
-      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Balayage californiano</span></span>
+      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Balayage luminoso</span><span class="gallery-desc">Un resultado natural, elegante y con luz para realzar el cabello.</span></span>
     </button>
-    <button class="gallery-item" type="button" data-title="Mechas babylights" data-visual="babylights">
-      <span class="gallery-result babylights" aria-hidden="true"></span>
+    <button class="gallery-item" type="button" data-title="Morena iluminada" data-img="assets/img/balayagemoreno-despues.png">
+      <img class="gallery-photo" src="assets/img/balayagemoreno-despues.png" alt="Resultado final de balayage moreno en D'Raggio Estilistas Barcelona" loading="lazy">
       <span class="gallery-overlay" aria-hidden="true"></span>
-      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Mechas babylights</span></span>
+      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Morena iluminada</span><span class="gallery-desc">Reflejos suaves y personalizados para aportar dimensión sin perder naturalidad.</span></span>
     </button>
-    <button class="gallery-item" type="button" data-title="Coloración personalizada" data-visual="color">
-      <span class="gallery-result color" aria-hidden="true"></span>
+    <button class="gallery-item" type="button" data-title="Bioplastia capilar" data-img="assets/img/bioplastia capilar-despues.png">
+      <img class="gallery-photo" src="assets/img/bioplastia capilar-despues.png" alt="Resultado final de bioplastia capilar en D'Raggio Estilistas Barcelona" loading="lazy">
       <span class="gallery-overlay" aria-hidden="true"></span>
-      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Coloración personalizada</span></span>
+      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Bioplastia capilar</span><span class="gallery-desc">Cabello más pulido, brillante y controlado con un acabado cuidado.</span></span>
     </button>
-    <button class="gallery-item" type="button" data-title="Corte & Peinado" data-visual="corte">
-      <span class="gallery-result corte" aria-hidden="true"></span>
+    <div class="gallery-item is-prepared" data-status="pending-final-photo">
+      <span class="gallery-prepared" aria-hidden="true"></span>
       <span class="gallery-overlay" aria-hidden="true"></span>
-      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Corte & Peinado</span></span>
-    </button>
-    <button class="gallery-item" type="button" data-title="Keratina / alisado" data-visual="keratina">
-      <span class="gallery-result keratina" aria-hidden="true"></span>
+      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Color y brillo</span></span>
+    </div>
+    <div class="gallery-item is-prepared" data-status="pending-final-photo">
+      <span class="gallery-prepared" aria-hidden="true"></span>
       <span class="gallery-overlay" aria-hidden="true"></span>
-      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Keratina / alisado</span></span>
-    </button>
-    <button class="gallery-item" type="button" data-title="Tratamiento hidratante" data-visual="hidratante">
-      <span class="gallery-result hidratante" aria-hidden="true"></span>
+      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Corte y peinado</span></span>
+    </div>
+    <div class="gallery-item is-prepared" data-status="pending-final-photo">
+      <span class="gallery-prepared" aria-hidden="true"></span>
       <span class="gallery-overlay" aria-hidden="true"></span>
-      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Tratamiento hidratante</span></span>
-    </button>
+      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Tratamiento capilar</span></span>
+    </div>
   </div>
   <div class="gallery-cta">
     <a href="galeria.html" class="btn-primary">Ver galería completa</a>
@@ -1040,9 +1036,11 @@
   const homeGalleryClose = homeGalleryModal?.querySelector('.gallery-close');
   function openHomeGallery(card) {
     const title = card.dataset.title || 'Resultado';
-    const visual = card.dataset.visual || 'balayage';
+    const img = card.dataset.img || '';
     homeGalleryTitle.textContent = title;
-    homeGalleryVisual.innerHTML = `<span class="gallery-result ${visual}" aria-hidden="true"></span>`;
+    homeGalleryVisual.innerHTML = img
+      ? `<img src="${img}" alt="${title} en D'Raggio Estilistas Barcelona">`
+      : '';
     homeGalleryModal.classList.add('open');
     homeGalleryModal.setAttribute('aria-hidden', 'false');
     homeGalleryClose?.focus();
@@ -1052,7 +1050,10 @@
     homeGalleryModal?.setAttribute('aria-hidden', 'true');
   }
   document.querySelectorAll('.gallery-item').forEach(card => {
-    card.addEventListener('click', () => openHomeGallery(card));
+    card.addEventListener('click', () => {
+      if (card.classList.contains('is-prepared')) return;
+      openHomeGallery(card);
+    });
   });
   homeGalleryClose?.addEventListener('click', closeHomeGallery);
   homeGalleryModal?.addEventListener('click', event => {

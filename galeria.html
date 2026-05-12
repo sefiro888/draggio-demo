@@ -60,6 +60,11 @@
   /* GALLERY */
   .gallery-section { padding: 80px 5%; }
   .gallery-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+  .gallery-subsection { margin-top: 2.4rem; }
+  .gallery-subsection:first-of-type { margin-top: 0; }
+  .gallery-subhead { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; margin-bottom: 1.2rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--border); }
+  .gallery-subhead h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.7rem, 3vw, 2.25rem); font-weight: 300; color: var(--charcoal); line-height: 1.1; }
+  .gallery-subhead p { max-width: 390px; font-size: 0.85rem; line-height: 1.6; color: var(--mid); font-weight: 300; }
   .btn-ig { display: inline-flex; align-items: center; gap: 0.6rem; background: transparent; color: var(--charcoal); padding: 0.8rem 1.5rem; border-radius: 2px; border: 1px solid rgba(42,36,32,0.2); font-size: 0.82rem; text-decoration: none; transition: all 0.25s; position: relative; overflow: hidden; isolation: isolate; }
   .btn-ig::before, .btn-primary::before, .btn-outline::before { content: ''; position: absolute; inset: -40% auto -40% -70%; width: 42%; transform: rotate(18deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent); transition: left 0.55s ease; z-index: 0; pointer-events: none; }
   .btn-ig:hover { border-color: rgba(200,169,110,0.55); color: var(--rose-dark); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(42,36,32,0.07); }
@@ -67,10 +72,12 @@
 
   /* Masonry-style grid */
   .gallery-masonry { columns: 4; column-gap: 8px; }
-  .gallery-masonry .g-item { break-inside: avoid; margin-bottom: 8px; position: relative; overflow: hidden; border-radius: 2px; cursor: pointer; border: 1px solid rgba(200,169,110,0.14); background: var(--warm-white); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.25s ease; }
+  .reels-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 360px)); gap: 1rem; align-items: start; }
+  .gallery-masonry .g-item { display: block; break-inside: avoid; margin-bottom: 8px; position: relative; overflow: hidden; border-radius: 2px; cursor: pointer; border: 1px solid rgba(200,169,110,0.14); background: var(--warm-white); color: inherit; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.25s ease; }
   .gallery-masonry .g-item.is-hidden { display: none; }
   .g-frame { position: relative; width: 100%; overflow: hidden; background: var(--blush); }
   .g-img { width: 100%; display: block; transition: opacity 0.45s ease, transform 0.5s ease, filter 0.5s ease; }
+  .g-photo { width: 100%; aspect-ratio: 3 / 4; display: block; object-fit: cover; object-position: center; }
   .g-before { position: absolute; inset: 0; opacity: 0; }
   .g-item[data-has-before="true"]:hover .g-before { opacity: 1; }
   .g-item[data-has-before="true"]:hover .g-after { opacity: 0; }
@@ -89,10 +96,51 @@
     font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
     backdrop-filter: blur(10px);
   }
+  .g-reel-card {
+    background: var(--warm-white) !important;
+    padding: 0.75rem;
+    cursor: default;
+  }
+  .g-reel-card::before,
+  .g-reel-card::after { display: none; }
+  .reel-card-inner {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    border-radius: 2px;
+    background:
+      radial-gradient(circle at 82% 12%, rgba(232,201,144,0.18), transparent 30%),
+      linear-gradient(145deg, rgba(250,246,241,0.96), rgba(240,224,208,0.7));
+  }
+  .reel-caption {
+    padding: 0.9rem 0.35rem 0.2rem;
+  }
+  .reel-caption h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    line-height: 1.1;
+    color: var(--charcoal);
+    font-weight: 400;
+    margin-bottom: 0.35rem;
+  }
+  .reel-caption p {
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--mid);
+    font-weight: 300;
+  }
+  .reel-embed {
+    display: block;
+    width: 100%;
+    height: 560px;
+    border: 0;
+    background: var(--warm-white);
+  }
 
   .g-overlay { position: absolute; inset: 0; background: rgba(42,36,32,0); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem; transition: background 0.3s; }
   .g-overlay span { color: #fff; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0; transition: opacity 0.3s; }
   .g-overlay .g-tag { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; opacity: 0; transition: opacity 0.3s 0.05s; }
+  .g-overlay .g-desc { max-width: 78%; text-align: center; font-size: 0.78rem; line-height: 1.45; letter-spacing: 0; text-transform: none; font-weight: 300; color: rgba(255,255,255,0.82); }
   .g-item:hover .g-overlay { background: rgba(42,36,32,0.35); }
   .g-item:hover .g-overlay span, .g-item:hover .g-overlay .g-tag { opacity: 1; }
 
@@ -107,6 +155,7 @@
   .compare-close { width: 38px; height: 38px; border: 1px solid var(--border); background: transparent; color: var(--charcoal); cursor: pointer; font-size: 1.25rem; line-height: 1; }
   .compare-slider { position: relative; overflow: hidden; background: var(--blush); touch-action: none; }
   .compare-panel svg { width: 100%; height: auto; display: block; }
+  .compare-panel img { width: 100%; height: min(68vh, 620px); object-fit: cover; object-position: center; display: block; background: var(--blush); }
   .compare-before { position: absolute; inset: 0; width: 100%; overflow: hidden; clip-path: inset(0 50% 0 0); }
   .compare-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: rgba(253,249,245,0.92); box-shadow: 0 0 0 1px rgba(200,169,110,0.45), 0 0 20px rgba(42,36,32,0.2); transform: translateX(-50%); pointer-events: none; }
   .compare-handle::after { content: '↔'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 42px; height: 42px; border-radius: 50%; background: var(--warm-white); border: 1px solid rgba(200,169,110,0.55); color: var(--rose-dark); display: flex; align-items: center; justify-content: center; font-size: 1rem; }
@@ -188,6 +237,9 @@
     .compare-head { padding: 0.85rem; }
     .compare-title { font-size: 1.15rem; }
     .compare-badge { top: 10px; left: 10px; font-size: 0.55rem; padding: 0.32rem 0.48rem; }
+    .compare-panel img { height: auto; max-height: 58vh; }
+    .gallery-subhead { flex-direction: column; align-items: flex-start; }
+    .reels-grid { grid-template-columns: 1fr; }
     .reviews-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; text-align: center; }
@@ -360,14 +412,19 @@
     <button class="filter-btn" data-filter="corte">Corte</button>
   </div>
 
-  <div class="gallery-masonry">
-    <div class="g-item" data-category="balayage" data-title="Balayage californiano" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Balayage californiano">
+  <div class="gallery-subsection">
+    <div class="gallery-subhead">
+      <h3>Fotos antes &amp; después</h3>
+      <p>Transformaciones reales y resultados visuales para comparar el cambio con detalle.</p>
+    </div>
+    <div class="gallery-masonry">
+    <div class="g-item" data-category="balayage" data-title="Balayage" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Balayage">
       <span class="compare-badge">Ver transformación</span>
       <div class="g-frame">
-        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f2d6aa"/><stop offset="55%" stop-color="#d7a365"/><stop offset="100%" stop-color="#8a5638"/></linearGradient></defs><rect width="300" height="400" fill="url(#after1)"/><path d="M74 65 C146 132 151 256 92 352" stroke="rgba(255,245,218,0.36)" stroke-width="10" fill="none"/><text x="150" y="186" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="rgba(255,255,255,0.52)" font-style="italic">Después</text><text x="150" y="218" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.38)">balayage californiano</text></svg></div>
-        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7a5948"/><stop offset="100%" stop-color="#3f2f29"/></linearGradient></defs><rect width="300" height="400" fill="url(#before1)"/><path d="M86 70 C125 150 126 260 94 344" stroke="rgba(255,235,198,0.14)" stroke-width="8" fill="none"/><text x="150" y="186" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="rgba(255,255,255,0.34)" font-style="italic">Antes</text><text x="150" y="218" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.24)">base natural</text></svg></div>
+        <div class="g-img g-after"><img class="g-photo" src="assets/img/balayage-despues1.png" alt="Después de balayage en D'Raggio Estilistas Barcelona"></div>
+        <div class="g-img g-before"><img class="g-photo" src="assets/img/balayage-antes.png" alt="Antes de balayage en D'Raggio Estilistas Barcelona"></div>
       </div>
-      <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Balayage californiano</span></div>
+      <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Balayage</span><span class="g-desc">Resultado luminoso y natural.</span></div>
     </div>
     <div class="g-item" data-category="mechas" data-title="Mechas babylights" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Mechas babylights">
       <span class="compare-badge">Ver transformación</span>
@@ -377,21 +434,21 @@
       </div>
       <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Mechas babylights</span></div>
     </div>
-    <div class="g-item" data-category="balayage" data-title="Balayage oscuro" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Balayage oscuro">
+    <div class="g-item" data-category="balayage" data-title="Balayage moreno" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Balayage moreno">
       <span class="compare-badge">Ver transformación</span>
       <div class="g-frame">
-        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d7b796"/><stop offset="65%" stop-color="#9e6747"/><stop offset="100%" stop-color="#4b3028"/></linearGradient></defs><rect width="300" height="350" fill="url(#after3)"/><path d="M238 40 C182 126 181 232 216 316" stroke="rgba(255,232,174,0.28)" stroke-width="9" fill="none"/><text x="150" y="165" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.48)" font-style="italic">Después</text><text x="150" y="192" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.32)">morena iluminada</text></svg></div>
-        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#725343"/><stop offset="100%" stop-color="#2f2522"/></linearGradient></defs><rect width="300" height="350" fill="url(#before3)"/><text x="150" y="165" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.32)" font-style="italic">Antes</text><text x="150" y="192" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.22)">base oscura</text></svg></div>
+        <div class="g-img g-after"><img class="g-photo" src="assets/img/balayagemoreno-despues.png" alt="Después de balayage moreno en D'Raggio Estilistas Barcelona"></div>
+        <div class="g-img g-before"><img class="g-photo" src="assets/img/balayagemoreno-antes.png" alt="Antes de balayage moreno en D'Raggio Estilistas Barcelona"></div>
       </div>
-      <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Balayage oscuro</span></div>
+      <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Balayage moreno</span><span class="g-desc">Morena iluminada con reflejos suaves.</span></div>
     </div>
-    <div class="g-item" data-category="keratina" data-title="Keratina / alisado" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Keratina o alisado">
+    <div class="g-item" data-category="keratina" data-title="Bioplastia capilar" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Bioplastia capilar">
       <span class="compare-badge">Ver transformación</span>
       <div class="g-frame">
-        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#eed0a4"/><stop offset="100%" stop-color="#b97b52"/></linearGradient></defs><rect width="300" height="300" fill="url(#after4)"/><path d="M58 46 C132 112 176 204 238 254" stroke="rgba(255,249,232,0.34)" stroke-width="8" fill="none"/><text x="150" y="140" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.48)" font-style="italic">Después</text><text x="150" y="165" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.34)">keratina</text></svg></div>
-        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#b08a70"/><stop offset="100%" stop-color="#6b4b3d"/></linearGradient></defs><rect width="300" height="300" fill="url(#before4)"/><path d="M62 52 C120 104 110 195 234 250" stroke="rgba(255,255,255,0.18)" stroke-width="6" fill="none" stroke-dasharray="8 10"/><text x="150" y="140" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.34)" font-style="italic">Antes</text><text x="150" y="165" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.24)">frizz</text></svg></div>
+        <div class="g-img g-after"><img class="g-photo" src="assets/img/bioplastia capilar-despues.png" alt="Después de bioplastia capilar en D'Raggio Estilistas Barcelona"></div>
+        <div class="g-img g-before"><img class="g-photo" src="assets/img/bioplastia capilar-antes.png" alt="Antes de bioplastia capilar en D'Raggio Estilistas Barcelona"></div>
       </div>
-      <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Keratina / alisado</span></div>
+      <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Bioplastia capilar</span><span class="g-desc">Cabello más pulido, brillante y controlado.</span></div>
     </div>
     <div class="g-item" data-category="color" data-title="Coloración personalizada" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Coloración personalizada">
       <span class="compare-badge">Ver transformación</span>
@@ -424,6 +481,36 @@
         <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#bca58f"/><stop offset="100%" stop-color="#6f5142"/></linearGradient></defs><rect width="300" height="290" fill="url(#before8)"/><path d="M68 64 C124 118 154 190 236 246" stroke="rgba(255,255,255,0.15)" stroke-width="6" fill="none" stroke-dasharray="8 10"/><text x="150" y="133" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.34)" font-style="italic">Antes</text><text x="150" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.24)">textura apagada</text></svg></div>
       </div>
       <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Hidratación profunda</span></div>
+    </div>
+    </div>
+  </div>
+
+  <div class="gallery-subsection">
+    <div class="gallery-subhead">
+      <h3>Reels de Instagram</h3>
+      <p>Vídeos reales del salón integrados junto a la galería para ver procesos y resultados en movimiento.</p>
+    </div>
+    <div class="reels-grid">
+      <div class="g-item g-reel-card" data-category="balayage" data-type="reel">
+        <span class="compare-badge">Ver Reel</span>
+        <div class="reel-card-inner">
+          <iframe class="reel-embed" src="https://www.instagram.com/p/DUGR7AICEeJ/embed" title="Reel Full Blonde en Instagram" loading="lazy" allowtransparency="true"></iframe>
+        </div>
+        <div class="reel-caption">
+          <h3>Full Blonde</h3>
+          <p>Nuestro Balayage Full Blonde aporta luz sin da&ntilde;ar y se adapta a tu estilo.</p>
+        </div>
+      </div>
+      <div class="g-item g-reel-card" data-category="balayage" data-type="reel">
+        <span class="compare-badge">Ver Reel</span>
+        <div class="reel-card-inner">
+          <iframe class="reel-embed" src="https://www.instagram.com/p/DM99WahI9q5/embed" title="Reel Balayage en Instagram" loading="lazy" allowtransparency="true" allowfullscreen></iframe>
+        </div>
+        <div class="reel-caption">
+          <h3>Balayage</h3>
+          <p>Transformaci&oacute;n real en Instagram.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -608,6 +695,7 @@
   const compareTitle = document.getElementById('compareTitle');
   const compareBefore = document.getElementById('compareBefore');
   const compareAfter = document.getElementById('compareAfter');
+  const compareSlider = document.getElementById('compareSlider');
   const compareRange = document.getElementById('compareRange');
   const compareHandle = document.getElementById('compareHandle');
   const compareClose = document.querySelector('.compare-close');
@@ -654,8 +742,12 @@
   }
 
   galleryItems.forEach(item => {
-    item.addEventListener('click', () => openCompare(item));
+    item.addEventListener('click', () => {
+      if (item.dataset.type === 'reel') return;
+      openCompare(item);
+    });
     item.addEventListener('keydown', event => {
+      if (item.dataset.type === 'reel') return;
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
         openCompare(item);
