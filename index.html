@@ -337,6 +337,73 @@
   .gallery-modal-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
   .gallery-modal-actions { display: flex; justify-content: center; padding: 1rem; border-top: 1px solid var(--border); }
 
+  /* MARCAS */
+  #marcas {
+    background:
+      radial-gradient(120% 80% at 50% 0%, rgba(200,169,110,0.10), transparent 55%),
+      linear-gradient(180deg, #221d19 0%, #2a2420 50%, #221d19 100%);
+    color: var(--cream);
+    position: relative;
+    text-align: center;
+  }
+  #marcas::before, #marcas::after {
+    content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+    width: min(220px, 40%); height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,169,110,0.55), transparent);
+  }
+  #marcas::before { top: 0; }
+  #marcas::after { bottom: 0; }
+  #marcas .section-label { color: var(--gold-light); justify-content: center; }
+  #marcas .section-label::before { background: var(--gold-light); }
+  #marcas .section-title {
+    color: var(--cream);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-style: italic;
+    line-height: 0.95;
+  }
+  #marcas .section-title em { color: var(--gold-light); }
+  #marcas .section-title::after { margin-left: auto; margin-right: auto; }
+  #marcas .section-sub { color: rgba(250,246,241,0.7); margin: 0 auto; max-width: 560px; }
+  .brands-row {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 1rem; margin-top: 3rem; max-width: 1180px; margin-left: auto; margin-right: auto;
+  }
+  .brand-card {
+    flex: 1 1 150px;
+    max-width: 200px;
+    padding: 1.6rem 0.9rem;
+    border: 1px solid rgba(200,169,110,0.22);
+    background: rgba(255,255,255,0.025);
+    border-radius: 2px;
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem;
+    min-height: 110px;
+  }
+  .brand-card::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(232,201,144,0.72), transparent);
+    margin-bottom: 0.15rem;
+  }
+  .brand-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(200,169,110,0.55);
+    background: rgba(200,169,110,0.06);
+  }
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--cream);
+    line-height: 1.15;
+  }
+  .brand-meta {
+    font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(232,201,144,0.7);
+  }
+
   /* TESTIMONIOS */
   #opiniones { background: var(--blush); }
   .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
@@ -395,13 +462,25 @@
   .horario-row { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--mid); padding: 0.4rem 0; border-bottom: 1px solid var(--border); }
   .horario-row .dia { font-weight: 400; }
   .horario-row .hora { color: var(--charcoal); font-weight: 500; }
-  .map-placeholder { aspect-ratio: 1.1; background: linear-gradient(135deg, #e8e0d8, #d4ccc4); border-radius: 2px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1rem; }
-  .map-pin { font-size: 2.5rem; animation: bounce 2s ease-in-out infinite; }
-  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-  .map-address-box { text-align: center; background: rgba(255,255,255,0.85); padding: 1rem 1.5rem; border-radius: 2px; }
-  .map-address-box p { font-size: 0.88rem; color: var(--charcoal); }
-  .map-address-box strong { display: block; font-size: 0.78rem; color: var(--mid); margin-bottom: 0.3rem; letter-spacing: 0.1em; text-transform: uppercase; }
-  .btn-maps { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--charcoal); color: var(--cream); padding: 0.8rem 1.6rem; border-radius: 2px; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; margin-top: 0.5rem; transition: background 0.2s; }
+  .map-card {
+    position: relative;
+    width: 100%;
+    height: 430px;
+    border-radius: 2px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #e8e0d8, #d4ccc4);
+    border: 1px solid var(--border);
+    box-shadow: 0 18px 44px rgba(42,36,32,0.10);
+  }
+  .map-card iframe { display: block; width: 100%; height: 100%; border: 0; }
+  .map-caption {
+    margin-top: 1rem;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 0.9rem;
+  }
+  .map-caption .map-address { font-size: 0.88rem; color: var(--charcoal); line-height: 1.5; }
+  .map-caption .map-address strong { display: block; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light-mid); margin-bottom: 0.3rem; font-weight: 500; }
+  .btn-maps { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--charcoal); color: var(--cream); padding: 0.8rem 1.6rem; border-radius: 2px; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
   .btn-maps:hover { background: var(--rose-dark); }
 
   /* FOOTER */
@@ -436,6 +515,7 @@
     .dif-inner { grid-template-columns: 1fr; gap: 3rem; }
     .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .reviews-grid { grid-template-columns: 1fr 1fr; }
+    .brand-card { flex: 1 1 calc(33.333% - 1rem); max-width: none; }
     .contacto-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .dif-pillars { grid-template-columns: 1fr 1fr; }
@@ -449,6 +529,11 @@
     nav { padding: 0 4%; }
     section { padding: 70px 4%; }
     .services-grid { grid-template-columns: 1fr; }
+    .map-card { height: 320px; }
+    .map-caption { flex-direction: column; align-items: flex-start; }
+    .brands-row { gap: 0.7rem; margin-top: 2rem; }
+    .brand-card { flex: 1 1 calc(50% - 0.7rem); max-width: none; min-height: 92px; padding: 1.2rem 0.6rem; }
+    .brand-name { font-size: 1.15rem; }
     .gallery-grid { grid-template-columns: 1fr; }
     .gallery-item { aspect-ratio: 1 / 0.86; }
     .gallery-header { align-items: flex-start; }
@@ -860,6 +945,42 @@
   </div>
 </div>
 
+<section id="marcas">
+  <div class="section-label" style="justify-content:center;">Marcas</div>
+  <h2 class="section-title">Nuestras <em>Marcas</em></h2>
+  <p class="section-sub">Trabajamos con firmas profesionales seleccionadas para acompañar servicios de color, cuidado y acabado con una experiencia de salón premium.</p>
+  <div class="brands-row" role="list" aria-label="Marcas profesionales con las que trabajamos">
+    <div class="brand-card" role="listitem">
+      <span class="brand-name">OLAY</span>
+      <span class="brand-meta">Cuidado</span>
+    </div>
+    <div class="brand-card" role="listitem">
+      <span class="brand-name">L&rsquo;Or&eacute;al</span>
+      <span class="brand-meta">Paris</span>
+    </div>
+    <div class="brand-card" role="listitem">
+      <span class="brand-name">Christian Dior</span>
+      <span class="brand-meta">Paris</span>
+    </div>
+    <div class="brand-card" role="listitem">
+      <span class="brand-name">K&eacute;rastase</span>
+      <span class="brand-meta">Paris</span>
+    </div>
+    <div class="brand-card" role="listitem">
+      <span class="brand-name">Revlon</span>
+      <span class="brand-meta">Color</span>
+    </div>
+    <div class="brand-card" role="listitem">
+      <span class="brand-name">Lanc&ocirc;me</span>
+      <span class="brand-meta">Paris</span>
+    </div>
+    <div class="brand-card" role="listitem">
+      <span class="brand-name">Shiseido</span>
+      <span class="brand-meta">Cuidado</span>
+    </div>
+  </div>
+</section>
+
 <section id="opiniones">
   <div class="section-label">Opiniones</div>
   <h2 class="section-title">Opiniones reales<br>de clientas</h2>
@@ -944,13 +1065,20 @@
       </div>
     </div>
     <div>
-      <div class="map-placeholder">
-          <span class="map-pin">📍</span>
-        <div class="map-address-box">
+      <div class="map-card">
+        <iframe
+          title="Ubicación de D'Raggio Estilistas en Google Maps"
+          src="https://www.google.com/maps?q=D%27Raggio+Estilistas+Carrer+de+Lepant+282+Barcelona&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+      <div class="map-caption">
+        <div class="map-address">
           <strong>D'Raggio Estilistas</strong>
-          <p>Carrer de Lepant, 282, 08013 Barcelona · Zona Sagrada Família</p>
-          <a href="https://www.google.com/maps/search/?api=1&query=Peluquer%C3%ADa%20Diana%20Raggio%20Carrer%20de%20Lepant%20282%20Barcelona" target="_blank" class="btn-maps" rel="noopener noreferrer">Abrir en Google Maps →</a>
+          Carrer de Lepant, 282, 08013 Barcelona · Zona Sagrada Família
         </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Carrer%20de%20Lepant%20282%2008013%20Barcelona" target="_blank" rel="noopener noreferrer" class="btn-maps">Abrir en Google Maps →</a>
       </div>
     </div>
   </div>
