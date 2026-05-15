@@ -32,9 +32,9 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 5%; height: 68px;
-    background: rgba(250,246,241,0.92);
+    background: rgba(12,10,9,0.97);
     backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
     transition: box-shadow 0.3s;
   }
   nav.scrolled { box-shadow: var(--shadow); }
@@ -46,46 +46,48 @@
   .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
   .nav-links a {
     font-size: 0.82rem; font-weight: 400; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s;
+    text-transform: uppercase; color: rgba(250,246,241,0.62); text-decoration: none; transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--charcoal); }
-  .nav-active { color: var(--charcoal) !important; font-weight: 500 !important; }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-active { color: var(--cream) !important; font-weight: 500 !important; }
   .nav-cta {
-    background: var(--charcoal); color: var(--cream) !important;
+    background: var(--gold); color: var(--charcoal) !important;
     padding: 0.55rem 1.3rem; border-radius: 2px;
     font-size: 0.78rem !important; letter-spacing: 0.1em !important; transition: background 0.2s !important;
   }
-  .nav-cta:hover { background: var(--rose-dark) !important; color: #fff !important; }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--charcoal) !important; }
   .nav-hamburger {
     display: none; flex-direction: column; gap: 5px;
     cursor: pointer; background: none; border: none; padding: 4px;
   }
-  .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--charcoal); transition: all 0.3s; }
+  .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--cream); transition: all 0.3s; }
   .mobile-menu {
     display: none; position: fixed; top: 68px; left: 0; right: 0;
-    background: var(--warm-white); border-bottom: 1px solid var(--border);
+    background: rgba(12,10,9,0.98); border-bottom: 1px solid rgba(255,255,255,0.07);
     padding: 1.5rem 5%; z-index: 999; flex-direction: column; gap: 1rem;
   }
   .mobile-menu.open { display: flex; }
   .mobile-menu a {
-    font-size: 1rem; color: var(--charcoal); text-decoration: none;
-    padding: 0.5rem 0; border-bottom: 1px solid var(--border); letter-spacing: 0.06em;
+    font-size: 1rem; color: rgba(250,246,241,0.8); text-decoration: none;
+    padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); letter-spacing: 0.06em;
   }
   .mobile-menu .m-cta {
-    background: var(--charcoal); color: var(--cream); text-align: center;
+    background: var(--gold); color: var(--charcoal); text-align: center;
     padding: 0.9rem; border-radius: 2px; border: none; margin-top: 0.5rem;
   }
 
   /* HERO */
   #inicio {
-    min-height: 100vh; display: flex; align-items: center;
+    min-height: calc(100vh - 68px); display: flex; align-items: center;
     position: relative; overflow: hidden;
     background: #2a2420;
-    padding-top: 68px;
+    margin-top: 68px;
+    padding-top: 0;
   }
+  .hero-media { position: absolute; inset: 0; z-index: 0; display: block; overflow: hidden; }
   .hero-bg-img {
     position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; object-position: 68% 42%;
+    object-fit: cover; object-position: 68% 0%;
     z-index: 0; filter: saturate(0.96) contrast(0.98);
   }
   #inicio::before {
@@ -217,10 +219,194 @@
   .btn-wa:hover { border-color: rgba(200,169,110,0.72); color: var(--cream); background: rgba(255,255,255,0.18); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(42,36,32,0.16); }
   .wa-icon { color: #25d366; font-size: 1.1rem; }
 
-  .hero-trust { margin-top: 3rem; display: flex; align-items: center; gap: 1.2rem; }
+  .hero-trust { margin-top: 3rem; display: flex; flex-direction: column; gap: 0.75rem; }
+  .trust-row { display: flex; align-items: center; gap: 1.2rem; }
   .trust-stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 2px; }
   .trust-text { font-size: 0.8rem; color: var(--light-mid); }
   .trust-text strong { color: var(--mid); }
+  .trust-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    border: 1px solid rgba(200,169,110,0.52);
+    background: rgba(200,169,110,0.06);
+    padding: 0.6rem 1.3rem; border-radius: 28px;
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-light); width: fit-content; cursor: default;
+    transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease, color 0.32s ease, background 0.32s ease;
+    animation: badgePulse 3.8s ease-in-out infinite;
+  }
+  .trust-badge::before {
+    content: '✦'; font-size: 0.65rem; color: var(--gold);
+    display: inline-block; animation: starSpin 5s linear infinite;
+  }
+  .trust-badge:hover {
+    transform: translateY(-3px) scale(1.06);
+    border-color: rgba(200,169,110,1);
+    background: rgba(200,169,110,0.14);
+    color: #fff;
+    box-shadow: 0 0 26px rgba(200,169,110,0.45), 0 8px 28px rgba(200,169,110,0.18);
+    animation: none;
+  }
+  .trust-badge:hover::before { animation: starSpin 0.8s linear infinite; }
+  @keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 0 0 transparent; border-color: rgba(200,169,110,0.45); }
+    50% { box-shadow: 0 0 18px rgba(200,169,110,0.32); border-color: rgba(200,169,110,0.82); }
+  }
+  @keyframes starSpin {
+    0%   { transform: rotate(0deg) scale(1); }
+    50%  { transform: rotate(180deg) scale(1.25); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+
+  /* SECCIÓN VISAGISMO CAPILAR */
+  #visagismo {
+    background: var(--charcoal);
+    padding: 100px 5%;
+    position: relative;
+    overflow: hidden;
+  }
+  #visagismo::after {
+    content: 'VISAGISMO';
+    position: absolute;
+    right: 4%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(5rem, 10vw, 9rem);
+    font-weight: 300;
+    color: rgba(200,169,110,0.055);
+    letter-spacing: 0.18em;
+    pointer-events: none;
+    white-space: nowrap;
+    line-height: 1;
+    z-index: 0;
+  }
+  .vis-inner {
+    max-width: 820px; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  .vis-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    font-size: 0.7rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .vis-eyebrow::before {
+    content: ''; display: block;
+    width: 22px; height: 1px; background: var(--gold);
+  }
+  .vis-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5vw, 4.4rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--cream); margin-bottom: 1.8rem;
+  }
+  .vis-title em { font-style: italic; color: var(--gold-light); }
+  .vis-body { display: flex; flex-direction: column; gap: 0.95rem; }
+  .vis-body p {
+    font-size: 0.97rem; color: rgba(250,246,241,0.68);
+    line-height: 1.78; font-weight: 300; max-width: 480px;
+  }
+  .vis-body p strong { color: rgba(250,246,241,0.9); font-weight: 500; }
+  .vis-cta {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    margin-top: 1rem; font-size: 0.78rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold-light); text-decoration: none;
+    border-bottom: 1px solid rgba(232,201,144,0.3);
+    padding-bottom: 0.2rem;
+    transition: color 0.2s, border-color 0.2s; width: fit-content;
+  }
+  .vis-cta:hover { color: var(--cream); border-color: rgba(250,246,241,0.5); }
+  /* Pillar pills */
+  .vis-pillars {
+    display: flex; flex-direction: column; gap: 0.65rem; margin-top: 1.8rem;
+  }
+  .vis-pill {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.9rem 1.2rem;
+    border: 1px solid rgba(200,169,110,0.14);
+    border-radius: 2px;
+    background: rgba(255,255,255,0.03);
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .vis-pill:hover {
+    border-color: rgba(200,169,110,0.38);
+    background: rgba(200,169,110,0.06);
+  }
+  .vis-pill-icon {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid rgba(200,169,110,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; flex-shrink: 0;
+    color: var(--gold);
+  }
+  .vis-pill-text {
+    font-size: 0.83rem; color: rgba(250,246,241,0.75);
+    line-height: 1.5; font-weight: 300;
+  }
+  .vis-pill-text strong {
+    display: block; font-size: 0.8rem;
+    color: var(--cream); font-weight: 500;
+    margin-bottom: 0.1rem; letter-spacing: 0.02em;
+  }
+
+  /* SECCIÓN ATENCIÓN EXCLUSIVA */
+  #exclusiva {
+    background: var(--warm-white);
+    position: relative;
+  }
+  #exclusiva::before {
+    content: ''; position: absolute; top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: min(180px,35%); height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,169,110,0.45), transparent);
+  }
+  .excl-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .excl-text .section-label { color: var(--gold); }
+  .excl-text .section-label::before { background: var(--gold); }
+  .excl-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300; line-height: 1.15;
+    color: var(--charcoal); margin-bottom: 1.2rem;
+  }
+  .excl-title em { font-style: italic; color: var(--rose-dark); }
+  .excl-desc {
+    font-size: 0.97rem; color: var(--mid);
+    line-height: 1.8; font-weight: 300; max-width: 440px;
+  }
+  .excl-pillars { display: flex; flex-direction: column; gap: 1rem; }
+  .excl-pillar {
+    display: grid; grid-template-columns: 48px 1fr;
+    gap: 1rem; align-items: start;
+    padding: 1.3rem 1.4rem;
+    border: 1px solid var(--border); border-radius: 2px;
+    background: var(--cream);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .excl-pillar:hover {
+    transform: translateX(4px);
+    border-color: rgba(200,169,110,0.5);
+    box-shadow: 0 8px 28px rgba(42,36,32,0.07);
+  }
+  .excl-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem; font-weight: 300; line-height: 1;
+    color: var(--gold); padding-top: 0.1rem;
+  }
+  .excl-pillar-body {}
+  .excl-pillar-title {
+    font-size: 0.88rem; font-weight: 600;
+    color: var(--charcoal); margin-bottom: 0.3rem;
+    letter-spacing: 0.02em;
+  }
+  .excl-pillar-desc {
+    font-size: 0.82rem; color: var(--mid);
+    line-height: 1.6; font-weight: 300;
+  }
 
   @media (min-width: 901px) {
     #inicio {
@@ -230,7 +416,7 @@
     .hero-bg-img {
       left: 49%;
       width: 51%;
-      object-position: 54% 42%;
+      object-position: 52% 30%;
       filter: saturate(0.98) contrast(1.02);
     }
     #inicio::before {
@@ -290,6 +476,14 @@
   .dif-text .section-sub { color: rgba(250,246,241,0.65); max-width: 100%; }
   .dif-quote { border-left: 1px solid var(--gold); padding-left: 1.5rem; margin: 2rem 0; }
   .dif-quote p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.4rem; font-weight: 300; color: var(--cream); line-height: 1.5; }
+  .dif-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 1.6rem; font-size: 0.78rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold-light); text-decoration: none;
+    border-bottom: 1px solid rgba(232,201,144,0.3); padding-bottom: 0.2rem;
+    transition: color 0.2s, border-color 0.2s; width: fit-content;
+  }
+  .dif-link:hover { color: var(--cream); border-color: rgba(250,246,241,0.5); }
   .dif-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .pillar { padding: 1.5rem; border: 1px solid rgba(200,169,110,0.15); border-radius: 2px; background: rgba(255,255,255,0.03); transition: border-color 0.3s, background 0.3s; }
   .pillar:hover { border-color: rgba(200,169,110,0.4); background: rgba(255,255,255,0.06); }
@@ -516,13 +710,18 @@
     .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .reviews-grid { grid-template-columns: 1fr 1fr; }
     .brand-card { flex: 1 1 calc(33.333% - 1rem); max-width: none; }
+    .excl-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .vis-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .vis-graphic { display: none; }
+    #visagismo { padding: 72px 5%; }
+    #visagismo::after { display: none; }
     .contacto-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .dif-pillars { grid-template-columns: 1fr 1fr; }
     .hero-hair-figure {
       right: -10%; top: 55%; width: min(48vw, 390px);
     }
-    .hero-bg-img { object-position: 62% 44%; }
+    .hero-bg-img { object-position: 62% 0%; }
   }
 
   @media (max-width: 600px) {
@@ -543,61 +742,63 @@
     .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
     .footer-bottom { flex-direction: column; text-align: center; }
     .dif-pillars { grid-template-columns: 1fr; }
-    .hero-btns { flex-direction: column; }
-    .btn-primary, .btn-wa { width: 100%; justify-content: center; }
+  }
+
+  /* HERO — móvil/tablet: texto arriba, imagen debajo */
+  @media (max-width: 768px) {
     #inicio {
-      min-height: 92vh;
+      min-height: auto;
       display: flex;
-      flex-direction: row;
-      align-items: flex-start;
+      flex-direction: column;
+      align-items: stretch;
       justify-content: flex-start;
-      padding-top: 120px;
+      margin-top: 68px;
+      padding-top: 0;
+      background: var(--cream);
+      overflow: visible;
     }
+    #inicio::before,
+    #inicio::after { display: none; }
+
     .hero-content {
+      order: 1;
       position: relative;
-      z-index: 3;
+      z-index: 2;
       max-width: none;
       width: 100%;
+      padding: 2rem 5% 1.8rem;
+      background: var(--cream);
     }
-    .hero-content::before {
-      content: '';
-      position: absolute;
-      inset: -18px -10px;
-      z-index: -1;
-      background: linear-gradient(90deg, rgba(42,36,32,0.78) 0%, rgba(42,36,32,0.62) 64%, rgba(42,36,32,0.2) 100%);
-      border-radius: 2px;
-    }
-    .hero-bg-img { object-position: 57% 22%; }
-    .hero-eyebrow,
-    .hero-h1,
-    .hero-sub,
-    .hero-btns,
-    .hero-trust {
+    .hero-content::before { display: none; }
+    .hero-eyebrow { color: var(--gold); margin-bottom: 0.9rem; }
+    .hero-eyebrow::before { background: var(--gold); }
+    .hero-h1 { color: var(--charcoal); font-size: clamp(2rem, 8.5vw, 2.8rem); margin-bottom: 1.1rem; }
+    .hero-sub { color: var(--mid); max-width: none; margin-bottom: 1.6rem; }
+    .hero-btns { flex-direction: column; gap: 0.7rem; }
+    .btn-primary, .btn-wa { width: 100%; justify-content: center; }
+    .btn-wa { color: var(--charcoal); border-color: rgba(42,36,32,0.22); background: rgba(255,255,255,0.55); }
+    .btn-wa:hover { color: var(--charcoal); background: var(--warm-white); }
+    .hero-trust { margin-top: 1.4rem; gap: 0.7rem; flex-wrap: wrap; }
+    .trust-text { color: var(--mid); }
+    .trust-text strong { color: var(--charcoal); }
+
+    .hero-media {
+      order: 2;
       position: relative;
-      z-index: 3;
-    }
-    .hero-hair-figure {
-      position: absolute;
-      right: -38%;
-      top: 42%;
-      transform: translateY(-50%);
-      width: 108vw;
-      margin: 0;
-      opacity: 0;
-      z-index: 1;
-      filter: saturate(0.92) contrast(0.96) blur(0.06px);
-      animation-name: hairFigureInMobile;
-    }
-    .hero-hair-figure svg {
+      inset: auto;
       width: 100%;
-      height: auto;
+      height: clamp(380px, 60vh, 560px);
+      background: #2a2420;
+      overflow: hidden;
     }
-    .hair-highlight {
-      opacity: 0.58;
-    }
-    @keyframes hairFigureInMobile {
-      from { opacity: 0; transform: translateY(-48%) translateX(28px) scale(0.98); }
-      to { opacity: 0.5; transform: translateY(-50%) translateX(0) scale(1); }
+    .hero-media .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: none;
     }
   }
 
@@ -647,72 +848,34 @@
   .assistant-body { padding: 1rem; }
 }
 
-/* LOGO PREMIUM */
+/* LOGO IMAGEN */
 .nav-logo {
   display: inline-flex !important;
   align-items: center;
-  gap: 0.5rem;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.42rem !important;
-  font-weight: 600 !important;
-  line-height: 1;
-  letter-spacing: 0.055em !important;
-  color: var(--charcoal);
   text-decoration: none;
-  white-space: nowrap;
-  transition: color 0.25s ease, transform 0.25s ease;
+  background: transparent;
+  padding: 4px 0;
+  transition: opacity 0.22s ease;
+  line-height: 0;
+  flex-shrink: 0;
 }
-.nav-logo span {
-  position: relative;
-  display: inline-block;
-  width: 30px;
-  height: 22px;
-  margin: 0 0.02rem;
-  color: transparent;
-  font-size: 0;
-  line-height: 1;
-  transform: translateY(-1px) rotate(-9deg);
-  filter: drop-shadow(0 7px 12px rgba(139,94,75,0.16));
-  transition: transform 0.3s ease, filter 0.3s ease;
-  background:
-    radial-gradient(circle at 5px 7px, transparent 0 3.2px, rgba(200,169,110,0.86) 3.35px 4.25px, transparent 4.4px),
-    radial-gradient(circle at 5px 15px, transparent 0 3.2px, rgba(139,94,75,0.72) 3.35px 4.25px, transparent 4.4px);
+.nav-logo:hover { opacity: 0.78; }
+.nav-logo img {
+  height: 46px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  mix-blend-mode: screen;
 }
-.nav-logo span::before,
-.nav-logo span::after {
-  content: '';
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  width: 17px;
-  height: 1.4px;
-  background: linear-gradient(90deg, var(--rose-dark), var(--gold));
-  border-radius: 999px;
-  transform-origin: 1px 50%;
-  animation: scissorsSnip 7.5s ease-in-out infinite;
+.footer-brand .nav-logo {
+  display: inline-flex !important;
+  background: transparent;
+  padding: 0;
 }
-.nav-logo span::before { transform: rotate(28deg); }
-.nav-logo span::after { transform: rotate(-28deg); animation-delay: 0.08s; }
-@keyframes scissorsSnip {
-  0%, 74%, 100% { rotate: 0deg; opacity: 0.92; }
-  80% { rotate: 8deg; opacity: 1; }
-  86% { rotate: -4deg; }
-  92% { rotate: 0deg; }
-}
-.nav-logo:hover { color: var(--rose-dark); transform: translateY(-1px); }
-.nav-logo:hover span { transform: translateY(-1px) rotate(-5deg) scale(1.06); filter: drop-shadow(0 9px 18px rgba(200,169,110,0.22)); }
-.nav-logo:hover span::before,
-.nav-logo:hover span::after { animation-duration: 1.1s; }
-.footer-brand .nav-logo { display: inline-flex !important; color: var(--cream) !important; }
+.footer-brand .nav-logo img { height: 52px; }
 @media (max-width: 600px) {
-  .nav-logo { font-size: 1.22rem !important; gap: 0.36rem; letter-spacing: 0.045em !important; }
-  .nav-logo span { width: 27px; height: 20px; }
-  .nav-logo span::before,
-  .nav-logo span::after { width: 15px; left: 9px; top: 9px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .nav-logo span::before,
-  .nav-logo span::after { animation: none !important; }
+  .nav-logo img { height: 38px; }
+  .footer-brand .nav-logo img { height: 44px; }
 }
 
 /* SOCIAL ICON SVG */
@@ -729,9 +892,10 @@
 <body>
 
 <nav id="navbar">
-  <a href="#inicio" class="nav-logo">D'Raggio <span aria-hidden="true">✂</span> Estilistas</a>
+  <a href="#inicio" class="nav-logo"><img src="assets/img/draggio-logo.jpeg" alt="D'Raggio Estilistas" loading="lazy"></a>
   <ul class="nav-links">
     <li><a href="index.html" class="nav-active">Inicio</a></li>
+    <li><a href="diana.html">Sobre Diana</a></li>
     <li><a href="servicios.html">Servicios</a></li>
     <li><a href="galeria.html">Galería</a></li>
     <li><a href="galeria.html#opiniones">Opiniones</a></li>
@@ -745,6 +909,7 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html" onclick="closeMobile()">Inicio</a>
+  <a href="diana.html" onclick="closeMobile()">Sobre Diana</a>
   <a href="servicios.html" onclick="closeMobile()">Servicios</a>
   <a href="galeria.html" onclick="closeMobile()">Galería</a>
   <a href="galeria.html#opiniones" onclick="closeMobile()">Opiniones</a>
@@ -753,25 +918,27 @@
 </div>
 
 <section id="inicio">
-  <picture>
-    <source type="image/avif" srcset="assets/img/hero/draggio-hero-principal-1200.avif 1200w, assets/img/hero/draggio-hero-principal-2000.avif 2000w" sizes="100vw">
-    <source type="image/webp" srcset="assets/img/hero/draggio-hero-principal-1200.webp 1200w, assets/img/hero/draggio-hero-principal-2000.webp 2000w" sizes="100vw">
-    <img class="hero-bg-img" src="assets/img/hero/draggio-hero-principal-1200.webp" alt="" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async">
+  <picture class="hero-media">
+    <img class="hero-bg-img" src="assets/img/hero/draggio-hero-principal.jpg" alt="" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async">
   </picture>
 
   <div class="hero-content">
     <div class="hero-eyebrow">Barcelona · Sagrada Família</div>
-    <h1 class="hero-h1">Especialistas en balayage, color y cambios de look en Barcelona</h1>
-    <p class="hero-sub">En D’Raggio Estilistas cuidamos tu cabello con diagnóstico personalizado, técnicas de colorimetría y tratamientos adaptados a tu melena.</p>
+    <h1 class="hero-h1">Especialistas en balayage, colorimetría y cortes de tendencia en Barcelona</h1>
+    <p class="hero-sub">D'Raggio Estilistas es un salón cerca de Sagrada Família especializado en color, balayage, tratamientos capilares y cortes personalizados. Reserva online o escríbenos por WhatsApp.</p>
     <div class="hero-btns">
       <a href="reserva.html" class="btn-primary">✦ Reservar cita</a>
       <a href="https://wa.me/34601003780?text=Hola,%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20D%27Raggio%20Estilistas." target="_blank" class="btn-wa" rel="noopener noreferrer">
         <span class="wa-icon">💬</span> Escribir por WhatsApp
       </a>
+      <a href="#servicios" class="btn-wa">Ver servicios</a>
     </div>
     <div class="hero-trust">
-      <span class="trust-stars">★★★★★</span>
-      <p class="trust-text"><strong>5,0 en Booksy</strong> · Más de 200 reseñas verificadas</p>
+      <div class="trust-row">
+        <span class="trust-stars">★★★★★</span>
+        <p class="trust-text"><strong>5,0 en Booksy</strong> · Más de 200 reseñas verificadas</p>
+      </div>
+      <span class="trust-badge">Cita exclusiva · Solo tú en el salón</span>
     </div>
   </div>
 </section>
@@ -798,11 +965,12 @@
       <span class="service-icon">✦</span>
       <div class="service-cat">Coloración</div>
       <h3 class="service-name">Tinte & Color</h3>
-      <p class="service-desc">Coloración personalizada, cobertura de canas y cambios de tono con diagnóstico previo del cabello.</p>
+      <p class="service-desc">Tinte, baño de color, matización y Grey Blending para integrar canas de forma natural.</p>
       <div class="service-items">
         <span class="service-tag">Tinte global</span>
         <span class="service-tag">Coloración personalizada</span>
         <span class="service-tag">Cobertura canas</span>
+        <span class="service-tag">Grey Blending</span>
       </div>
     </div>
     <div class="service-card">
@@ -831,11 +999,11 @@
       <span class="service-icon">✨</span>
       <div class="service-cat">Corte & Estilo</div>
       <h3 class="service-name">Corte & Peinado</h3>
-      <p class="service-desc">Cortes modernos con técnica y criterio estético. Peinados para el día a día o para ocasiones especiales.</p>
+      <p class="service-desc">Cortes modernos con técnica y criterio estético. Brushing y acabados para el día a día.</p>
       <div class="service-items">
         <span class="service-tag">Corte mujer</span>
-        <span class="service-tag">Peinado novia</span>
         <span class="service-tag">Brushing</span>
+        <span class="service-tag">Acabado</span>
       </div>
     </div>
     <div class="service-card">
@@ -860,6 +1028,7 @@
         <p>"No seguimos tendencias. Creamos la que mejor va contigo."</p>
       </div>
       <p class="section-sub">En D'Raggio cada visita empieza con una conversación para entender tu cabello, tu estilo de vida y lo que buscas. El resultado se trabaja de forma personalizada y realista.</p>
+      <a href="diana.html" class="dif-link">Conoce a Diana →</a>
     </div>
     <div class="dif-pillars">
       <div class="pillar">
@@ -882,6 +1051,67 @@
         <div class="pillar-title">Experiencia única</div>
         <p class="pillar-desc">El salón es tu espacio. Tiempo para ti, sin prisa ni presión.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="exclusiva">
+  <div class="excl-inner">
+    <div class="excl-text">
+      <div class="section-label">Nuestra forma de trabajar</div>
+      <h2 class="excl-title">Tu cita,<br><em>solo para ti</em></h2>
+      <p class="excl-desc">Cuando reservas con Diana, el tiempo es exclusivamente tuyo. Sin más clientas a la vez, sin prisas, sin interrupciones. Diagnóstico personalizado, técnica pensada para tu cabello y tú como única protagonista de la visita.</p>
+    </div>
+    <div class="excl-pillars">
+      <div class="excl-pillar">
+        <div class="excl-num">01</div>
+        <div class="excl-pillar-body">
+          <div class="excl-pillar-title">Solo tu cita</div>
+          <p class="excl-pillar-desc">Cada reserva es individual y exclusiva. No hay otra clienta siendo atendida al mismo tiempo.</p>
+        </div>
+      </div>
+      <div class="excl-pillar">
+        <div class="excl-num">02</div>
+        <div class="excl-pillar-body">
+          <div class="excl-pillar-title">Diagnóstico propio</div>
+          <p class="excl-pillar-desc">Escuchamos tu cabello, tu estilo y lo que buscas antes de empezar cualquier servicio.</p>
+        </div>
+      </div>
+      <div class="excl-pillar">
+        <div class="excl-num">03</div>
+        <div class="excl-pillar-body">
+          <div class="excl-pillar-title">Sin interrupciones</div>
+          <p class="excl-pillar-desc">Dedicación completa durante toda la visita. Tu tiempo y tu resultado son la única prioridad.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visagismo">
+  <div class="vis-inner">
+    <div class="vis-text">
+      <div class="vis-eyebrow">Diagnóstico previo al corte</div>
+      <h2 class="vis-title">Visagismo<br><em>capilar</em></h2>
+      <div class="vis-body">
+        <p>¿No sabes qué corte te va a ir bien? El visagismo capilar es el diagnóstico previo que lo resuelve. Diana analiza la morfología de tu rostro — forma, rasgos, estructura — y a partir de ahí <strong>te orienta sobre qué corte, largo o estilo te favorece realmente</strong>.</p>
+        <p>Es la opción perfecta antes de un cambio de imagen, o cuando llevas tiempo sin encontrar el corte que realmente va contigo.</p>
+      </div>
+      <div class="vis-pillars">
+        <div class="vis-pill">
+          <div class="vis-pill-icon">◯</div>
+          <div class="vis-pill-text"><strong>Para cuando no sabes qué pedir</strong>Si tienes dudas sobre qué corte te favorece, este diagnóstico previo te da claridad antes de empezar.</div>
+        </div>
+        <div class="vis-pill">
+          <div class="vis-pill-icon">✦</div>
+          <div class="vis-pill-text"><strong>Análisis de tu morfología facial</strong>Estudiamos la forma de tu cara para recomendar largo, volumen, flequillo o capas con criterio.</div>
+        </div>
+        <div class="vis-pill">
+          <div class="vis-pill-icon">◈</div>
+          <div class="vis-pill-text"><strong>Ideal antes de un cambio de imagen</strong>Un diagnóstico bien hecho es la diferencia entre un corte que dura y uno que no convence.</div>
+        </div>
+      </div>
+      <a href="reserva.html" class="vis-cta">Consultar disponibilidad →</a>
     </div>
   </div>
 </section>
@@ -916,11 +1146,6 @@
       <span class="gallery-overlay" aria-hidden="true"></span>
       <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Color y brillo</span><span class="gallery-desc">Tonos personalizados con un acabado luminoso y duradero.</span></span>
     </button>
-    <button class="gallery-item" type="button" data-title="Corte y peinado" data-img="assets/img/corte-peinado-1600.webp">
-      <picture><source type="image/avif" srcset="assets/img/corte-peinado-800.avif 800w, assets/img/corte-peinado-1600.avif 1600w" sizes="(max-width: 700px) 90vw, 33vw"><source type="image/webp" srcset="assets/img/corte-peinado-800.webp 800w, assets/img/corte-peinado-1600.webp 1600w" sizes="(max-width: 700px) 90vw, 33vw"><img class="gallery-photo" src="assets/img/corte-peinado-800.webp" width="1008" height="1261" loading="lazy" decoding="async" alt="Recogido de novia en D'Raggio Estilistas Barcelona"></picture>
-      <span class="gallery-overlay" aria-hidden="true"></span>
-      <span class="gallery-copy"><span class="gallery-kicker">Resultado</span><span class="gallery-label">Corte y peinado</span><span class="gallery-desc">Recogidos y peinados para eventos, bodas y ocasiones especiales.</span></span>
-    </button>
     <button class="gallery-item" type="button" data-title="Tratamiento capilar" data-img="assets/img/tratamiento-capilar-1600.webp">
       <picture><source type="image/avif" srcset="assets/img/tratamiento-capilar-800.avif 800w, assets/img/tratamiento-capilar-1600.avif 1600w" sizes="(max-width: 700px) 90vw, 33vw"><source type="image/webp" srcset="assets/img/tratamiento-capilar-800.webp 800w, assets/img/tratamiento-capilar-1600.webp 1600w" sizes="(max-width: 700px) 90vw, 33vw"><img class="gallery-photo" src="assets/img/tratamiento-capilar-800.webp" width="495" height="742" loading="lazy" decoding="async" alt="Resultado de tratamiento capilar en D'Raggio Estilistas Barcelona"></picture>
       <span class="gallery-overlay" aria-hidden="true"></span>
@@ -951,16 +1176,16 @@
   <p class="section-sub">Trabajamos con firmas profesionales seleccionadas para acompañar servicios de color, cuidado y acabado con una experiencia de salón premium.</p>
   <div class="brands-row" role="list" aria-label="Marcas profesionales con las que trabajamos">
     <div class="brand-card" role="listitem">
+      <span class="brand-name">Biokera</span>
+      <span class="brand-meta">Natura</span>
+    </div>
+    <div class="brand-card" role="listitem">
+      <span class="brand-name">ALTER<span style="display:inline-block;transform:scaleX(-1)">E</span>GO</span>
+      <span class="brand-meta">Italy</span>
+    </div>
+    <div class="brand-card" role="listitem">
       <span class="brand-name">OLAY</span>
       <span class="brand-meta">Cuidado</span>
-    </div>
-    <div class="brand-card" role="listitem">
-      <span class="brand-name">L&rsquo;Or&eacute;al</span>
-      <span class="brand-meta">Paris</span>
-    </div>
-    <div class="brand-card" role="listitem">
-      <span class="brand-name">Christian Dior</span>
-      <span class="brand-meta">Paris</span>
     </div>
     <div class="brand-card" role="listitem">
       <span class="brand-name">K&eacute;rastase</span>
@@ -969,14 +1194,6 @@
     <div class="brand-card" role="listitem">
       <span class="brand-name">Revlon</span>
       <span class="brand-meta">Color</span>
-    </div>
-    <div class="brand-card" role="listitem">
-      <span class="brand-name">Lanc&ocirc;me</span>
-      <span class="brand-meta">Paris</span>
-    </div>
-    <div class="brand-card" role="listitem">
-      <span class="brand-name">Shiseido</span>
-      <span class="brand-meta">Cuidado</span>
     </div>
   </div>
 </section>
@@ -1063,6 +1280,27 @@
           </div>
         </div>
       </div>
+      <div class="contacto-item">
+        <div class="contacto-icon-wrap">🚇</div>
+        <div>
+          <div class="contacto-label">Cómo llegar</div>
+          <div class="contacto-value" style="display:flex;flex-direction:column;gap:0.55rem;">
+            <div style="display:flex;align-items:center;gap:0.55rem;flex-wrap:wrap;">
+              <span style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--light-mid);">Metro</span>
+              <span style="display:inline-flex;align-items:center;gap:0.3rem;background:#9b59b6;color:#fff;font-size:0.72rem;font-weight:600;padding:0.18rem 0.55rem;border-radius:20px;letter-spacing:0.04em;">L2</span>
+              <span style="display:inline-flex;align-items:center;gap:0.3rem;background:#0070c0;color:#fff;font-size:0.72rem;font-weight:600;padding:0.18rem 0.55rem;border-radius:20px;letter-spacing:0.04em;">L5</span>
+              <span style="font-size:0.88rem;color:var(--charcoal);">Sagrada Família · 3 min a pie</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.55rem;flex-wrap:wrap;">
+              <span style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--light-mid);">Bus</span>
+              <span style="display:inline-flex;align-items:center;background:#e8c200;color:#2a2420;font-size:0.72rem;font-weight:600;padding:0.18rem 0.55rem;border-radius:20px;letter-spacing:0.04em;">H10</span>
+              <span style="display:inline-flex;align-items:center;background:#e8c200;color:#2a2420;font-size:0.72rem;font-weight:600;padding:0.18rem 0.55rem;border-radius:20px;letter-spacing:0.04em;">V19</span>
+              <span style="display:inline-flex;align-items:center;background:#e8c200;color:#2a2420;font-size:0.72rem;font-weight:600;padding:0.18rem 0.55rem;border-radius:20px;letter-spacing:0.04em;">33</span>
+              <span style="display:inline-flex;align-items:center;background:#e8c200;color:#2a2420;font-size:0.72rem;font-weight:600;padding:0.18rem 0.55rem;border-radius:20px;letter-spacing:0.04em;">34</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div>
       <div class="map-card">
@@ -1087,7 +1325,7 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <a href="index.html" class="nav-logo">D'Raggio <span aria-hidden="true">✂</span> Estilistas</a>
+      <a href="index.html" class="nav-logo"><img src="assets/img/draggio-logo.jpeg" alt="D'Raggio Estilistas" loading="lazy"></a>
       <p>Salón cerca de Sagrada Família especializado en balayage, coloración, cortes y tratamientos capilares personalizados.</p>
       <div class="footer-social">
         <a href="https://www.instagram.com/dianaraggioestilistas/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg></a>
