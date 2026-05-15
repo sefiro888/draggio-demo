@@ -70,10 +70,10 @@
   .btn-ig:hover { border-color: rgba(200,169,110,0.55); color: var(--rose-dark); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(42,36,32,0.07); }
   .btn-ig:hover::before, .btn-primary:hover::before, .btn-outline:hover::before { left: 130%; }
 
-  /* Masonry-style grid */
-  .gallery-masonry { columns: 4; column-gap: 8px; }
+  /* Grid uniforme sin huecos */
+  .gallery-masonry { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
   .reels-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 340px)); gap: 1rem; align-items: start; justify-content: center; }
-  .gallery-masonry .g-item { display: block; break-inside: avoid; margin-bottom: 8px; position: relative; overflow: hidden; border-radius: 2px; cursor: pointer; border: 1px solid rgba(200,169,110,0.14); background: var(--warm-white); color: inherit; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.25s ease; }
+  .gallery-masonry .g-item { display: block; position: relative; overflow: hidden; border-radius: 2px; cursor: pointer; border: 1px solid rgba(200,169,110,0.14); background: var(--warm-white); color: inherit; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.25s ease; }
   .gallery-masonry .g-item.is-hidden { display: none; }
   .g-frame { position: relative; width: 100%; overflow: hidden; background: var(--blush); }
   .g-img { width: 100%; display: block; transition: opacity 0.45s ease, transform 0.5s ease, filter 0.5s ease; }
@@ -225,7 +225,7 @@
   @media (max-width: 900px) {
     .nav-links { display: none; }
     .nav-hamburger { display: flex; }
-    .gallery-masonry { columns: 2; }
+    .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
     .reels-grid { grid-template-columns: repeat(2, minmax(0, 340px)); }
     .reviews-grid { grid-template-columns: 1fr 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -234,7 +234,7 @@
   @media (max-width: 600px) {
     nav { padding: 0 4%; }
     .gallery-section, #opiniones { padding: 70px 4%; }
-    .gallery-masonry { columns: 2; }
+    .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
     .compare-modal { padding: 4vw; }
     .compare-head { padding: 0.85rem; }
     .compare-title { font-size: 1.15rem; }
@@ -354,7 +354,7 @@
   <div class="gallery-header">
     <div>
       <div class="section-label">Galería</div>
-      <h2 class="section-title">Antes & <em>después</em></h2>
+      <h2 class="section-title">Resultados & <em>transformaciones</em></h2>
     </div>
     <a href="https://www.instagram.com/dianaraggioestilistas/" target="_blank" rel="noopener noreferrer" class="btn-ig">📸 Síguenos en Instagram</a>
   </div>
@@ -366,12 +366,13 @@
     <button class="filter-btn" data-filter="color">Color</button>
     <button class="filter-btn" data-filter="keratina">Keratina</button>
     <button class="filter-btn" data-filter="corte">Corte</button>
+    <button class="filter-btn" data-filter="portfolio">Portfolio</button>
   </div>
 
   <div class="gallery-subsection">
     <div class="gallery-subhead">
-      <h3>Fotos antes &amp; después</h3>
-      <p>Transformaciones reales y resultados visuales para comparar el cambio con detalle.</p>
+      <h3>Trabajos reales del salón</h3>
+      <p>Resultados finales y comparativas antes/después — trabajos reales realizados en D'Raggio por Diana.</p>
     </div>
     <div class="gallery-masonry">
     <div class="g-item" data-category="balayage" data-title="Balayage" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Balayage">
@@ -382,13 +383,12 @@
       </div>
       <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Balayage</span><span class="g-desc">Resultado luminoso y natural.</span></div>
     </div>
-    <div class="g-item" data-category="mechas" data-title="Mechas babylights" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Mechas babylights">
-      <span class="compare-badge">Ver transformación</span>
+    <div class="g-item" data-category="mechas" data-title="Balayage rosa" tabindex="0" role="button" aria-label="Ampliar foto de Balayage rosa">
+      <span class="compare-badge">Ver resultado</span>
       <div class="g-frame">
-        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f4e1cf"/><stop offset="100%" stop-color="#d0a072"/></linearGradient></defs><rect width="300" height="280" fill="url(#after2)"/><path d="M58 42 C128 93 174 190 238 246" stroke="rgba(255,255,245,0.35)" stroke-width="7" fill="none"/><text x="150" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(100,60,40,0.45)" font-style="italic">Después</text><text x="150" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(100,60,40,0.34)">babylights</text></svg></div>
-        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#aa856d"/><stop offset="100%" stop-color="#624838"/></linearGradient></defs><rect width="300" height="280" fill="url(#before2)"/><text x="150" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.34)" font-style="italic">Antes</text><text x="150" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.24)">tono apagado</text></svg></div>
+        <div class="g-img g-after"><img class="g-photo" src="assets/img/balayage-rosa.jpeg" loading="lazy" decoding="async" alt="Balayage rosa en D'Raggio Estilistas Barcelona"></div>
       </div>
-      <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Mechas babylights</span></div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Balayage rosa</span><span class="g-desc">Degradado suave de rubio rosado sobre raíz oscura.</span></div>
     </div>
     <div class="g-item" data-category="balayage" data-title="Balayage moreno" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Balayage moreno">
       <span class="compare-badge">Ver transformación</span>
@@ -406,27 +406,90 @@
       </div>
       <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Bioplastia capilar</span><span class="g-desc">Cabello más pulido, brillante y controlado.</span></div>
     </div>
-    <div class="g-item" data-category="color" data-title="Color y brillo" tabindex="0" role="button" aria-label="Ampliar foto de Color y brillo">
+    <div class="g-item" data-category="color" data-title="Rojo intenso" tabindex="0" role="button" aria-label="Ampliar foto de Rojo intenso">
       <span class="compare-badge">Ver resultado</span>
       <div class="g-frame">
-        <div class="g-img g-after"><picture><source type="image/avif" srcset="assets/img/color-brillo-800.avif 800w, assets/img/color-brillo-1600.avif 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><source type="image/webp" srcset="assets/img/color-brillo-800.webp 800w, assets/img/color-brillo-1600.webp 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><img class="g-photo" src="assets/img/color-brillo-800.webp" width="1135" height="1228" loading="lazy" decoding="async" alt="Resultado de color y brillo en D'Raggio Estilistas Barcelona"></picture></div>
+        <div class="g-img g-after"><img class="g-photo" src="assets/img/rojo-intenso-espalda.jpeg" loading="lazy" decoding="async" alt="Color rojo intenso en D'Raggio Estilistas Barcelona"></div>
       </div>
-      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Color y brillo</span><span class="g-desc">Tonos personalizados con acabado luminoso.</span></div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Rojo intenso</span><span class="g-desc">Color vibrante y luminoso con acabado impecable.</span></div>
     </div>
-    <div class="g-item" data-category="color" data-title="Tinte global" data-has-before="true" tabindex="0" role="button" aria-label="Abrir comparador de Tinte global">
-      <span class="compare-badge">Ver transformación</span>
-      <div class="g-frame">
-        <div class="g-img g-after"><svg class="g-placeholder" viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="after7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f5e8d8"/><stop offset="100%" stop-color="#c09060"/></linearGradient></defs><rect width="300" height="340" fill="url(#after7)"/><text x="150" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(100,60,30,0.42)" font-style="italic">Después</text><text x="150" y="183" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(100,60,30,0.32)">tinte global</text></svg></div>
-        <div class="g-img g-before"><svg class="g-placeholder" viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="before7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c4aa94"/><stop offset="100%" stop-color="#735342"/></linearGradient></defs><rect width="300" height="340" fill="url(#before7)"/><text x="150" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="rgba(255,255,255,0.32)" font-style="italic">Antes</text><text x="150" y="183" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(255,255,255,0.24)">raíz marcada</text></svg></div>
-      </div>
-      <div class="g-overlay"><span>Ver transformación</span><span class="g-tag">Tinte global</span></div>
-    </div>
-    <div class="g-item" data-category="keratina" data-title="Tratamiento capilar" tabindex="0" role="button" aria-label="Ampliar foto de Tratamiento capilar">
+    <div class="g-item" data-category="keratina" data-title="Balayage ceniza" tabindex="0" role="button" aria-label="Ampliar foto de Balayage ceniza">
       <span class="compare-badge">Ver resultado</span>
       <div class="g-frame">
-        <div class="g-img g-after"><picture><source type="image/avif" srcset="assets/img/tratamiento-capilar-800.avif 800w, assets/img/tratamiento-capilar-1600.avif 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><source type="image/webp" srcset="assets/img/tratamiento-capilar-800.webp 800w, assets/img/tratamiento-capilar-1600.webp 1600w" sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw"><img class="g-photo" src="assets/img/tratamiento-capilar-800.webp" width="495" height="742" loading="lazy" decoding="async" alt="Resultado de tratamiento capilar en D'Raggio Estilistas Barcelona"></picture></div>
+        <div class="g-img g-after"><img class="g-photo" src="assets/img/balayage-ceniza.jpeg" loading="lazy" decoding="async" alt="Balayage ceniza en D'Raggio Estilistas Barcelona"></div>
       </div>
-      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Tratamiento capilar</span><span class="g-desc">Cabello hidratado, suave y con brillo.</span></div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Balayage ceniza</span><span class="g-desc">Reflejos fríos y sofisticados sobre base morena.</span></div>
+    </div>
+    <div class="g-item" data-category="balayage" data-title="Balayage rubio liso" tabindex="0" role="button" aria-label="Ampliar foto de Balayage rubio liso">
+      <span class="compare-badge">Ver resultado</span>
+      <div class="g-frame">
+        <div class="g-img g-after"><img class="g-photo" src="assets/img/balayage-rubio-liso.jpeg" loading="lazy" decoding="async" alt="Balayage rubio liso en D'Raggio Estilistas Barcelona"></div>
+      </div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Balayage rubio</span><span class="g-desc">Rubio luminoso con degradado natural desde la raíz.</span></div>
+    </div>
+    <div class="g-item" data-category="balayage" data-title="Balayage ondas dorado" tabindex="0" role="button" aria-label="Ampliar foto de Balayage ondas dorado">
+      <span class="compare-badge">Ver resultado</span>
+      <div class="g-frame">
+        <div class="g-img g-after"><img class="g-photo" src="assets/img/balayage-ondas-dorado.jpeg" loading="lazy" decoding="async" alt="Balayage ondas dorado en D'Raggio Estilistas Barcelona"></div>
+      </div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Balayage dorado</span><span class="g-desc">Mechas doradas con ondas sueltas y naturales.</span></div>
+    </div>
+    <div class="g-item" data-category="balayage" data-title="Balayage castaño ondas" tabindex="0" role="button" aria-label="Ampliar foto de Balayage castaño ondas">
+      <span class="compare-badge">Ver resultado</span>
+      <div class="g-frame">
+        <div class="g-img g-after"><img class="g-photo" src="assets/img/balayage-castano-ondas.jpeg" loading="lazy" decoding="async" alt="Balayage castaño ondas en D'Raggio Estilistas Barcelona"></div>
+      </div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Balayage castaño</span><span class="g-desc">Base castaña con mechas cálidas y efecto sunkissed.</span></div>
+    </div>
+    <div class="g-item" data-category="balayage" data-title="Rubia ondas" tabindex="0" role="button" aria-label="Ampliar foto de Rubia ondas">
+      <span class="compare-badge">Ver resultado</span>
+      <div class="g-frame">
+        <div class="g-img g-after"><img class="g-photo" src="assets/img/rubia-ondas.jpeg" loading="lazy" decoding="async" alt="Rubia ondas en D'Raggio Estilistas Barcelona"></div>
+      </div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Rubia natural</span><span class="g-desc">Rubio dorado con ondas sueltas de salón.</span></div>
+    </div>
+    <div class="g-item" data-category="balayage" data-title="Balayage caramelo" tabindex="0" role="button" aria-label="Ampliar foto de Balayage caramelo">
+      <span class="compare-badge">Ver resultado</span>
+      <div class="g-frame">
+        <div class="g-img g-after"><img class="g-photo" src="assets/img/balayage-caramelo.jpeg" loading="lazy" decoding="async" alt="Balayage caramelo en D'Raggio Estilistas Barcelona"></div>
+      </div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Balayage caramelo</span><span class="g-desc">Tonos cálidos que iluminan el cabello oscuro naturalmente.</span></div>
+    </div>
+    <div class="g-item" data-category="color" data-title="Rubia larga" tabindex="0" role="button" aria-label="Ampliar foto de Rubia larga">
+      <span class="compare-badge">Ver resultado</span>
+      <div class="g-frame">
+        <div class="g-img g-after"><img class="g-photo" src="assets/img/rubia-larga.jpeg" loading="lazy" decoding="async" alt="Rubia larga en D'Raggio Estilistas Barcelona"></div>
+      </div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Color rubio</span><span class="g-desc">Rubio largo y luminoso con acabado de salón.</span></div>
+    </div>
+    </div>
+  </div>
+
+  <div class="gallery-subsection">
+    <div class="gallery-subhead">
+      <h3>Portfolio &amp; campaña</h3>
+      <p>Trabajos de imagen realizados por Diana a lo largo de su trayectoria profesional.</p>
+    </div>
+    <div class="gallery-masonry">
+    <div class="g-item" data-category="portfolio" data-title="Portfolio D'Raggio" tabindex="0" role="button" aria-label="Ampliar foto de portfolio">
+      <span class="compare-badge">Ver resultado</span>
+      <div class="g-frame"><img class="g-photo" src="assets/img/diana-portfolio-1.jpeg" loading="lazy" decoding="async" alt="Portfolio D'Raggio Estilistas Barcelona"></div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Portfolio</span><span class="g-desc">Color con mechas rosas y peinado rizado.</span></div>
+    </div>
+    <div class="g-item" data-category="portfolio" data-title="Portfolio rubio ceniza" tabindex="0" role="button" aria-label="Ampliar foto de portfolio">
+      <span class="compare-badge">Ver resultado</span>
+      <div class="g-frame"><img class="g-photo" src="assets/img/diana-portfolio-2.jpeg" loading="lazy" decoding="async" alt="Portfolio D'Raggio Estilistas Barcelona"></div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Portfolio</span><span class="g-desc">Balayage rubio ceniza, liso y brillante.</span></div>
+    </div>
+    <div class="g-item" data-category="portfolio" data-title="Recogido de ocasión" tabindex="0" role="button" aria-label="Ampliar foto de recogido">
+      <span class="compare-badge">Ver resultado</span>
+      <div class="g-frame"><img class="g-photo" src="assets/img/diana-portfolio-3.jpeg" loading="lazy" decoding="async" alt="Recogido de ocasión en D'Raggio Estilistas Barcelona"></div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Recogido</span><span class="g-desc">Recogido artístico para ocasiones especiales.</span></div>
+    </div>
+    <div class="g-item" data-category="portfolio" data-title="Sesión editorial" tabindex="0" role="button" aria-label="Ampliar foto editorial">
+      <span class="compare-badge">Ver resultado</span>
+      <div class="g-frame"><img class="g-photo" src="assets/img/diana-portfolio-4.jpeg" loading="lazy" decoding="async" alt="Sesión editorial D'Raggio Estilistas Barcelona"></div>
+      <div class="g-overlay"><span>Ver resultado</span><span class="g-tag">Portfolio</span><span class="g-desc">Sesión de imagen con acabado editorial y dramático.</span></div>
     </div>
     </div>
   </div>
