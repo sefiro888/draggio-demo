@@ -109,10 +109,12 @@
   .map-info-value { font-size: 0.9rem; color: rgba(250,246,241,0.8); line-height: 1.5; }
   .map-info-value a { color: var(--gold-light); text-decoration: none; }
 
-  .horario-block { margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.3rem; }
-  .h-row { display: flex; justify-content: space-between; font-size: 0.85rem; color: rgba(250,246,241,0.6); padding: 0.35rem 0; border-bottom: 1px solid rgba(200,169,110,0.1); }
+  .horario-block { margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.3rem; width: min(100%, 340px); }
+  .h-row { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.85rem; color: var(--mid); padding: 0.35rem 0; border-bottom: 1px solid var(--border); }
   .h-row:last-child { border-bottom: none; }
-  .h-row .hora { color: rgba(250,246,241,0.85); font-weight: 500; }
+  .h-row .hora { color: var(--charcoal); font-weight: 500; white-space: nowrap; }
+  .map-section .h-row { color: rgba(250,246,241,0.6); border-bottom-color: rgba(200,169,110,0.1); }
+  .map-section .h-row .hora { color: rgba(250,246,241,0.85); }
 
   .map-embed-wrap { position: relative; border-radius: 2px; overflow: hidden; border: 1px solid rgba(200,169,110,0.18); box-shadow: 0 8px 32px rgba(42,36,32,0.18); }
   .map-embed-wrap iframe { display: block; width: 100%; height: 440px; border: 0; filter: grayscale(18%) contrast(1.04); }
@@ -301,8 +303,8 @@
           <div class="contact-icon">🚇</div>
           <div>
             <div class="contact-label">Transporte</div>
-            <div class="contact-value">Metro: Sagrada Família (L2, L5)</div>
-            <div class="contact-sub">A 4 minutos andando</div>
+            <div class="contact-value">Metro: Sagrada Família (L2, L5)<br>Bus: 33, 34, H10, H8, V21, D50 y 19</div>
+            <div class="contact-sub">Paradas cercanas a 1-4 minutos andando</div>
           </div>
         </div>
       </div>
@@ -362,7 +364,7 @@
         <div class="map-info-icon">🚇</div>
         <div>
           <div class="map-info-label">Metro más cercano</div>
-          <div class="map-info-value">Sagrada Família · Líneas L2 y L5<br>4 minutos a pie</div>
+          <div class="map-info-value">Sagrada Família · Metro L2 y L5<br>Bus 33, 34, H10, H8, V21, D50 y 19</div>
         </div>
       </div>
       <div class="map-info-item">
@@ -410,8 +412,8 @@
     <div class="llegar-card">
       <div class="llegar-icon">🚌</div>
       <div class="llegar-title">Autobús</div>
-      <p class="llegar-text">Múltiples líneas con paradas a menos de 2 minutos: 19, 33, 34, 43, 44, 50 y 51. Parada en Lepant con Mallorca.</p>
-      <div class="llegar-detail">2 min a pie</div>
+      <p class="llegar-text">Líneas cercanas: 33, 34, H10, H8, V21, D50 y 19, con paradas próximas en Sagrada Família, Aragó - Lepant y Padilla - Mallorca.</p>
+      <div class="llegar-detail">1-4 min a pie</div>
     </div>
     <div class="llegar-card">
       <div class="llegar-icon">🚴</div>
