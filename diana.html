@@ -38,7 +38,7 @@
   /* HERO */
   .diana-hero {
     padding-top: 68px;
-    min-height: 52vh;
+    min-height: 65vh;
     display: flex; align-items: flex-end;
     background: linear-gradient(135deg, var(--charcoal) 0%, #3e2e26 55%, #5c3d2e 100%);
     position: relative; overflow: hidden;
@@ -46,22 +46,40 @@
   .diana-hero::before {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 80% 60%, rgba(200,169,110,0.14) 0%, transparent 60%);
+    background: radial-gradient(ellipse at 30% 60%, rgba(200,169,110,0.1) 0%, transparent 55%);
     pointer-events: none;
   }
-  .diana-hero-deco {
-    position: absolute; right: 8%; top: 50%; transform: translateY(-50%);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(7rem, 14vw, 13rem);
-    font-weight: 300; line-height: 1;
-    color: rgba(200,169,110,0.06);
-    letter-spacing: 0.1em;
-    pointer-events: none; white-space: nowrap;
+  /* Foto en el hero — desktop */
+  .diana-hero-photo {
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: min(40vw, 500px);
+    pointer-events: none;
+    z-index: 0;
   }
+  .diana-hero-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    mix-blend-mode: multiply;
+    opacity: 0.92;
+  }
+  /* Gradientes para fundir la foto con el fondo oscuro */
+  .diana-hero-photo::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, #2a2420 0%, rgba(42,36,32,0) 35%),
+      linear-gradient(to bottom, #2a2420 0%, rgba(42,36,32,0) 18%),
+      linear-gradient(to top, #3e2e26 0%, rgba(62,46,38,0) 18%);
+    z-index: 2;
+  }
+  .diana-hero-deco { display: none; }
   .diana-hero-content {
     padding: 4rem 5% 5rem;
     position: relative; z-index: 1;
-    max-width: 700px;
+    max-width: 58%;
   }
   .diana-eyebrow {
     display: inline-flex; align-items: center; gap: 0.8rem;
@@ -105,13 +123,15 @@
   }
   .diana-bio-inner {
     max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: 300px 1fr 1fr;
+    display: grid; grid-template-columns: 1fr 1fr;
     gap: 4rem; align-items: start;
   }
+  /* En desktop la foto ya aparece en el hero — se oculta aquí */
+  .diana-portrait-wrap { display: none; }
 
   /* FOTO */
   .diana-portrait-wrap {
-    position: sticky; top: 90px;
+    position: static;
   }
   .diana-portrait-frame {
     position: relative;
@@ -343,24 +363,23 @@
   .social-btn svg { width: 1.08em; height: 1.08em; display: block; flex: 0 0 auto; }
 
   @media (max-width: 1050px) {
-    .diana-bio-inner { grid-template-columns: 260px 1fr 1fr; gap: 2.5rem; }
+    .diana-bio-inner { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   }
   @media (max-width: 900px) {
     .nav-links { display: none; }
     .nav-hamburger { display: flex; }
-    .diana-bio-inner { grid-template-columns: 220px 1fr; gap: 2rem; }
-    .diana-bio-inner .diana-portrait-wrap { grid-row: span 2; }
-    .diana-bio-inner .diana-bio-text { grid-column: 2; }
-    .diana-bio-inner .diana-creds { grid-column: 2; }
-    .diana-portrait-wrap { position: static; }
+    .diana-bio-inner { grid-template-columns: 1fr; gap: 2rem; }
     .phil-grid { grid-template-columns: 1fr 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 600px) {
     nav { padding: 0 4%; }
 
-    /* Hero — reducir h1 para que quepa bien */
-    .diana-hero-content { padding: 2.5rem 5% 3.5rem; }
+    /* Hero — foto oculta en móvil */
+    .diana-hero-photo { display: none; }
+    .diana-hero-content { padding: 2.5rem 5% 3.5rem; max-width: 100%; }
+    /* Bio — foto visible en móvil (no está en el hero) */
+    .diana-portrait-wrap { display: block; }
     .diana-hero h1 { font-size: 2.15rem; line-height: 1.1; margin-bottom: 1rem; }
     .diana-hero-sub { font-size: 0.88rem; line-height: 1.7; }
     .diana-since { font-size: 0.68rem; margin-top: 1.5rem; }
@@ -445,7 +464,9 @@
 
 <!-- HERO -->
 <header class="diana-hero">
-  <div class="diana-hero-deco" aria-hidden="true">Diana</div>
+  <div class="diana-hero-photo" aria-hidden="true">
+    <img src="assets/img/diana-portrait.png" alt="">
+  </div>
   <div class="diana-hero-content">
     <div class="diana-eyebrow">Estilista · Barcelona</div>
     <h1>Diana Raggio,<br><em>más de 20 años</em><br>transformando cabellos</h1>
