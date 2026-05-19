@@ -737,11 +737,14 @@
   }
 
   function openCompare(item) {
-    const after = item.querySelector('.g-after');
+    const after  = item.querySelector('.g-after');
     const before = item.querySelector('.g-before');
-    compareTitle.textContent = item.dataset.title || 'Comparador';
-    compareAfter.innerHTML = after ? after.innerHTML : '';
-    compareBefore.innerHTML = before ? before.innerHTML : (after ? after.innerHTML : '');
+    /* Fallback para fotos de portfolio que van directamente en .g-frame */
+    const frameImg = item.querySelector('.g-frame img, .g-frame picture');
+    compareTitle.textContent = item.dataset.title || 'Resultado';
+    compareAfter.innerHTML  = after ? after.innerHTML
+                            : (frameImg ? `<img src="${frameImg.tagName === 'IMG' ? frameImg.src : frameImg.querySelector('img').src}" style="width:100%;height:min(68vh,620px);object-fit:cover;object-position:center;display:block;" alt="${(frameImg.tagName === 'IMG' ? frameImg : frameImg.querySelector('img')).alt || ''}">` : '');
+    compareBefore.innerHTML = before ? before.innerHTML : compareAfter.innerHTML;
     const hasBefore = item.dataset.hasBefore === 'true' && before;
     compareBefore.style.display = hasBefore ? 'block' : 'none';
     compareRange.style.display = hasBefore ? 'block' : 'none';
